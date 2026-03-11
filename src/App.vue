@@ -3,8 +3,8 @@ import AudioToggle from './components/AudioToggle.vue';
 </script>
 
 <template>
-  <div class="min-h-screen bg-neutral-900 flex justify-center w-full">
-    <div class="w-full max-w-md bg-black relative shadow-2xl overflow-hidden flex flex-col items-stretch">
+  <div class="h-[100dvh] bg-neutral-900 flex justify-center w-full overflow-hidden">
+    <div class="w-full max-w-md bg-black relative shadow-2xl overflow-hidden flex flex-col h-full items-stretch">
       <AudioToggle />
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">

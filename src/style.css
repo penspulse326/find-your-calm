@@ -36,3 +36,25 @@ body {
     background-color: #ffffff;
   }
 }
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Ensure no bounce on mobile */
+html, body {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+}
