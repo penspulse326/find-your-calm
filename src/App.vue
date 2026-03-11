@@ -1,21 +1,28 @@
 <script setup lang="ts">
-// Application entry point
+import AudioToggle from './components/AudioToggle.vue';
 </script>
 
 <template>
-  <main>
-    <h1>Find Your Anxiety</h1>
-    <p>Welcome to your new project.</p>
-  </main>
+  <div class="min-h-screen bg-neutral-900 flex justify-center w-full">
+    <div class="w-full max-w-md bg-black relative shadow-2xl overflow-hidden flex flex-col items-stretch">
+      <AudioToggle />
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+    </div>
+  </div>
 </template>
 
-<style scoped>
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  text-align: center;
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
