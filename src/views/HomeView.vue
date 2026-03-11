@@ -4,7 +4,7 @@
 -->
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import avatarThinking from '../assets/images/avatar_thinking.png';
+import avatarDefault from '../assets/images/avatar_default.png';
 import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
 
@@ -21,7 +21,7 @@ function startQuiz() {
 
 <template>
   <div
-    class="flex-1 flex flex-col items-center justify-center bg-[#A7C7E7] relative h-full overflow-hidden"
+    class="flex-1 flex flex-col items-center justify-center bg-sky-300 relative h-full overflow-hidden"
   >
     <!-- 背景裝飾：光暈或漸層 -->
     <div
@@ -33,9 +33,9 @@ function startQuiz() {
       class="absolute inset-x-0 bottom-0 z-0 flex justify-center items-end h-[85%] transform translate-y-8"
     >
       <img
-        :src="avatarThinking"
+        :src="avatarDefault"
         alt="Character"
-        class="h-full object-contain object-bottom drop-shadow-2xl opacity-80"
+        class="h-full object-contain object-bottom drop-shadow-2xl opacity-30"
       >
     </div>
 
@@ -45,16 +45,16 @@ function startQuiz() {
     >
       <div class="space-y-4">
         <h1
-          class="text-4xl md:text-5xl font-serif font-bold tracking-[0.2em] text-white drop-shadow-lg"
+          class="text-4xl md:text-5xl font-serif font-bold tracking-[0.2em] text-white drop-shadow-lg text-shadow-lg"
         >
-          尋找平靜
+          平靜旅程
         </h1>
         <div class="w-16 h-[2px] bg-white/40 mx-auto" />
         <p
-          class="text-white/90 font-medium leading-relaxed text-base max-w-sm mx-auto drop-shadow-md"
+          class="text-white/90 font-medium leading-relaxed text-base max-w-sm mx-auto drop-shadow-md text-shadow-[1px_1px_4px_rgb(0_50_50_/_1.0)]"
         >
           你有多久沒有好好放鬆了呢？<br>
-          透過幾個日常問題，慢慢找到通往平靜的方向吧！
+          透過問答，找到通往平靜的方向吧！
         </p>
       </div>
 
