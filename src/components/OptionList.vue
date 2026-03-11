@@ -31,7 +31,7 @@ function handleSelect(score: number) {
       v-for="option in options"
       :key="option.text"
       :disabled="disabled"
-      class="group text-left w-full relative overflow-hidden bg-white/5 hover:bg-white/15 active:bg-white/25 backdrop-blur-md border border-white/10 hover:border-white/40 rounded-2xl p-3 transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-1 shadow-lg hover:shadow-white/10 isolate will-change-[backdrop-filter,transform,opacity]"
+      class="group text-left w-full relative overflow-hidden bg-white/5 hover:bg-white/15 active:bg-white/25 backdrop-blur-sm border border-white/10 hover:border-white/40 rounded-2xl p-3 transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-1 shadow-lg hover:shadow-white/10 isolate will-change-[backdrop-filter,transform,opacity]"
       @click="handleSelect(option.score)"
     >
       <!-- 滑鼠懸浮時的光澤效果 -->
@@ -48,7 +48,7 @@ function handleSelect(score: number) {
           }}</span>
         </div>
         <span
-          class="text-white text-shadow-[1px_1px_4px_rgb(0_0_0_/_0.5)] font-medium text-sm leading-snug tracking-wide group-hover:text-white transition-colors"
+          class="text-white text-shadow-[1px_1px_4px_rgb(0_0_0_/_0.8)] font-medium text-sm leading-snug tracking-wide group-hover:text-white transition-colors"
         >{{ option.text }}</span>
       </div>
     </button>

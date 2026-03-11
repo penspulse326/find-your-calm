@@ -107,6 +107,11 @@ function handleDialogFinish() {
         <div class="w-10" />
       </div>
       <!-- 角色與背景區域 -->
+      <img
+        src="/src/assets/images/scene_1.png"
+        alt=""
+        class="absolute z-10 h-full object-cover blur-[2px] opacity-50"
+      >
       <CharacterImage />
 
       <!-- 浮動選項層（傳統視覺小說風格） -->
@@ -127,18 +132,7 @@ function handleDialogFinish() {
 
       <!-- 對話框區域 -->
       <div v-if="currentQuestion" class="mt-auto z-40">
-        <div
-          class="transition-opacity duration-500"
-          :class="{
-            'opacity-0': isTransitioning,
-            'pointer-events-none': isTransitioning,
-          }"
-        >
-          <DialogBox
-            :text="currentQuestion.text"
-            @finish="handleDialogFinish"
-          />
-        </div>
+        <DialogBox :text="currentQuestion.text" @finish="handleDialogFinish" />
       </div>
 
       <!-- 確認重開的彈跳視窗 -->
@@ -152,7 +146,7 @@ function handleDialogFinish() {
             @click="cancelRestart"
           />
           <div
-            class="relative bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl w-full max-w-sm text-center shadow-2xl isolate will-change-[backdrop-filter,transform,opacity]"
+            class="relative bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl w-full max-w-sm text-center shadow-2xl isolate will-change-[backdrop-filter,transform,opacity]"
           >
             <h3 class="text-xl font-medium text-white/90 mb-4 tracking-wider">
               確認重開？
@@ -190,7 +184,9 @@ function handleDialogFinish() {
 
 .modal-fade-enter-active,
 .modal-fade-leave-active {
-  transition: clip-path 0.4s ease, transform 0.4s ease;
+  transition:
+    clip-path 0.4s ease,
+    transform 0.4s ease;
 }
 
 .modal-fade-enter-from,
@@ -201,7 +197,9 @@ function handleDialogFinish() {
 
 .options-fade-enter-active,
 .options-fade-leave-active {
-  transition: clip-path 0.4s ease, transform 0.4s ease;
+  transition:
+    clip-path 0.4s ease,
+    transform 0.4s ease;
 }
 
 .options-fade-enter-from,
