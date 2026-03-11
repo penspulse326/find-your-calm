@@ -85,20 +85,17 @@ function handleDialogFinish() {
       <CharacterImage />
 
       <!-- 浮動選項層（傳統視覺小說風格） -->
-      <transition name="options-fade">
-        <div
-          v-if="currentQuestion && showOptions"
-          class="absolute inset-x-0 bottom-[140px] z-50 flex flex-col justify-center translate-y-0"
-        >
-          <div class="px-4 pb-4">
-            <OptionList
-              :options="currentQuestion.options"
-              :disabled="isTransitioning"
-              @select="handleSelect"
-            />
-          </div>
+      <div
+        class="absolute inset-x-0 bottom-[140px] z-50 flex flex-col justify-center translate-y-0"
+      >
+        <div class="px-4 pb-4">
+          <OptionList
+            :options="currentQuestion && showOptions ? currentQuestion.options : []"
+            :disabled="isTransitioning"
+            @select="handleSelect"
+          />
         </div>
-      </transition>
+      </div>
 
       <!-- 對話框區域 -->
       <div v-if="currentQuestion" class="mt-auto z-40">
@@ -146,21 +143,6 @@ function handleDialogFinish() {
 </template>
 
 <style scoped>
-.options-fade-enter-active {
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.options-fade-leave-active {
-  transition: all 0.4s ease-in;
-}
-.options-fade-enter-from {
-  opacity: 0;
-  transform: translateY(20px);
-}
-.options-fade-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
 .modal-fade-enter-active,
 .modal-fade-leave-active {
   transition: opacity 0.3s ease;

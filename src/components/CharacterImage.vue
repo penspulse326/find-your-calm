@@ -5,6 +5,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
+import avatarThinking from '../assets/images/avatar_thinking.png';
 import { useGameStore } from '../stores/game';
 
 const gameStore = useGameStore();
@@ -32,12 +33,18 @@ const bgColor = computed(() => {
 
 <template>
   <div
-    class="w-full flex-1 min-h-[40vh] transition-colors duration-1000 ease-in-out relative flex items-center justify-center overflow-hidden shadow-inner"
+    class="w-full flex-1 min-h-[40vh] transition-colors duration-1000 ease-in-out relative flex items-end justify-center overflow-hidden shadow-inner"
     :class="bgColor"
   >
     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-    <div class="z-10 text-white/40 text-sm tracking-widest font-light">
-      <!-- 角色立繪的佔位符可以放在這裡 -->
+
+    <!-- 角色立繪 -->
+    <div class="z-10 h-full flex items-end justify-center px-4">
+      <img
+        :src="avatarThinking"
+        alt="Character Avatar"
+        class="h-[80vh] md:h-[85vh] object-contain object-bottom drop-shadow-2xl translate-y-4"
+      >
     </div>
   </div>
 </template>
