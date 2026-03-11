@@ -1,3 +1,7 @@
+<!--
+ * 角色與背景圖片組件
+ * 根據測驗進度動態變換背景色調，用以營造不同情境的氛圍
+-->
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
@@ -6,10 +10,10 @@ import { useGameStore } from '../stores/game';
 const gameStore = useGameStore();
 const { currentQuestionIndex } = storeToRefs(gameStore);
 
-// Change colors dynamically based on the current question index
+// 根據當前題目的索引動態改變背景顏色
 const bgColor = computed(() => {
   const index = currentQuestionIndex.value;
-  // A palette transitioning from cool/calm to warm/tense
+  // 從冷色/平靜過渡到暖色/緊張的色調配置
   const colors = [
     'bg-[#A7C7E7]', // Q1
     'bg-[#B0C4DE]', // Q2
@@ -33,7 +37,7 @@ const bgColor = computed(() => {
   >
     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
     <div class="z-10 text-white/40 text-sm tracking-widest font-light">
-      <!-- Placeholder for Character Artwork -->
+      <!-- 角色立繪的佔位符可以放在這裡 -->
     </div>
   </div>
 </template>

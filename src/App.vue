@@ -1,3 +1,7 @@
+<!--
+ * 應用程式根組件
+ * 提供全局佈局設定與頁面路由切換的過渡動畫，並包含全域音效控制按鈕
+-->
 <script setup lang="ts">
 import AudioToggle from './components/AudioToggle.vue';
 </script>

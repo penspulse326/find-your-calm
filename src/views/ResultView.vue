@@ -1,3 +1,7 @@
+<!--
+ * 測驗結果視圖
+ * 根據最終獲得的分數，計算並顯示對應的內心狀態以及改善建議
+-->
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';

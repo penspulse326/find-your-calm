@@ -1,3 +1,7 @@
+/**
+ * 遊戲與測驗狀態管理 (Pinia Store)
+ * 負責管理測驗題目、使用者分數計算、當前進度以及最終結果判定
+ */
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import questionsData from '../data/questions.json';
@@ -20,15 +24,12 @@ export const useGameStore = defineStore('game', () => {
   const score = ref(0);
   const questions = ref<Question[]>(questionsData);
   const isFinished = ref(false);
-  const answers = ref<number[]>([]);
 
   const currentQuestion = computed(() => questions.value[currentQuestionIndex.value]);
   const progress = computed(() => currentQuestionIndex.value + 1);
-  const totalQuestions = computed(() => questions.value.length);
 
   function answerQuestion(optionScore: number) {
     score.value += optionScore;
-    answers.value.push(optionScore);
 
     if (currentQuestionIndex.value < questions.value.length - 1) {
       currentQuestionIndex.value++;
@@ -42,7 +43,6 @@ export const useGameStore = defineStore('game', () => {
     currentQuestionIndex.value = 0;
     score.value = 0;
     isFinished.value = false;
-    answers.value = [];
   }
 
   const resultStatus = computed(() => {
@@ -61,10 +61,8 @@ export const useGameStore = defineStore('game', () => {
     score,
     questions,
     isFinished,
-    answers,
     currentQuestion,
     progress,
-    totalQuestions,
     resultStatus,
     answerQuestion,
     resetGame,

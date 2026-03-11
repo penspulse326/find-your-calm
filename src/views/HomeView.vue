@@ -1,3 +1,7 @@
+<!--
+ * 首頁視圖
+ * 顯示測驗的標題與簡介，提供開始測驗的入口
+-->
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { useGameStore } from '../stores/game';

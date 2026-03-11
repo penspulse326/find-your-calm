@@ -1,3 +1,7 @@
+<!--
+ * 音效切換組件
+ * 提供一個浮動按鈕，讓使用者可以點擊切換全局靜音/播放狀態
+-->
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { useAudioStore } from '../stores/audio';

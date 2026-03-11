@@ -1,3 +1,7 @@
+<!--
+ * 測驗主視圖
+ * 整合角色背景、對話框與選項列表，控制測驗流程與畫面切換，並處理重啟測驗的確認邏輯
+-->
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
@@ -33,7 +37,7 @@ function handleSelect(score: number) {
   isTransitioning.value = true;
   showOptions.value = false;
 
-  // Wait a moment before switching questions
+  // 在切換題目之前稍作等待
   setTimeout(() => {
     gameStore.answerQuestion(score);
     if (isFinished.value) {
@@ -56,9 +60,9 @@ function handleDialogFinish() {
 <template>
   <div class="flex-1 flex flex-col bg-black relative h-full overflow-hidden">
     <div class="flex-1 flex flex-col relative overflow-hidden">
-      <!-- Top Header Area -->
+      <!-- 頂部標頭區域 -->
       <div class="absolute top-4 inset-x-4 z-50 flex items-center justify-between pointer-events-none">
-        <!-- Restart Button -->
+        <!-- 重新開始按鈕 -->
         <button
           class="p-2 rounded-full bg-white/20 backdrop-blur border border-white/30 text-white hover:bg-white/30 transition-colors pointer-events-auto"
           aria-label="Restart Quiz"
@@ -69,18 +73,18 @@ function handleDialogFinish() {
           </svg>
         </button>
 
-        <!-- Question Title -->
+        <!-- 題目進度 -->
         <div class="text-white/80 font-medium tracking-widest">
           第 {{ progress }} 題
         </div>
 
-        <!-- Spacer for layout balance against the absolute-positioned AudioToggle -->
+        <!-- 用於平衡排版的佔位空間（對應右側絕對定位的音效按鈕） -->
         <div class="w-10" />
       </div>
-      <!-- Character / Background Area -->
+      <!-- 角色與背景區域 -->
       <CharacterImage />
 
-      <!-- Floating Options Layer (Traditional VN Style) -->
+      <!-- 浮動選項層（傳統視覺小說風格） -->
       <transition name="options-fade">
         <div
           v-if="currentQuestion && showOptions"
@@ -96,7 +100,7 @@ function handleDialogFinish() {
         </div>
       </transition>
 
-      <!-- Dialog Box Area -->
+      <!-- 對話框區域 -->
       <div v-if="currentQuestion" class="mt-auto z-40">
         <div
           class="transition-opacity duration-500"
@@ -109,7 +113,7 @@ function handleDialogFinish() {
         </div>
       </div>
 
-      <!-- Confirmation Modal -->
+      <!-- 確認重開的彈跳視窗 -->
       <transition name="modal-fade">
         <div v-if="showConfirm" class="absolute inset-0 z-[100] flex items-center justify-center px-6">
           <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="cancelRestart" />

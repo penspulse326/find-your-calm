@@ -1,3 +1,7 @@
+/**
+ * 音效狀態管理 (Pinia Store)
+ * 負責控制全域音效的播放與靜音狀態
+ */
 import { Howl } from 'howler';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
@@ -6,13 +10,13 @@ export const useAudioStore = defineStore('audio', () => {
   const isMuted = ref(false);
   const clickSound = ref<Howl | null>(null);
 
-  // Initialize sounds (in a real app, you would load real audio files)
+  // 初始化音效（如果未來有真實音檔，可以在這裡載入）
   function initSounds() {
-    // We are mocking this for now since we don't have assets yet
+    // 因為目前沒有音效素材，先使用空的 base64 作為佔位
     clickSound.value = new Howl({
-      src: ['data:audio/mp3;base64,'], // Empty valid base64 or placeholder
+      src: ['data:audio/mp3;base64,'], // 合法的空 base64
       onloaderror: () => {
-        // Ignore errors for placeholder
+        // 忽略佔位音效的載入錯誤
       },
     });
   }

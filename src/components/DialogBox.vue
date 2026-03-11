@@ -1,3 +1,7 @@
+<!--
+ * 對話框組件
+ * 顯示情境文字，並帶有打字機過渡效果，支援點擊跳過動畫
+-->
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
 
@@ -44,7 +48,7 @@ function startTyping(fullText: string) {
   type();
 }
 
-// Watch for text changes
+// 監聽文字變化
 watch(
   () => props.text,
   (newText) => {
@@ -56,7 +60,7 @@ onMounted(() => {
   startTyping(props.text);
 });
 
-// Allow user to click to skip typing effect
+// 允許使用者點擊以跳過打字效果
 function completeTyping() {
   if (!isFinishedTyping.value) {
     if (timer)
@@ -83,7 +87,7 @@ function completeTyping() {
       />
     </p>
 
-    <!-- Triangle to indicate finished typing / ready for next -->
+    <!-- 提示打字完成 / 準備進入下一步的三角形圖示 -->
     <div
       v-if="isFinishedTyping"
       class="absolute bottom-4 right-4 animate-bounce"
@@ -107,5 +111,5 @@ function completeTyping() {
 </template>
 
 <style scoped>
-/* Optional subtle texture or inner shadow */
+/* 可選的細微紋理或內陰影設定 */
 </style>
