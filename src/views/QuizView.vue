@@ -35,7 +35,7 @@ function handleSelect(score: number) {
     <div class="flex-1 flex flex-col mt-12 pb-6 overflow-y-auto">
       <CharacterImage />
 
-      <div class="flex-1 flex flex-col justify-end">
+      <div v-if="currentQuestion" class="flex-1 flex flex-col justify-end">
         <div class="transition-opacity duration-500" :class="{ 'opacity-0': isTransitioning }">
           <DialogBox :text="currentQuestion.text" />
         </div>

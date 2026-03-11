@@ -33,7 +33,7 @@ const bgColor = computed(() => {
   >
     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
     <div class="z-10 text-white/40 text-sm tracking-widest font-light">
-      {{ /* Placeholder for Character Artwork */ }}
+      <!-- Placeholder for Character Artwork -->
     </div>
   </div>
 </template>
