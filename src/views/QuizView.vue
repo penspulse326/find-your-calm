@@ -9,10 +9,12 @@ import { useRouter } from 'vue-router';
 import CharacterImage from '../components/CharacterImage.vue';
 import DialogBox from '../components/DialogBox.vue';
 import OptionList from '../components/OptionList.vue';
+import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
 
 const router = useRouter();
 const gameStore = useGameStore();
+const audioStore = useAudioStore();
 const { currentQuestion, progress, isFinished }
   = storeToRefs(gameStore);
 
@@ -21,15 +23,18 @@ const showOptions = ref(false);
 const showConfirm = ref(false);
 
 function handleRestart() {
+  audioStore.playClick();
   showConfirm.value = true;
 }
 
 function confirmRestart() {
+  audioStore.playClick();
   gameStore.resetGame();
   router.push('/');
 }
 
 function cancelRestart() {
+  audioStore.playClick();
   showConfirm.value = false;
 }
 

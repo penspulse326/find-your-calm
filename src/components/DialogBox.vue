@@ -4,6 +4,7 @@
 -->
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue';
+import { useAudioStore } from '../stores/audio';
 
 const props = defineProps<{
   text: string;
@@ -12,6 +13,8 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'finish'): void;
 }>();
+
+const audioStore = useAudioStore();
 
 const PUNCTUATION_REGEXP = /[，。！？；：、…—]/;
 
@@ -63,6 +66,7 @@ onMounted(() => {
 // 允許使用者點擊以跳過打字效果
 function completeTyping() {
   if (!isFinishedTyping.value) {
+    audioStore.playClick();
     if (timer)
       clearTimeout(timer);
     displayedText.value = props.text;

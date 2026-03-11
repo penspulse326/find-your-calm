@@ -5,12 +5,15 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import avatarThinking from '../assets/images/avatar_thinking.png';
+import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
 
 const router = useRouter();
 const gameStore = useGameStore();
+const audioStore = useAudioStore();
 
 function startQuiz() {
+  audioStore.playClick();
   gameStore.resetGame();
   router.push('/quiz');
 }

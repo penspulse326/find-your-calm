@@ -10,6 +10,7 @@ const audioStore = useAudioStore();
 const { isMuted } = storeToRefs(audioStore);
 
 function toggle() {
+  audioStore.playClick();
   audioStore.toggleMute();
 }
 </script>

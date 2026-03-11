@@ -5,13 +5,16 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
+import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
 
 const router = useRouter();
 const gameStore = useGameStore();
+const audioStore = useAudioStore();
 const { score, resultStatus } = storeToRefs(gameStore);
 
 function restart() {
+  audioStore.playClick();
   gameStore.resetGame();
   router.replace('/');
 }

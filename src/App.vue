@@ -3,7 +3,15 @@
  * 提供全局佈局設定與頁面路由切換的過渡動畫，並包含全域音效控制按鈕
 -->
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import AudioToggle from './components/AudioToggle.vue';
+import { useAudioStore } from './stores/audio';
+
+const audioStore = useAudioStore();
+
+onMounted(() => {
+  audioStore.initSounds();
+});
 </script>
 
 <template>
