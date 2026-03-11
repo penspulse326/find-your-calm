@@ -28,13 +28,17 @@ onMounted(() => {
 </template>
 
 <style>
+/*
+  改用 clip-path 做頁面切換動畫，避免 opacity 動畫
+  導致子元素的 backdrop-filter 無效的問題。
+*/
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s ease;
+  transition: clip-path 0.4s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-  opacity: 0;
+  clip-path: inset(0 0 100% 0);
 }
 </style>

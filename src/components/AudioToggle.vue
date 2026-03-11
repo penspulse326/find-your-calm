@@ -17,7 +17,7 @@ function toggle() {
 
 <template>
   <button
-    class="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/20 backdrop-blur border border-white/30 text-white hover:bg-white/30 transition-colors"
+    class="absolute top-4 right-4 z-50 p-2 rounded-full bg-white/20 backdrop-blur border border-white/30 text-white hover:bg-white/30 transition-colors isolate will-change-[backdrop-filter,opacity]"
     aria-label="Toggle Audio"
     @click="toggle"
   >

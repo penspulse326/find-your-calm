@@ -26,16 +26,12 @@ function handleSelect(score: number) {
 </script>
 
 <template>
-  <TransitionGroup
-    name="options-fade"
-    tag="div"
-    class="w-full flex flex-col gap-4"
-  >
+  <div class="w-full flex flex-col gap-4">
     <button
       v-for="option in options"
       :key="option.text"
       :disabled="disabled"
-      class="group text-left w-full relative overflow-hidden bg-white/5 hover:bg-white/15 active:bg-white/25 backdrop-blur-md border border-white/10 hover:border-white/40 rounded-2xl p-3 transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-1 shadow-lg hover:shadow-white/10"
+      class="group text-left w-full relative overflow-hidden bg-white/5 hover:bg-white/15 active:bg-white/25 backdrop-blur-md border border-white/10 hover:border-white/40 rounded-2xl p-3 transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-1 shadow-lg hover:shadow-white/10 isolate will-change-[backdrop-filter,transform,opacity]"
       @click="handleSelect(option.score)"
     >
       <!-- 滑鼠懸浮時的光澤效果 -->
@@ -56,22 +52,5 @@ function handleSelect(score: number) {
         >{{ option.text }}</span>
       </div>
     </button>
-  </TransitionGroup>
+  </div>
 </template>
-
-<style scoped>
-.options-fade-enter-active {
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.options-fade-leave-active {
-  transition: all 0.4s ease-in;
-}
-.options-fade-enter-from {
-  opacity: 0;
-  transform: translateY(20px);
-}
-.options-fade-leave-to {
-  opacity: 0;
-  transform: translateY(20px);
-}
-</style>

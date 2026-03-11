@@ -15,12 +15,14 @@ import { useGameStore } from '../stores/game';
 const router = useRouter();
 const gameStore = useGameStore();
 const audioStore = useAudioStore();
-const { currentQuestion, progress, isFinished }
-  = storeToRefs(gameStore);
+const { currentQuestion, progress, isFinished } = storeToRefs(gameStore);
 
 const isTransitioning = ref(false);
 const showOptions = ref(false);
 const showConfirm = ref(false);
+
+// 當前正在顯示的選項副本，用於在轉場期間保持資料穩定
+const activeOptions = ref<any[]>([]);
 
 function handleRestart() {
   audioStore.playClick();
@@ -39,26 +41,31 @@ function cancelRestart() {
 }
 
 function handleSelect(score: number) {
-  isTransitioning.value = true;
+  // 1. 立即啟動轉場，並隱藏選項（觸發離開動畫）
   showOptions.value = false;
+  isTransitioning.value = true;
 
-  // 在切換題目之前稍作等待
+  // 2. 在離開動畫進行中或結束後，才切換 Store 的題目資料
+  // 這裡的延遲應與選項的離開動畫時間大致匹配
   setTimeout(() => {
     gameStore.answerQuestion(score);
     if (isFinished.value) {
       router.replace('/result');
     }
-    isTransitioning.value = false;
-  }, 600);
+    else {
+      // 重設轉場狀態，準備下一題
+      isTransitioning.value = false;
+    }
+  }, 400);
 }
 
 function handleDialogFinish() {
-  // 文字結束後延遲 600ms 再顯示選項
-  setTimeout(() => {
-    if (!isTransitioning.value) {
-      showOptions.value = true;
-    }
-  }, 600);
+  // 確保題目資料已加載，且目前不在切換轉場中
+  if (currentQuestion.value && !isTransitioning.value) {
+    // 將最新題目的選項存入副本，並顯示（觸發進入動畫）
+    activeOptions.value = currentQuestion.value.options;
+    showOptions.value = true;
+  }
 }
 </script>
 
@@ -66,15 +73,28 @@ function handleDialogFinish() {
   <div class="flex-1 flex flex-col bg-black relative h-full overflow-hidden">
     <div class="flex-1 flex flex-col relative overflow-hidden">
       <!-- 頂部標頭區域 -->
-      <div class="absolute top-4 inset-x-4 z-50 flex items-center justify-between pointer-events-none">
+      <div
+        class="absolute top-4 inset-x-4 z-50 flex items-center justify-between pointer-events-none"
+      >
         <!-- 重新開始按鈕 -->
         <button
-          class="p-2 rounded-full bg-white/20 backdrop-blur border border-white/30 text-white hover:bg-white/30 transition-colors pointer-events-auto"
+          class="p-2 rounded-full bg-white/20 backdrop-blur border border-white/30 text-white hover:bg-white/30 transition-colors pointer-events-auto isolate will-change-[backdrop-filter,opacity]"
           aria-label="Restart Quiz"
           @click="handleRestart"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
         </button>
 
@@ -94,11 +114,14 @@ function handleDialogFinish() {
         class="absolute inset-x-0 bottom-[140px] z-50 flex flex-col justify-center translate-y-0"
       >
         <div class="px-4 pb-4">
-          <OptionList
-            :options="currentQuestion && showOptions ? currentQuestion.options : []"
-            :disabled="isTransitioning"
-            @select="handleSelect"
-          />
+          <transition name="options-fade">
+            <OptionList
+              v-if="showOptions && activeOptions.length > 0"
+              :options="activeOptions"
+              :disabled="isTransitioning"
+              @select="handleSelect"
+            />
+          </transition>
         </div>
       </div>
 
@@ -106,7 +129,10 @@ function handleDialogFinish() {
       <div v-if="currentQuestion" class="mt-auto z-40">
         <div
           class="transition-opacity duration-500"
-          :class="{ 'opacity-0': isTransitioning }"
+          :class="{
+            'opacity-0': isTransitioning,
+            'pointer-events-none': isTransitioning,
+          }"
         >
           <DialogBox
             :text="currentQuestion.text"
@@ -117,9 +143,17 @@ function handleDialogFinish() {
 
       <!-- 確認重開的彈跳視窗 -->
       <transition name="modal-fade">
-        <div v-if="showConfirm" class="absolute inset-0 z-[100] flex items-center justify-center px-6">
-          <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="cancelRestart" />
-          <div class="relative bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl w-full max-w-sm text-center shadow-2xl">
+        <div
+          v-if="showConfirm"
+          class="absolute inset-0 z-[100] flex items-center justify-center px-6"
+        >
+          <div
+            class="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            @click="cancelRestart"
+          />
+          <div
+            class="relative bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl w-full max-w-sm text-center shadow-2xl isolate will-change-[backdrop-filter,transform,opacity]"
+          >
             <h3 class="text-xl font-medium text-white/90 mb-4 tracking-wider">
               確認重開？
             </h3>
@@ -148,13 +182,31 @@ function handleDialogFinish() {
 </template>
 
 <style scoped>
+/*
+  使用 clip-path 取代 opacity 動畫，徹底解決 backdrop-filter 在 opacity
+  過渡時無法即時渲染的瀏覽器限制。clip-path 不影響合成層（Compositing
+  Layer）的採樣，因此 backdrop-blur 從動畫第一幀就能正確顯示。
+*/
+
 .modal-fade-enter-active,
 .modal-fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: clip-path 0.4s ease, transform 0.4s ease;
 }
 
 .modal-fade-enter-from,
 .modal-fade-leave-to {
-  opacity: 0;
+  transform: scale(0.97);
+  clip-path: inset(0 0 100% 0 round 1rem);
+}
+
+.options-fade-enter-active,
+.options-fade-leave-active {
+  transition: clip-path 0.4s ease, transform 0.4s ease;
+}
+
+.options-fade-enter-from,
+.options-fade-leave-to {
+  transform: translateY(12px);
+  clip-path: inset(100% 0 0 0 round 1rem);
 }
 </style>
