@@ -78,7 +78,7 @@ function completeTyping() {
 
 <template>
   <div
-    class="w-full bg-black/80 backdrop-blur-md border-t-2 border-white/10 p-6 shadow-2xl relative min-h-[140px] cursor-pointer"
+    class="w-full bg-black/80 border-t-2 border-white/10 p-6 shadow-2xl relative min-h-[140px] cursor-pointer"
     @click="completeTyping"
   >
     <p
