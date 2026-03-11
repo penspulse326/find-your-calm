@@ -1,1 +1,1 @@
-# No pre-commit hooks yet
+npx lint-staged
