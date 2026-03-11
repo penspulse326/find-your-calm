@@ -9,30 +9,39 @@ const emit = defineEmits<{
   (e: 'finish'): void;
 }>();
 
+const PUNCTUATION_REGEXP = /[，。！？；：、…—]/;
+
 const displayedText = ref('');
-let timer: ReturnType<typeof setInterval> | null = null;
 const isFinishedTyping = ref(false);
+let timer: ReturnType<typeof setTimeout> | null = null;
 
 function startTyping(fullText: string) {
   displayedText.value = '';
   isFinishedTyping.value = false;
   if (timer)
-    clearInterval(timer);
+    clearTimeout(timer);
 
   let currentIndex = 0;
 
-  timer = setInterval(() => {
+  function type() {
     if (currentIndex < fullText.length) {
-      displayedText.value += fullText.charAt(currentIndex);
+      const char = fullText.charAt(currentIndex);
+      displayedText.value += char;
       currentIndex++;
+
+      // 判斷是否為中文標點符號，給予不同延遲
+      const isPunctuation = PUNCTUATION_REGEXP.test(char);
+      const delay = isPunctuation ? 500 : 50;
+
+      timer = setTimeout(type, delay);
     }
     else {
       isFinishedTyping.value = true;
-      if (timer)
-        clearInterval(timer);
       emit('finish');
     }
-  }, 100); // 40ms per character
+  }
+
+  type();
 }
 
 // Watch for text changes
@@ -51,7 +60,7 @@ onMounted(() => {
 function completeTyping() {
   if (!isFinishedTyping.value) {
     if (timer)
-      clearInterval(timer);
+      clearTimeout(timer);
     displayedText.value = props.text;
     isFinishedTyping.value = true;
     emit('finish');
@@ -70,7 +79,7 @@ function completeTyping() {
       {{ displayedText }}
       <span
         v-if="!isFinishedTyping"
-        class="inline-block w-2 bg-white/70 h-5 animate-pulse ml-1 align-baseline"
+        class="inline-block w-2 bg-white/70 h-5 animate-pulse ml-1 align-middle"
       />
     </p>
 

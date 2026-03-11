@@ -27,17 +27,25 @@ function handleSelect(score: number) {
       v-for="(option, index) in options"
       :key="index"
       :disabled="disabled"
-      class="group text-left w-full relative overflow-hidden bg-white/5 hover:bg-white/15 active:bg-white/25 backdrop-blur-md border border-white/10 hover:border-white/40 rounded-2xl p-5 transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-1 shadow-lg hover:shadow-white/10"
+      class="group text-left w-full relative overflow-hidden bg-white/5 hover:bg-white/15 active:bg-white/25 backdrop-blur-md border border-white/10 hover:border-white/40 rounded-2xl p-3 transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-1 shadow-lg hover:shadow-white/10"
       @click="handleSelect(option.score)"
     >
       <!-- Hover Shine Effect -->
-      <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shimmer" />
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shimmer"
+      />
 
       <div class="flex items-center gap-4 relative z-10">
-        <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center border border-white/20 group-hover:bg-white/20 transition-colors">
-          <span class="font-serif italic text-white/80 text-sm">{{ option.label }}</span>
+        <div
+          class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center border border-white/20 group-hover:bg-white/20 transition-colors"
+        >
+          <span class="font-serif italic text-white/80 text-sm">{{
+            option.label
+          }}</span>
         </div>
-        <span class="text-white font-medium text-lg leading-snug tracking-wide group-hover:text-white transition-colors">{{ option.text }}</span>
+        <span
+          class="text-white font-medium text-sm leading-snug tracking-wide group-hover:text-white transition-colors"
+        >{{ option.text }}</span>
       </div>
     </button>
   </div>
