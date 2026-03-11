@@ -5,16 +5,29 @@ import { useRouter } from 'vue-router';
 import CharacterImage from '../components/CharacterImage.vue';
 import DialogBox from '../components/DialogBox.vue';
 import OptionList from '../components/OptionList.vue';
-import ProgressBar from '../components/ProgressBar.vue';
 import { useGameStore } from '../stores/game';
 
 const router = useRouter();
 const gameStore = useGameStore();
-const { currentQuestion, progress, totalQuestions, isFinished }
+const { currentQuestion, progress, isFinished }
   = storeToRefs(gameStore);
 
 const isTransitioning = ref(false);
 const showOptions = ref(false);
+const showConfirm = ref(false);
+
+function handleRestart() {
+  showConfirm.value = true;
+}
+
+function confirmRestart() {
+  gameStore.resetGame();
+  router.push('/');
+}
+
+function cancelRestart() {
+  showConfirm.value = false;
+}
 
 function handleSelect(score: number) {
   isTransitioning.value = true;
@@ -42,9 +55,28 @@ function handleDialogFinish() {
 
 <template>
   <div class="flex-1 flex flex-col bg-black relative h-full overflow-hidden">
-    <ProgressBar :current="progress" :total="totalQuestions" />
-
     <div class="flex-1 flex flex-col relative overflow-hidden">
+      <!-- Top Header Area -->
+      <div class="absolute top-4 inset-x-4 z-50 flex items-center justify-between pointer-events-none">
+        <!-- Restart Button -->
+        <button
+          class="p-2 rounded-full bg-white/20 backdrop-blur border border-white/30 text-white hover:bg-white/30 transition-colors pointer-events-auto"
+          aria-label="Restart Quiz"
+          @click="handleRestart"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <!-- Question Title -->
+        <div class="text-white/80 font-medium tracking-widest">
+          第 {{ progress }} 題
+        </div>
+
+        <!-- Spacer for layout balance against the absolute-positioned AudioToggle -->
+        <div class="w-10" />
+      </div>
       <!-- Character / Background Area -->
       <CharacterImage />
 
@@ -76,6 +108,35 @@ function handleDialogFinish() {
           />
         </div>
       </div>
+
+      <!-- Confirmation Modal -->
+      <transition name="modal-fade">
+        <div v-if="showConfirm" class="absolute inset-0 z-[100] flex items-center justify-center px-6">
+          <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="cancelRestart" />
+          <div class="relative bg-white/10 backdrop-blur-md border border-white/20 p-8 rounded-2xl w-full max-w-sm text-center shadow-2xl">
+            <h3 class="text-xl font-medium text-white/90 mb-4 tracking-wider">
+              確認重開？
+            </h3>
+            <p class="text-white/60 text-sm leading-relaxed mb-8">
+              返回首頁將不會保留當前的測驗進度，需要重新進行。
+            </p>
+            <div class="flex gap-4">
+              <button
+                class="flex-1 py-3 rounded-full border border-white/20 text-white/60 hover:bg-white/5 transition-colors text-sm"
+                @click="cancelRestart"
+              >
+                取消
+              </button>
+              <button
+                class="flex-1 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/30 text-white transition-colors text-sm"
+                @click="confirmRestart"
+              >
+                確認返回
+              </button>
+            </div>
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -94,5 +155,15 @@ function handleDialogFinish() {
 .options-fade-leave-to {
   opacity: 0;
   transform: translateY(-10px);
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
 }
 </style>

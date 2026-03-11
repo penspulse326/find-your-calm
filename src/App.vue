@@ -5,12 +5,12 @@ import AudioToggle from './components/AudioToggle.vue';
 <template>
   <div class="h-[100dvh] bg-neutral-900 flex justify-center w-full overflow-hidden">
     <div class="w-full max-w-md bg-black relative shadow-2xl overflow-hidden flex flex-col h-full items-stretch">
-      <AudioToggle />
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
           <component :is="Component" />
         </transition>
       </router-view>
+      <AudioToggle />
     </div>
   </div>
 </template>
