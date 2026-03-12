@@ -23,8 +23,9 @@ export interface GameStep {
 export const useGameStore = defineStore('game', () => {
   const script = ref<GameStep[]>(scriptData as GameStep[]);
   const currentStepIndex = ref(0);
-  const score = ref(20);
+  const score = ref(0);
   const isFinished = ref(false);
+  const isGameStarted = ref(false);
 
   const currentStep = computed(() => script.value[currentStepIndex.value]);
 
@@ -57,6 +58,7 @@ export const useGameStore = defineStore('game', () => {
     currentStepIndex.value = 0;
     score.value = 0;
     isFinished.value = false;
+    isGameStarted.value = true; // 當呼叫 resetGame 開始遊戲時設為 true
   }
 
   const resultStatus = computed(() => {
@@ -70,6 +72,7 @@ export const useGameStore = defineStore('game', () => {
     currentQuestionNumber,
     score,
     isFinished,
+    isGameStarted,
     resultStatus,
     nextStep,
     answerQuestion,
