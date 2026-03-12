@@ -36,7 +36,7 @@ function handleSelect(score: number) {
     >
       <!-- 滑鼠懸浮時的光澤效果 -->
       <div
-        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shimmer"
+        class="absolute inset-0 bg-linear-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-shimmer"
       />
 
       <div class="flex items-center gap-4 relative z-10">

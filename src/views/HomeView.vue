@@ -25,7 +25,7 @@ function startQuiz() {
   >
     <!-- 背景裝飾：光暈或漸層 -->
     <div
-      class="absolute inset-0 bg-gradient-to-b from-white/20 via-transparent to-black/60"
+      class="absolute inset-0 bg-linear-to-b from-white/20 via-transparent to-black/60"
     />
 
     <!-- 角色立繪 -->
