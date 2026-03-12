@@ -28,6 +28,7 @@ export const results: ResultInfo[] = [
     image: end1,
     bgColor: '#0d1a0d',
     gradientClass: 'from-[#0d1a0d] to-zinc-900',
+    disclaimer: '本測驗僅供自我觀察參考，非專業診斷依據',
   },
   {
     scoreRange: [5, 9],
@@ -41,6 +42,7 @@ export const results: ResultInfo[] = [
     image: end2,
     bgColor: '#0d141f',
     gradientClass: 'from-[#0d141f] to-zinc-900',
+    disclaimer: '本測驗僅供自我觀察參考，非專業診斷依據',
   },
   {
     scoreRange: [10, 14],
@@ -54,6 +56,7 @@ export const results: ResultInfo[] = [
     image: end3,
     bgColor: '#1a1a2e',
     gradientClass: 'from-[#1a1a2e] to-zinc-900',
+    disclaimer: '本測驗僅供自我觀察參考，非專業診斷依據',
   },
   {
     scoreRange: [15, 100],
@@ -67,6 +70,7 @@ export const results: ResultInfo[] = [
     image: end4,
     bgColor: '#1f0d0d',
     gradientClass: 'from-[#1f0d0d] to-zinc-900',
+    disclaimer: '本測驗僅供自我觀察參考，非專業診斷依據',
   },
 ];
 
@@ -74,5 +78,5 @@ export function getResultByScore(score: number): ResultInfo {
   const result = results.find(
     r => score >= r.scoreRange[0] && score <= r.scoreRange[1],
   );
-  return result || results.at(-1);
+  return result || results.at(-1)!;
 }
