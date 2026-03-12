@@ -1,19 +1,19 @@
 [
   {
     "type": "dialogue",
-    "text": "嗨嗨，我是阿靜。",
+    "text": "嗨嗨，我是阿靜。這裡是平靜小棧。",
     "bg": "scene_1.png",
     "character": "avatar_smile.png"
   },
   {
     "type": "dialogue",
-    "text": "我會引導你重新觀察近期的身心節奏。",
+    "text": "我會引導你回想最近的生活狀況。",
     "bg": "scene_1.png",
     "character": "avatar_cheer.png"
   },
   {
     "type": "dialogue",
-    "text": "接下來的 10 個問題，依照你「過去兩週內」最真實的感受來回答就可以了。",
+    "text": "接下來的 10 個問題，依照你「過去兩週內」的真實感受來回答就可以了。",
     "bg": "scene_1.png",
     "character": "avatar_celebrating.png"
   },
@@ -25,7 +25,7 @@
   },
   {
     "type": "dialogue",
-    "text": "準備好的話，先深呼吸一下。我們準備開始吧。",
+    "text": "準備好的話，先深呼吸一下。我們準備開始囉～",
     "bg": "scene_1.png",
     "character": "avatar_celebrating.png"
   },
@@ -184,13 +184,13 @@
   },
   {
     "type": "dialogue",
-    "text": "讓我們一起來整理一下你目前的心境！",
+    "text": "讓我整理一下作答結果。",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png"
   },
   {
     "type": "dialogue",
-    "text": "我們一起來看看結果與放鬆建議吧。",
+    "text": "來看看你目前的心境吧。",
     "bg": "scene_1.png",
     "character": "avatar_celebrating.png",
     "wait": 3000

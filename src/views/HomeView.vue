@@ -46,14 +46,14 @@ function startQuiz() {
         <h1
           class="text-4xl md:text-5xl font-serif font-bold tracking-[0.2em] text-white drop-shadow-lg text-shadow-lg"
         >
-          平靜旅程
+          平靜小棧
         </h1>
         <div class="w-16 h-[2px] bg-white/40 mx-auto" />
         <p
           class="text-white/90 font-medium leading-relaxed text-base max-w-sm mx-auto drop-shadow-md text-shadow-custom"
         >
           你有多久沒有好好放鬆了呢？<br>
-          來找回心中的平靜吧！
+          來做個深呼吸，讓世界慢下來！
         </p>
       </div>
 
