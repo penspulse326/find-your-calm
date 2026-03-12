@@ -7,21 +7,21 @@
   },
   {
     "type": "dialogue",
-    "text": "我會透過 10 個小問題引導你，重新觀察近期的身心節奏。",
+    "text": "我會引導你重新觀察近期的身心節奏。",
     "bg": "scene_1.png",
     "character": "avatar_cheer.png"
   },
   {
     "type": "dialogue",
-    "text": "這是一份生活壓力自我評估，並非醫療診斷，請放鬆心情參與。",
+    "text": "接下來的 10 個問題，依照你「過去兩週內」最真實的感受來回答就可以了。",
     "bg": "scene_1.png",
-    "character": "avatar_smile.png"
+    "character": "avatar_celebrating.png"
   },
   {
     "type": "dialogue",
-    "text": "接下來的幾個問題，依照你「過去兩週內」最真實的感受來回答就可以了。",
+    "text": "這是提供你快速自我評估的小測驗，並非醫療診斷，請放鬆心情參與。",
     "bg": "scene_1.png",
-    "character": "avatar_celebrating.png"
+    "character": "avatar_smile.png"
   },
   {
     "type": "dialogue",
@@ -160,7 +160,7 @@
     "type": "quiz",
     "id": 10,
     "indicator": "Cognitive_Focus",
-    "text": "看著眼前的這本書或螢幕上的文字……",
+    "text": "看著眼前的這本書或螢幕上的文字…",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
@@ -184,7 +184,7 @@
   },
   {
     "type": "dialogue",
-    "text": "讓我們一起來整理一下你目前的心境…",
+    "text": "讓我們一起來整理一下你目前的心境！",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png"
   },
@@ -194,6 +194,5 @@
     "bg": "scene_1.png",
     "character": "avatar_celebrating.png",
     "wait": 3000
-
   }
 ]

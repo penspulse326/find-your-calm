@@ -62,63 +62,75 @@ onMounted(async () => {
     :class="resultData.gradientClass"
   >
     <div class="z-10 w-full relative max-w-md mx-auto">
-      <!-- 渲染後的圖片，允許用戶長按儲存 -->
-      <div v-if="resultImageUrl" class="animate-fade-in">
-        <img :src="resultImageUrl" alt="測驗結果圖片" class="w-full h-auto">
-        <p
-          class="text-white/50 text-xs mt-6 tracking-widest flex items-center justify-center gap-2"
-        >
-          <span>📸</span> 長按或右鍵以另存圖片
-        </p>
-      </div>
-
-      <!-- 原始 DOM，用來提供給 html-to-image 擷取，擷取完成後隱藏 -->
-      <div
-        v-show="!resultImageUrl"
-        ref="resultCardRef"
-        class="p-8 relative bg-linear-to-b"
-        :class="resultData.gradientClass"
-      >
-        <h2 class="text-sm tracking-[0.2em] text-white/50 mb-2">
-          最終評估
-        </h2>
-        <h1
-          class="text-4xl font-serif font-bold tracking-widest text-[#D3C7C7]"
-        >
-          {{ resultStatus }}
-        </h1>
-
-        <div class="w-12 h-px bg-white/20 mx-auto my-6" />
-
-        <!-- 主訊息與呼吸法區塊 -->
+      <!-- 使用 Grid 堆疊佈局，防止切換時發生抖動 -->
+      <div class="grid grid-cols-1 grid-rows-1">
+        <!-- 渲染後的圖片，允許用戶長按儲存 -->
         <div
-          class="text-white/90 leading-relaxed text-sm text-left bg-white/5 p-6 rounded-xl border border-white/10 shadow-lg"
+          v-if="resultImageUrl"
+          class="col-start-1 row-start-1 z-20 animate-fade-in"
         >
-          <p>{{ resultData.message }}</p>
-
-          <div class="mt-4 pt-4 border-t border-white/10">
-            <h3 class="font-bold text-white mb-2">
-              {{ resultData.breathingName }}
-            </h3>
-            <p class="text-white/70">
-              {{ resultData.breathingDesc }}
-            </p>
-          </div>
-        </div>
-
-        <!-- 人物圖片 -->
-        <div class="flex justify-center mt-6">
           <img
-            :src="resultData.image"
-            alt="Character Result"
-            class="max-h-96 object-contain rounded-xl drop-shadow-[0_10px_15px_rgba(255,255,255,0.05)]"
+            :src="resultImageUrl"
+            alt="測驗結果圖片"
+            class="w-full h-auto rounded-xl"
           >
+          <p
+            class="text-white/50 text-xs mt-6 tracking-widest flex items-center justify-center gap-2"
+          >
+            <span>📸</span> 長按或右鍵以另存圖片
+          </p>
         </div>
 
-        <p class="mt-8 text-sm">
-          ⚠️ 評測結果僅供自我評估與參考<br>
-          如有任何症狀或需求，請務必尋求專業機構協助
-        </p>
+        <!-- 原始 DOM，用來提供給 html-to-image 擷取 -->
+        <div
+          ref="resultCardRef"
+          class="col-start-1 row-start-1 z-10 p-8 relative bg-linear-to-b transition-opacity duration-300"
+          :class="[
+            resultData.gradientClass,
+            { 'opacity-0 pointer-events-none': resultImageUrl },
+          ]"
+        >
+          <h2 class="text-sm tracking-[0.2em] text-white/50 mb-2">
+            最終評估
+          </h2>
+          <h1
+            class="text-4xl font-serif font-bold tracking-widest text-[#D3C7C7]"
+          >
+            {{ resultStatus }}
+          </h1>
+
+          <div class="w-12 h-px bg-white/20 mx-auto my-6" />
+
+          <!-- 主訊息與呼吸法區塊 -->
+          <div
+            class="text-white/90 leading-relaxed text-sm text-left bg-white/5 p-6 rounded-xl border border-white/10 shadow-lg"
+          >
+            <p>{{ resultData.message }}</p>
+
+            <div class="mt-4 pt-4 border-t border-white/10">
+              <h3 class="font-bold text-white mb-2">
+                {{ resultData.breathingName }}
+              </h3>
+              <p class="text-white/70">
+                {{ resultData.breathingDesc }}
+              </p>
+            </div>
+          </div>
+
+          <!-- 人物圖片 -->
+          <div class="flex justify-center mt-6">
+            <img
+              :src="resultData.image"
+              alt="Character Result"
+              class="max-h-96 object-contain rounded-xl drop-shadow-[0_10px_15px_rgba(255,255,255,0.05)]"
+            >
+          </div>
+
+          <p class="mt-8 text-sm">
+            ⚠️ 評測結果僅供自我評估與參考<br>
+            如有任何症狀或需求，請務必尋求專業機構協助
+          </p>
+        </div>
       </div>
 
       <button
@@ -164,3 +176,18 @@ onMounted(async () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.1s ease-out forwards;
+}
+</style>
