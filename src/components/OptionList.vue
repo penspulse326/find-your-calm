@@ -18,8 +18,9 @@ const emit = defineEmits<{
 const audioStore = useAudioStore();
 
 function handleSelect(score: number) {
-  if (props.disabled)
+  if (props.disabled) {
     return;
+  }
   audioStore.playClick();
   emit('select', score);
 }

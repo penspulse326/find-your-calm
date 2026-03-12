@@ -30,10 +30,12 @@ let timer: ReturnType<typeof setTimeout> | null = null;
 let waitTimer: ReturnType<typeof setTimeout> | null = null;
 
 function stopAllTimers() {
-  if (timer)
+  if (timer) {
     clearTimeout(timer);
-  if (waitTimer)
+  }
+  if (waitTimer) {
     clearTimeout(waitTimer);
+  }
 }
 
 function startWaiting(duration: number, callback: () => void) {
@@ -44,8 +46,9 @@ function startWaiting(duration: number, callback: () => void) {
   const maxDots = 6;
 
   function updateDots() {
-    if (!isWaiting.value)
+    if (!isWaiting.value) {
       return;
+    }
 
     dotCount = (dotCount % maxDots) + 1;
     displayedText.value = '.'.repeat(dotCount);
@@ -57,8 +60,9 @@ function startWaiting(duration: number, callback: () => void) {
 
   waitTimer = setTimeout(() => {
     isWaiting.value = false;
-    if (timer)
+    if (timer) {
       clearTimeout(timer);
+    }
     displayedText.value = '';
     callback();
   }, duration);

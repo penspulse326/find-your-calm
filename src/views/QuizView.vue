@@ -91,11 +91,13 @@ const bgUrl = computed(() => {
 });
 
 function handleGlobalClick() {
-  if (showConfirm.value)
+  if (showConfirm.value) {
     return;
+  }
   // 如果是測驗中且選項已經顯示，則不處理全局點擊，必須點選選項
-  if (currentStep.value?.type === 'quiz' && showOptions.value)
+  if (currentStep.value?.type === 'quiz' && showOptions.value) {
     return;
+  }
 
   dialogBoxRef.value?.completeTyping();
 }

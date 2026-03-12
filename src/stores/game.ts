@@ -60,12 +60,15 @@ export const useGameStore = defineStore('game', () => {
 
   const resultStatus = computed(() => {
     const s = score.value;
-    if (s <= 4)
+    if (s <= 4) {
       return '靜謐之森';
-    if (s <= 9)
+    }
+    if (s <= 9) {
       return '起風的海面';
-    if (s <= 14)
+    }
+    if (s <= 14) {
       return '迷霧荒原';
+    }
     return '雷鳴深淵';
   });
 

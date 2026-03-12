@@ -17,10 +17,12 @@ onMounted(async () => {
   // 提取劇本中所有需要使用的圖片
   const images = new Set<string>();
   scriptData.forEach((step: any) => {
-    if (step.bg)
+    if (step.bg) {
       images.add(step.bg);
-    if (step.character)
+    }
+    if (step.character) {
       images.add(step.character);
+    }
   });
 
   // 轉換為完整的 URL 並開始預載

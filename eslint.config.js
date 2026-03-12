@@ -1,10 +1,25 @@
 import antfu from '@antfu/eslint-config';
 
-export default antfu({
-  vue: true,
-  typescript: true,
-  stylistic: {
-    semi: true,
-    quotes: 'single',
+export default antfu(
+  {
+    vue: true,
+    typescript: true,
+    stylistic: {
+      semi: true,
+      quotes: 'single',
+    },
   },
-});
+  {
+    rules: {
+      'vue/first-attribute-linebreak': [
+        'error',
+        {
+          multiline: 'below',
+          singleline: 'ignore',
+        },
+      ],
+      'vue/multi-word-component-names': 'off',
+      'curly': ['error', 'all'],
+    },
+  },
+);

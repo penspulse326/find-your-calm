@@ -15,8 +15,9 @@ export const useAudioStore = defineStore('audio', () => {
 
   // 初始化音效
   function initSounds() {
-    if (clickSound.value && bgmSound.value)
+    if (clickSound.value && bgmSound.value) {
       return;
+    }
 
     clickSound.value = new Howl({
       src: [clickUrl],
@@ -32,8 +33,9 @@ export const useAudioStore = defineStore('audio', () => {
   }
 
   function playClick() {
-    if (isMuted.value || !clickSound.value)
+    if (isMuted.value || !clickSound.value) {
       return;
+    }
     clickSound.value.play();
   }
 
