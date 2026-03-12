@@ -1,7 +1,13 @@
 [
   {
     "type": "dialogue",
-    "text": "深呼吸... 歡迎來到這裡。",
+    "text": "歡迎來到這裡，我是阿靜。",
+    "bg": "scene_1.png",
+    "character": "avatar_smile.png"
+  },
+  {
+    "type": "dialogue",
+    "text": "我會引導你，重新找回内心的平靜。",
     "bg": "scene_1.png",
     "character": "avatar_smile.png"
   },
@@ -9,19 +15,19 @@
     "type": "dialogue",
     "text": "這不是一個考試，沒有標準答案，也不需要有任何壓力。",
     "bg": "scene_1.png",
-    "character": "avatar_default.png"
-  },
-  {
-    "type": "dialogue",
-    "text": "接下來的幾個問題，請依照你當下最真實的感受來回答就好。",
-    "bg": "scene_1.png",
-    "character": "avatar_heart.png"
-  },
-  {
-    "type": "dialogue",
-    "text": "準備好的話，我們就慢慢開始吧。",
-    "bg": "scene_1.png",
     "character": "avatar_smile.png"
+  },
+  {
+    "type": "dialogue",
+    "text": "接下來的幾個問題，依照你當下最真實的感受來回答就可以了。",
+    "bg": "scene_1.png",
+    "character": "avatar_celebrating.png"
+  },
+  {
+    "type": "dialogue",
+    "text": "準備好的話，先深呼吸一下。我們準備開始吧。",
+    "bg": "scene_1.png",
+    "character": "avatar_celebrating.png"
   },
   {
     "type": "quiz",
@@ -59,7 +65,7 @@
     "indicator": "GAD-2",
     "text": "大腦裡突然蹦出一個擔憂的念頭，你會如何應對？",
     "bg": "scene_1.png",
-    "character": "avatar_default.png",
+    "character": "avatar_thinking.png",
     "options": [
       {
         "label": "A",
@@ -119,7 +125,7 @@
     "indicator": "GAD-4",
     "text": "好不容易坐到了沙發上，這本該是你的休息時間...",
     "bg": "scene_1.png",
-    "character": "avatar_default.png",
+    "character": "avatar_thinking.png",
     "options": [
       {
         "label": "A",
@@ -179,7 +185,7 @@
     "indicator": "GAD-6",
     "text": "身旁的人不小心弄出了刺耳的聲響，你當下的第一反應？",
     "bg": "scene_1.png",
-    "character": "avatar_default.png",
+    "character": "avatar_thinking.png",
     "options": [
       {
         "label": "A",
@@ -239,7 +245,7 @@
     "indicator": "Sleep",
     "text": "深夜三點，你與天花板的對話已經持續了多久？",
     "bg": "scene_1.png",
-    "character": "avatar_default.png",
+    "character": "avatar_thinking.png",
     "options": [
       {
         "label": "A",
@@ -299,7 +305,7 @@
     "indicator": "Focus",
     "text": "看著眼前的這本書或螢幕上的文字...",
     "bg": "scene_1.png",
-    "character": "avatar_default.png",
+    "character": "avatar_thinking.png",
     "options": [
       {
         "label": "A",
@@ -337,13 +343,14 @@
   },
   {
     "type": "dialogue",
-    "text": "我正在為你整理專屬的心境風景...",
+    "text": "讓我來整理一下你目前的心境...",
     "bg": "scene_1.png",
-    "character": "avatar_thinking.png"
+    "character": "avatar_thinking.png",
+    "wait": 3000
   },
   {
     "type": "dialogue",
-    "text": "讓我們一起來看看結果吧。",
+    "text": "我們一起來看看結果吧。",
     "bg": "scene_1.png",
     "character": "avatar_celebrating.png"
   }

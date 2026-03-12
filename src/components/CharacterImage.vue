@@ -33,7 +33,10 @@ const characterUrl = computed(() => {
   if (!currentStep.value?.character) {
     return '';
   }
-  return new URL(`../assets/images/${currentStep.value.character}`, import.meta.url).href;
+  return new URL(
+    `../assets/images/${currentStep.value.character}`,
+    import.meta.url,
+  ).href;
 });
 </script>
 
@@ -44,14 +47,36 @@ const characterUrl = computed(() => {
   >
     <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
 
-    <!-- 角色立繪 -->
-    <div class="z-10 h-full flex items-end justify-center px-4">
-      <img
-        :key="currentStep.character"
-        :src="characterUrl"
-        alt="Character Avatar"
-        class="h-[80vh] md:h-[85vh] object-contain object-bottom drop-shadow-2xl translate-y-4"
-      >
+    <!-- 角色立繪容器 -->
+    <div class="z-10 h-full w-full relative">
+      <Transition name="character-fade">
+        <img
+          v-if="characterUrl"
+          :key="characterUrl"
+          :src="characterUrl"
+          alt="Character Avatar"
+          class="absolute inset-x-0 bottom-0 mx-auto h-[80vh] md:h-[85vh] object-contain object-bottom drop-shadow-2xl translate-y-4"
+        >
+      </Transition>
     </div>
   </div>
 </template>
+
+<style scoped>
+.character-fade-enter-active,
+.character-fade-leave-active {
+  transition:
+    opacity 0.5s ease-in-out,
+    transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.character-fade-enter-from {
+  opacity: 0;
+  transform: translateY(4rem) scale(0.95);
+}
+
+.character-fade-leave-to {
+  opacity: 0;
+  transform: translateY(1rem) scale(1.02);
+}
+</style>

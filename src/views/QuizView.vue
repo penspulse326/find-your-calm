@@ -118,12 +118,15 @@ const bgUrl = computed(() => {
         <div class="w-10" />
       </div>
       <!-- 角色與背景區域 -->
-      <img
-        :key="currentStep.bg"
-        :src="bgUrl"
-        alt=""
-        class="absolute z-10 h-full object-cover blur-[2px] opacity-50 transition-opacity duration-1000"
-      >
+      <Transition name="bg-fade">
+        <img
+          v-if="bgUrl"
+          :key="bgUrl"
+          :src="bgUrl"
+          alt=""
+          class="absolute z-10 h-full w-full object-cover blur-[2px] opacity-50"
+        >
+      </Transition>
       <CharacterImage />
 
       <!-- 浮動選項層（傳統視覺小說風格） -->
@@ -198,6 +201,16 @@ const bgUrl = computed(() => {
   過渡時無法即時渲染的瀏覽器限制。clip-path 不影響合成層（Compositing
   Layer）的採樣，因此 backdrop-blur 從動畫第一幀就能正確顯示。
 */
+
+.bg-fade-enter-active,
+.bg-fade-leave-active {
+  transition: opacity 1s ease-in-out;
+}
+
+.bg-fade-enter-from,
+.bg-fade-leave-to {
+  opacity: 0;
+}
 
 .modal-fade-enter-active,
 .modal-fade-leave-active {

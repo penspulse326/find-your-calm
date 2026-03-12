@@ -5,17 +5,38 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import AudioToggle from './components/AudioToggle.vue';
+import scriptData from './data/script.json';
 import { useAudioStore } from './stores/audio';
+import { preloadImages } from './utils/preload';
 
 const audioStore = useAudioStore();
 
-onMounted(() => {
+onMounted(async () => {
   audioStore.initSounds();
+
+  // 提取劇本中所有需要使用的圖片
+  const images = new Set<string>();
+  scriptData.forEach((step: any) => {
+    if (step.bg)
+      images.add(step.bg);
+    if (step.character)
+      images.add(step.character);
+  });
+
+  // 轉換為完整的 URL 並開始預載
+  const imageUrls = Array.from(images, img => new URL(`./assets/images/${img}`, import.meta.url).href);
+
+  try {
+    await preloadImages(imageUrls);
+  }
+  catch (err) {
+    console.error('Failed to preload images:', err);
+  }
 });
 </script>
 
 <template>
-  <div class="h-[100dvh] bg-neutral-900 flex justify-center w-full overflow-hidden">
+  <div class="h-dvh bg-neutral-900 flex justify-center w-full overflow-hidden">
     <div class="w-full max-w-md bg-black relative shadow-2xl overflow-hidden flex flex-col h-full items-stretch">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
