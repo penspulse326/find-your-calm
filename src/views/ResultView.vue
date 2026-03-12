@@ -7,10 +7,7 @@ import { toPng } from 'html-to-image';
 import { storeToRefs } from 'pinia';
 import { computed, nextTick, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import end1 from '../assets/images/end_1.png';
-import end2 from '../assets/images/end_2.png';
-import end3 from '../assets/images/end_3.png';
-import end4 from '../assets/images/end_4.png';
+import { getResultByScore } from '../data/results';
 import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
 
@@ -26,43 +23,7 @@ function restart() {
 }
 
 const resultData = computed(() => {
-  const s = score.value;
-  if (s <= 4) {
-    return {
-      message:
-        '你的內心是一片平靜的湖泊。繼續保持目前的步調，每天 5 分鐘正念。',
-      breathingName: '💡 建議練習：腹式呼吸',
-      breathingDesc:
-        '將手輕放在腹部，用鼻子深吸氣，感受肚子像氣球般隆起；接著用嘴巴緩慢吐氣，讓腹部自然凹陷。重複數次，能有效放鬆身心。',
-      image: end1,
-    };
-  }
-  if (s <= 9) {
-    return {
-      message: '有些波浪，但你還能掌舵。建議減少咖啡因，並嘗試 4-7-8 呼吸法。',
-      breathingName: '💡 建議練習：4-7-8 呼吸法',
-      breathingDesc:
-        '用鼻子吸氣 4 秒，憋氣 7 秒，最後用嘴巴緩慢且微噘嘴唇地吐氣 8 秒。這個循環能幫助啟動副交感神經，快速找回平靜。',
-      image: end2,
-    };
-  }
-  if (s <= 14) {
-    return {
-      message: '你似乎迷失了方向。請實行數位排毒，嘗試箱式呼吸來找回主控權。',
-      breathingName: '💡 建議練習：箱式呼吸',
-      breathingDesc:
-        '吸氣 4 秒，憋氣停頓 4 秒，吐氣 4 秒，再憋氣停頓 4 秒。想像氣流在畫一個正方形，能幫助穩定心跳，找回專注力。',
-      image: end3,
-    };
-  }
-  return {
-    message:
-      '風暴已經來臨。請優先處理生理需求，並尋求專業諮詢，適時按下暫停鍵。',
-    breathingName: '💡 應急練習：清涼呼吸法',
-    breathingDesc:
-      '將舌頭捲成 U 型（若無法捲舌可微微張開嘴唇），從嘴巴深吸氣，感受涼爽空氣進入。接著閉上嘴巴由鼻子緩慢吐氣。有助於平復極度焦躁的情緒。',
-    image: end4,
-  };
+  return getResultByScore(score.value);
 });
 
 const resultCardRef = ref<HTMLElement | null>(null);
@@ -79,7 +40,7 @@ onMounted(async () => {
       // 轉換成 PNG
       const dataUrl = await toPng(resultCardRef.value, {
         quality: 1,
-        backgroundColor: '#000000', // 防止透明背景
+        backgroundColor: resultData.value.bgColor, // 防止透明背景，使用對應背景色
         pixelRatio: 2, // 提高解析度
       });
       resultImageUrl.value = dataUrl;
@@ -96,11 +57,12 @@ onMounted(async () => {
 
 <template>
   <div
-    class="flex-1 flex flex-col items-center text-center bg-linear-to-b from-gray-900 to-black text-white min-h-screen relative"
+    class="flex-1 flex flex-col items-center text-center text-white min-h-screen relative transition-colors duration-1000 bg-zinc-900"
+    :class="resultData.gradientClass"
   >
     <div class="z-10 w-full relative max-w-md mx-auto">
       <!-- 渲染後的圖片，允許用戶長按儲存 -->
-      <div v-if="resultImageUrl" class="mb-4 animate-fade-in">
+      <div v-if="resultImageUrl" class="animate-fade-in">
         <img :src="resultImageUrl" alt="測驗結果圖片" class="w-full h-auto">
         <p
           class="text-white/50 text-xs mt-6 tracking-widest flex items-center justify-center gap-2"
@@ -113,7 +75,8 @@ onMounted(async () => {
       <div
         v-show="!resultImageUrl"
         ref="resultCardRef"
-        class="bg-linear-to-b from-gray-900 to-black p-8 border border-white/5 relative"
+        class="p-8 relative bg-linear-to-b"
+        :class="resultData.gradientClass"
       >
         <h2 class="text-sm tracking-[0.2em] text-white/50 mb-2">
           最終評估
@@ -163,19 +126,3 @@ onMounted(async () => {
     </div>
   </div>
 </template>
-
-<style scoped>
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
-}
-</style>

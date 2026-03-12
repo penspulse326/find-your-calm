@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
+import { getResultByScore } from '../data/results';
 import scriptData from '../data/script.json';
 
 export interface Option {
@@ -22,7 +23,7 @@ export interface GameStep {
 export const useGameStore = defineStore('game', () => {
   const script = ref<GameStep[]>(scriptData as GameStep[]);
   const currentStepIndex = ref(0);
-  const score = ref(0);
+  const score = ref(20);
   const isFinished = ref(false);
 
   const currentStep = computed(() => script.value[currentStepIndex.value]);
@@ -59,17 +60,7 @@ export const useGameStore = defineStore('game', () => {
   }
 
   const resultStatus = computed(() => {
-    const s = score.value;
-    if (s <= 4) {
-      return '靜謐之森';
-    }
-    if (s <= 9) {
-      return '起風的海面';
-    }
-    if (s <= 14) {
-      return '迷霧荒原';
-    }
-    return '雷鳴深淵';
+    return getResultByScore(score.value).title;
   });
 
   return {
