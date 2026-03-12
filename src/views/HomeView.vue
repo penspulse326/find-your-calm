@@ -79,7 +79,7 @@ function startQuiz() {
     <div
       class="absolute bottom-4 text-white/30 text-[10px] tracking-[0.5em] font-light"
     >
-      PENS PULSE © 2026
+      PEN'S PULSE © 2026
     </div>
   </div>
 </template>

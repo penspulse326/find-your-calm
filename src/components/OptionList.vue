@@ -48,7 +48,7 @@ function handleSelect(score: number) {
           }}</span>
         </div>
         <span
-          class="text-white text-shadow-[1px_1px_4px_rgb(0_0_0_/_0.8)] font-medium text-sm leading-snug tracking-wide group-hover:text-white transition-colors"
+          class="text-white text-shadow-custom font-medium text-sm leading-snug tracking-wide group-hover:text-white transition-colors"
         >{{ option.text }}</span>
       </div>
     </button>

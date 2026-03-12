@@ -49,13 +49,13 @@ const characterUrl = computed(() => {
 
     <!-- 角色立繪容器 -->
     <div class="z-10 h-full w-full relative">
-      <Transition name="">
+      <Transition name="character-fade">
         <img
           v-if="characterUrl"
           :key="characterUrl"
           :src="characterUrl"
           alt="Character Avatar"
-          class="absolute inset-x-0 bottom-0 mx-auto h-[80vh] md:h-[85vh] object-contain object-bottom drop-shadow-2xl translate-y-4"
+          class="absolute inset-x-0 -bottom-8 mx-auto h-[80vh] md:h-[85vh] object-contain object-bottom drop-shadow-2xl translate-y-4"
         >
       </Transition>
     </div>
@@ -72,11 +72,9 @@ const characterUrl = computed(() => {
 
 .character-fade-enter-from {
   opacity: 0;
-  transform: translateY(4rem) scale(0.95);
 }
 
 .character-fade-leave-to {
   opacity: 0;
-  transform: translateY(1rem) scale(1.02);
 }
 </style>

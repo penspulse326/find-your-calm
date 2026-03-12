@@ -15,18 +15,22 @@ import { useGameStore } from '../stores/game';
 const router = useRouter();
 const gameStore = useGameStore();
 const audioStore = useAudioStore();
-const { currentStep, currentQuestionNumber, isFinished } = storeToRefs(gameStore);
+const { currentStep, currentQuestionNumber, isFinished }
+  = storeToRefs(gameStore);
 
 const isTransitioning = ref(false);
 const showOptions = ref(false);
 const showConfirm = ref(false);
 const dialogBoxRef = ref<any>(null);
 
-watch(() => isFinished.value, (newVal) => {
-  if (newVal) {
-    router.replace('/result');
-  }
-});
+watch(
+  () => isFinished.value,
+  (newVal) => {
+    if (newVal) {
+      router.replace('/result');
+    }
+  },
+);
 
 // 當前正在顯示的選項副本，用於在轉場期間保持資料穩定
 const activeOptions = ref<any[]>([]);
@@ -82,7 +86,8 @@ const bgUrl = computed(() => {
   if (!currentStep.value?.bg) {
     return '';
   }
-  return new URL(`../assets/images/${currentStep.value.bg}`, import.meta.url).href;
+  return new URL(`../assets/images/${currentStep.value.bg}`, import.meta.url)
+    .href;
 });
 
 function handleGlobalClick() {
@@ -99,7 +104,11 @@ function handleGlobalClick() {
 <template>
   <div
     class="flex-1 flex flex-col bg-black relative h-full overflow-hidden"
-    :class="(currentStep?.type === 'quiz' && showOptions) || showConfirm ? 'cursor-default' : 'cursor-pointer'"
+    :class="
+      (currentStep?.type === 'quiz' && showOptions) || showConfirm
+        ? 'cursor-default'
+        : 'cursor-pointer'
+    "
     @click="handleGlobalClick"
   >
     <div class="flex-1 flex flex-col relative overflow-hidden">
@@ -130,7 +139,10 @@ function handleGlobalClick() {
         </button>
 
         <!-- 題目進度 -->
-        <div v-if="currentStep.type === 'quiz'" class="text-white/80 font-medium tracking-widest">
+        <div
+          v-if="currentStep.type === 'quiz'"
+          class="text-white/80 font-medium tracking-widest text-shadow-custom"
+        >
           第 {{ currentQuestionNumber }} 題
         </div>
         <div v-else class="text-white/80 font-medium tracking-widest opacity-0">
@@ -159,7 +171,11 @@ function handleGlobalClick() {
         <div class="px-4 pb-4">
           <transition name="options-fade">
             <OptionList
-              v-if="currentStep.type === 'quiz' && showOptions && activeOptions.length > 0"
+              v-if="
+                currentStep.type === 'quiz'
+                  && showOptions
+                  && activeOptions.length > 0
+              "
               :options="activeOptions"
               :disabled="isTransitioning"
               @select="handleSelect"
