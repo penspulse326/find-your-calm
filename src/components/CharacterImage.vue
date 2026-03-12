@@ -5,15 +5,14 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
-import avatarThinking from '../assets/images/avatar_thinking.png';
 import { useGameStore } from '../stores/game';
 
 const gameStore = useGameStore();
-const { currentQuestionIndex } = storeToRefs(gameStore);
+const { currentStep, currentQuestionNumber } = storeToRefs(gameStore);
 
-// 根據當前題目的索引動態改變背景顏色
+// 根據當前題目的進度動態改變背景顏色
 const bgColor = computed(() => {
-  const index = currentQuestionIndex.value;
+  const index = Math.max(0, currentQuestionNumber.value - 1);
   // 從冷色/平靜過渡到暖色/緊張的色調配置
   const colors = [
     'bg-[#A7C7E7]', // Q1
@@ -29,6 +28,13 @@ const bgColor = computed(() => {
   ];
   return colors[index] || colors[0];
 });
+
+const characterUrl = computed(() => {
+  if (!currentStep.value?.character) {
+    return '';
+  }
+  return new URL(`../assets/images/${currentStep.value.character}`, import.meta.url).href;
+});
 </script>
 
 <template>
@@ -36,12 +42,13 @@ const bgColor = computed(() => {
     class="w-full flex-1 min-h-[40vh] transition-colors duration-1000 ease-in-out relative flex items-end justify-center overflow-hidden shadow-inner"
     :class="bgColor"
   >
-    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+    <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
 
     <!-- 角色立繪 -->
     <div class="z-10 h-full flex items-end justify-center px-4">
       <img
-        :src="avatarThinking"
+        :key="currentStep.character"
+        :src="characterUrl"
         alt="Character Avatar"
         class="h-[80vh] md:h-[85vh] object-contain object-bottom drop-shadow-2xl translate-y-4"
       >

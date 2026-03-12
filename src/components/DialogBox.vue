@@ -12,6 +12,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: 'finish'): void;
+  (e: 'next'): void;
 }>();
 
 const audioStore = useAudioStore();
@@ -63,15 +64,18 @@ onMounted(() => {
   startTyping(props.text);
 });
 
-// 允許使用者點擊以跳過打字效果
+// 允許使用者點擊以跳過打字效果，或在完成後前往下一句
 function completeTyping() {
+  audioStore.playClick();
   if (!isFinishedTyping.value) {
-    audioStore.playClick();
     if (timer)
       clearTimeout(timer);
     displayedText.value = props.text;
     isFinishedTyping.value = true;
     emit('finish');
+  }
+  else {
+    emit('next');
   }
 }
 </script>

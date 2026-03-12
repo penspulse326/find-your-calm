@@ -1,10 +1,6 @@
-/**
- * 遊戲與測驗狀態管理 (Pinia Store)
- * 負責管理測驗題目、使用者分數計算、當前進度以及最終結果判定
- */
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import questionsData from '../data/questions.json';
+import scriptData from '../data/script.json';
 
 export interface Option {
   label: string;
@@ -12,35 +8,51 @@ export interface Option {
   score: number;
 }
 
-export interface Question {
-  id: number;
-  indicator: string;
+export interface GameStep {
+  type: 'dialogue' | 'quiz';
   text: string;
-  options: Option[];
+  bg: string;
+  character: string;
+  id?: number;
+  indicator?: string;
+  options?: Option[];
 }
 
 export const useGameStore = defineStore('game', () => {
-  const currentQuestionIndex = ref(0);
+  const script = ref<GameStep[]>(scriptData as GameStep[]);
+  const currentStepIndex = ref(0);
   const score = ref(0);
-  const questions = ref<Question[]>(questionsData);
   const isFinished = ref(false);
 
-  const currentQuestion = computed(() => questions.value[currentQuestionIndex.value]);
-  const progress = computed(() => currentQuestionIndex.value + 1);
+  const currentStep = computed(() => script.value[currentStepIndex.value]);
 
-  function answerQuestion(optionScore: number) {
-    score.value += optionScore;
+  // 計算目前的題號 (只算 quiz 的類型)
+  const currentQuestionNumber = computed(() => {
+    let count = 0;
+    for (let i = 0; i <= currentStepIndex.value; i++) {
+      if (script.value[i].type === 'quiz') {
+        count++;
+      }
+    }
+    return count;
+  });
 
-    if (currentQuestionIndex.value < questions.value.length - 1) {
-      currentQuestionIndex.value++;
+  function nextStep() {
+    if (currentStepIndex.value < script.value.length - 1) {
+      currentStepIndex.value++;
     }
     else {
       isFinished.value = true;
     }
   }
 
+  function answerQuestion(optionScore: number) {
+    score.value += optionScore;
+    nextStep();
+  }
+
   function resetGame() {
-    currentQuestionIndex.value = 0;
+    currentStepIndex.value = 0;
     score.value = 0;
     isFinished.value = false;
   }
@@ -57,13 +69,14 @@ export const useGameStore = defineStore('game', () => {
   });
 
   return {
-    currentQuestionIndex,
+    script,
+    currentStepIndex,
+    currentStep,
+    currentQuestionNumber,
     score,
-    questions,
     isFinished,
-    currentQuestion,
-    progress,
     resultStatus,
+    nextStep,
     answerQuestion,
     resetGame,
   };

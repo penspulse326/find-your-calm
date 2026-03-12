@@ -4,7 +4,7 @@
 -->
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import CharacterImage from '../components/CharacterImage.vue';
 import DialogBox from '../components/DialogBox.vue';
@@ -15,11 +15,17 @@ import { useGameStore } from '../stores/game';
 const router = useRouter();
 const gameStore = useGameStore();
 const audioStore = useAudioStore();
-const { currentQuestion, progress, isFinished } = storeToRefs(gameStore);
+const { currentStep, currentQuestionNumber, isFinished } = storeToRefs(gameStore);
 
 const isTransitioning = ref(false);
 const showOptions = ref(false);
 const showConfirm = ref(false);
+
+watch(() => isFinished.value, (newVal) => {
+  if (newVal) {
+    router.replace('/result');
+  }
+});
 
 // 當前正在顯示的選項副本，用於在轉場期間保持資料穩定
 const activeOptions = ref<any[]>([]);
@@ -49,24 +55,26 @@ function handleSelect(score: number) {
   // 這裡的延遲應與選項的離開動畫時間大致匹配
   setTimeout(() => {
     gameStore.answerQuestion(score);
-    if (isFinished.value) {
-      router.replace('/result');
-    }
-    else {
-      // 重設轉場狀態，準備下一題
-      isTransitioning.value = false;
-    }
+    // 重設轉場狀態，準備下一題或進入結尾對話
+    isTransitioning.value = false;
   }, 400);
 }
 
 function handleDialogFinish() {
-  // 確保題目資料已加載，且目前不在切換轉場中
-  if (currentQuestion.value && !isTransitioning.value) {
+  // 確保當前是測驗類型且無轉場中
+  if (currentStep.value.type === 'quiz' && !isTransitioning.value) {
     // 將最新題目的選項存入副本，並顯示（觸發進入動畫）
-    activeOptions.value = currentQuestion.value.options;
+    activeOptions.value = currentStep.value.options || [];
     showOptions.value = true;
   }
 }
+
+const bgUrl = computed(() => {
+  if (!currentStep.value?.bg) {
+    return '';
+  }
+  return new URL(`../assets/images/${currentStep.value.bg}`, import.meta.url).href;
+});
 </script>
 
 <template>
@@ -99,8 +107,11 @@ function handleDialogFinish() {
         </button>
 
         <!-- 題目進度 -->
-        <div class="text-white/80 font-medium tracking-widest">
-          第 {{ progress }} 題
+        <div v-if="currentStep.type === 'quiz'" class="text-white/80 font-medium tracking-widest">
+          第 {{ currentQuestionNumber }} 題
+        </div>
+        <div v-else class="text-white/80 font-medium tracking-widest opacity-0">
+          佔位
         </div>
 
         <!-- 用於平衡排版的佔位空間（對應右側絕對定位的音效按鈕） -->
@@ -108,9 +119,10 @@ function handleDialogFinish() {
       </div>
       <!-- 角色與背景區域 -->
       <img
-        src="/src/assets/images/scene_1.png"
+        :key="currentStep.bg"
+        :src="bgUrl"
         alt=""
-        class="absolute z-10 h-full object-cover blur-[2px] opacity-50"
+        class="absolute z-10 h-full object-cover blur-[2px] opacity-50 transition-opacity duration-1000"
       >
       <CharacterImage />
 
@@ -121,7 +133,7 @@ function handleDialogFinish() {
         <div class="px-4 pb-4">
           <transition name="options-fade">
             <OptionList
-              v-if="showOptions && activeOptions.length > 0"
+              v-if="currentStep.type === 'quiz' && showOptions && activeOptions.length > 0"
               :options="activeOptions"
               :disabled="isTransitioning"
               @select="handleSelect"
@@ -131,15 +143,20 @@ function handleDialogFinish() {
       </div>
 
       <!-- 對話框區域 -->
-      <div v-if="currentQuestion" class="mt-auto z-40">
-        <DialogBox :text="currentQuestion.text" @finish="handleDialogFinish" />
+      <div v-if="currentStep" class="mt-auto z-40">
+        <DialogBox
+          :key="currentStep.text"
+          :text="currentStep.text"
+          @next="gameStore.nextStep()"
+          @finish="handleDialogFinish"
+        />
       </div>
 
       <!-- 確認重開的彈跳視窗 -->
       <transition name="modal-fade">
         <div
           v-if="showConfirm"
-          class="absolute inset-0 z-[100] flex items-center justify-center px-6"
+          class="absolute inset-0 z-100 flex items-center justify-center px-6"
         >
           <div
             class="absolute inset-0 bg-black/60 backdrop-blur-sm"

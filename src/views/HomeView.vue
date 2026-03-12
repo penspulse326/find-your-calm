@@ -54,7 +54,7 @@ function startQuiz() {
           class="text-white/90 font-medium leading-relaxed text-base max-w-sm mx-auto drop-shadow-md text-shadow-[1px_1px_4px_rgb(0_50_50_/_1.0)]"
         >
           你有多久沒有好好放鬆了呢？<br>
-          透過問答，找到通往平靜的方向吧！
+          來找回心中的平靜吧！
         </p>
       </div>
 
