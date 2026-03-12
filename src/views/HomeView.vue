@@ -4,7 +4,7 @@
 -->
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import avatarDefault from '../assets/images/avatar_default.png';
+import avatarHeart from '../assets/images/avatar_heart.png';
 import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
 
@@ -30,12 +30,12 @@ function startQuiz() {
 
     <!-- 角色立繪 -->
     <div
-      class="absolute inset-x-0 bottom-0 z-0 flex justify-center items-end h-[85%] transform translate-y-8"
+      class="absolute inset-x-0 bottom-20 z-0 flex justify-center items-end h-[85%] transform translate-y-8"
     >
       <img
-        :src="avatarDefault"
+        :src="avatarHeart"
         alt="Character"
-        class="h-full object-contain object-bottom drop-shadow-2xl opacity-30"
+        class="h-full object-contain object-bottom drop-shadow-2xl opacity-30 scale-220"
       >
     </div>
 
