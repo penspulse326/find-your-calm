@@ -90,7 +90,7 @@ onMounted(async () => {
           ]"
         >
           <h2 class="text-sm tracking-[0.2em] text-white/50 mb-2">
-            最終評估
+            你的心境
           </h2>
           <h1
             class="text-4xl font-serif font-bold tracking-widest text-[#D3C7C7]"
