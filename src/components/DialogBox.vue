@@ -6,10 +6,13 @@
 import { onMounted, ref, watch } from 'vue';
 import { useAudioStore } from '../stores/audio';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   text: string;
   wait?: number;
-}>();
+  canNext?: boolean;
+}>(), {
+  canNext: true,
+});
 
 const emit = defineEmits<{
   (e: 'finish'): void;
@@ -124,7 +127,7 @@ function completeTyping() {
     isFinishedTyping.value = true;
     emit('finish');
   }
-  else {
+  else if (props.canNext) {
     emit('next');
   }
 }
@@ -150,12 +153,15 @@ function startTypingWithNoWait(fullText: string) {
   }
   type();
 }
+
+defineExpose({
+  completeTyping,
+});
 </script>
 
 <template>
   <div
-    class="w-full bg-black/80 border-t-2 border-white/10 p-6 shadow-2xl relative min-h-[140px] cursor-pointer"
-    @click="completeTyping"
+    class="w-full bg-black/80 border-t-2 border-white/10 p-6 shadow-2xl relative min-h-[140px]"
   >
     <p
       class="text-white text-lg md:text-xl leading-relaxed font-serif tracking-wide select-none"
@@ -169,7 +175,7 @@ function startTypingWithNoWait(fullText: string) {
 
     <!-- 提示打字完成 / 準備進入下一步的三角形圖示 -->
     <div
-      v-if="isFinishedTyping"
+      v-if="isFinishedTyping && canNext"
       class="absolute bottom-4 right-4 animate-bounce"
     >
       <svg

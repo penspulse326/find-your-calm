@@ -49,7 +49,7 @@ const characterUrl = computed(() => {
 
     <!-- 角色立繪容器 -->
     <div class="z-10 h-full w-full relative">
-      <Transition name="character-fade">
+      <Transition name="">
         <img
           v-if="characterUrl"
           :key="characterUrl"

@@ -32,7 +32,7 @@ function handleSelect(score: number) {
       :key="option.text"
       :disabled="disabled"
       class="group text-left w-full relative overflow-hidden bg-white/5 hover:bg-white/15 active:bg-white/25 backdrop-blur-sm border border-white/10 hover:border-white/40 rounded-2xl p-3 transition-all duration-500 disabled:opacity-50 disabled:cursor-not-allowed transform hover:-translate-y-1 shadow-lg hover:shadow-white/10 isolate will-change-[backdrop-filter,transform,opacity]"
-      @click="handleSelect(option.score)"
+      @click.stop="handleSelect(option.score)"
     >
       <!-- 滑鼠懸浮時的光澤效果 -->
       <div

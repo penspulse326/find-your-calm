@@ -9,7 +9,7 @@
     "type": "dialogue",
     "text": "我會引導你，重新找回内心的平靜。",
     "bg": "scene_1.png",
-    "character": "avatar_smile.png"
+    "character": "avatar_cheer.png"
   },
   {
     "type": "dialogue",
@@ -339,7 +339,7 @@
     "type": "dialogue",
     "text": "每一個感受，都是你真實的一部分，都值得被看見與接納。",
     "bg": "scene_1.png",
-    "character": "avatar_heart.png"
+    "character": "avatar_cheer.png"
   },
   {
     "type": "dialogue",

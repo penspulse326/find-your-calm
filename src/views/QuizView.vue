@@ -20,6 +20,7 @@ const { currentStep, currentQuestionNumber, isFinished } = storeToRefs(gameStore
 const isTransitioning = ref(false);
 const showOptions = ref(false);
 const showConfirm = ref(false);
+const dialogBoxRef = ref<any>(null);
 
 watch(() => isFinished.value, (newVal) => {
   if (newVal) {
@@ -69,16 +70,38 @@ function handleDialogFinish() {
   }
 }
 
+function handleNext() {
+  // 只有在對話模式下，點擊對話框才會進入下一步
+  // 如果是測驗模式，必須由選項點擊觸發下一階段
+  if (currentStep.value.type === 'dialogue') {
+    gameStore.nextStep();
+  }
+}
+
 const bgUrl = computed(() => {
   if (!currentStep.value?.bg) {
     return '';
   }
   return new URL(`../assets/images/${currentStep.value.bg}`, import.meta.url).href;
 });
+
+function handleGlobalClick() {
+  if (showConfirm.value)
+    return;
+  // 如果是測驗中且選項已經顯示，則不處理全局點擊，必須點選選項
+  if (currentStep.value?.type === 'quiz' && showOptions.value)
+    return;
+
+  dialogBoxRef.value?.completeTyping();
+}
 </script>
 
 <template>
-  <div class="flex-1 flex flex-col bg-black relative h-full overflow-hidden">
+  <div
+    class="flex-1 flex flex-col bg-black relative h-full overflow-hidden"
+    :class="(currentStep?.type === 'quiz' && showOptions) || showConfirm ? 'cursor-default' : 'cursor-pointer'"
+    @click="handleGlobalClick"
+  >
     <div class="flex-1 flex flex-col relative overflow-hidden">
       <!-- 頂部標頭區域 -->
       <div
@@ -88,7 +111,7 @@ const bgUrl = computed(() => {
         <button
           class="p-2 rounded-full bg-white/20 backdrop-blur border border-white/30 text-white hover:bg-white/30 transition-colors pointer-events-auto isolate will-change-[backdrop-filter,opacity]"
           aria-label="Restart Quiz"
-          @click="handleRestart"
+          @click.stop="handleRestart"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -148,10 +171,12 @@ const bgUrl = computed(() => {
       <!-- 對話框區域 -->
       <div v-if="currentStep" class="mt-auto z-40">
         <DialogBox
+          ref="dialogBoxRef"
           :key="currentStep.text"
           :text="currentStep.text"
           :wait="currentStep.wait"
-          @next="gameStore.nextStep()"
+          :can-next="currentStep.type === 'dialogue'"
+          @next="handleNext"
           @finish="handleDialogFinish"
         />
       </div>
