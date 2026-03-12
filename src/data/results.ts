@@ -22,7 +22,7 @@ export const results: ResultInfo[] = [
       '將手輕放腹部，感受吸氣時的隆起與吐氣時的自然凹陷。此練習有助於維持穩定的副交感神經節奏。',
     image: '/images/end_1.png',
     bgColor: '#0d1a0d',
-    gradientClass: 'from-[#0d1a0d] to-zinc-900',
+    gradientClass: 'from-[#0d1a0d] to-black',
     disclaimer: '本測驗僅供自我觀察參考，非專業診斷依據',
   },
   {
@@ -36,7 +36,7 @@ export const results: ResultInfo[] = [
 
     image: '/images/end_2.png',
     bgColor: '#0d141f',
-    gradientClass: 'from-[#0d141f] to-zinc-900',
+    gradientClass: 'from-[#0d141f] to-black',
     disclaimer: '本測驗僅供自我觀察參考，非專業診斷依據',
   },
   {
@@ -50,7 +50,7 @@ export const results: ResultInfo[] = [
 
     image: '/images/end_3.png',
     bgColor: '#1a1a2e',
-    gradientClass: 'from-[#1a1a2e] to-zinc-900',
+    gradientClass: 'from-[#1a1a2e] to-black',
     disclaimer: '本測驗僅供自我觀察參考，非專業診斷依據',
   },
   {
@@ -64,7 +64,7 @@ export const results: ResultInfo[] = [
     supportLink: '衛福部安心專線：1925',
     image: '/images/end_4.png',
     bgColor: '#1f0d0d',
-    gradientClass: 'from-[#1f0d0d] to-zinc-900',
+    gradientClass: 'from-[#1f0d0d] to-black',
     disclaimer: '本測驗僅供自我觀察參考，非專業診斷依據',
   },
 ];

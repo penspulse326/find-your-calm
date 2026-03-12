@@ -85,7 +85,7 @@ onMounted(async () => {
 
 <template>
   <div
-    class="flex-1 flex flex-col items-center text-center text-white min-h-screen relative transition-colors duration-1000 bg-zinc-900"
+    class="flex-1 flex flex-col items-center text-center text-white min-h-dvh relative transition-colors duration-1000 bg-black"
     :class="resultData.gradientClass"
   >
     <div class="z-10 w-full relative max-w-md mx-auto">
