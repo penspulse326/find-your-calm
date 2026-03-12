@@ -11,6 +11,12 @@ export default antfu(
   },
   {
     rules: {
+      curly: ['error', 'all'],
+    },
+  },
+  {
+    files: ['**/*.vue'],
+    rules: {
       'vue/first-attribute-linebreak': [
         'error',
         {
@@ -19,7 +25,6 @@ export default antfu(
         },
       ],
       'vue/multi-word-component-names': 'off',
-      'curly': ['error', 'all'],
     },
   },
 );
