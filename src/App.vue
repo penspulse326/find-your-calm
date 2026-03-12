@@ -5,6 +5,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import AudioToggle from './components/AudioToggle.vue';
+import { results } from './data/results';
 import scriptData from './data/script.json';
 import { useAudioStore } from './stores/audio';
 import { preloadImages } from './utils/preload';
@@ -30,6 +31,13 @@ onMounted(async () => {
     images,
     img => new URL(`./assets/images/${img}`, import.meta.url).href,
   );
+
+  // 同時預載測驗結果頁的圖片
+  results.forEach((r) => {
+    if (r.image) {
+      imageUrls.push(r.image);
+    }
+  });
 
   try {
     await preloadImages(imageUrls);

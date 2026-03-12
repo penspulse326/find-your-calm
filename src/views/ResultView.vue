@@ -7,6 +7,7 @@ import { toPng } from 'html-to-image';
 import { storeToRefs } from 'pinia';
 import { computed, nextTick, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import avatarHeart from '../assets/images/avatar_heart.png';
 import { getResultByScore } from '../data/results';
 import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
@@ -34,7 +35,7 @@ onMounted(async () => {
   try {
     await nextTick();
     // 稍微延遲以確保所有圖片、CSS、字體等渲染完成
-    await new Promise(resolve => setTimeout(resolve, 300));
+    await new Promise(resolve => setTimeout(resolve, 800));
 
     if (resultCardRef.value) {
       // 轉換成 PNG
@@ -159,7 +160,7 @@ onMounted(async () => {
         </p>
       </div>
 
-      <img src="/src/assets/images/avatar_heart.png" alt="">
+      <img :src="avatarHeart" alt="">
     </div>
   </div>
 </template>

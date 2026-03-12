@@ -2,11 +2,11 @@
  * 應用程式路由配置
  * 定義各個頁面（首頁、測驗頁、結果頁）的路由路徑與對應組件
  */
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
