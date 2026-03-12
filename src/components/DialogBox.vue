@@ -32,9 +32,11 @@ let waitTimer: ReturnType<typeof setTimeout> | null = null;
 function stopAllTimers() {
   if (timer) {
     clearTimeout(timer);
+    timer = null;
   }
   if (waitTimer) {
     clearTimeout(waitTimer);
+    waitTimer = null;
   }
 }
 
@@ -43,55 +45,51 @@ function startWaiting(duration: number, callback: () => void) {
   displayedText.value = '';
 
   let dotCount = 0;
-  const maxDots = 6;
-
   function updateDots() {
     if (!isWaiting.value) {
       return;
     }
-
-    dotCount = (dotCount % maxDots) + 1;
+    dotCount = (dotCount % 3) + 1;
     displayedText.value = '.'.repeat(dotCount);
-
-    timer = setTimeout(updateDots, 300);
+    timer = setTimeout(updateDots, 400);
   }
 
   updateDots();
 
   waitTimer = setTimeout(() => {
     isWaiting.value = false;
-    if (timer) {
-      clearTimeout(timer);
-    }
+    stopAllTimers();
     displayedText.value = '';
+    // 自動銜接：開始打字
     callback();
   }, duration);
 }
 
 function startTyping(fullText: string) {
+  stopAllTimers();
   displayedText.value = '';
   isFinishedTyping.value = false;
-  stopAllTimers();
+  isWaiting.value = false;
 
-  let currentIndex = 0;
+  const type = () => {
+    let currentIndex = 0;
+    const internalStep = () => {
+      if (currentIndex < fullText.length) {
+        const char = fullText.charAt(currentIndex);
+        displayedText.value += char;
+        currentIndex++;
 
-  function type() {
-    if (currentIndex < fullText.length) {
-      const char = fullText.charAt(currentIndex);
-      displayedText.value += char;
-      currentIndex++;
-
-      // 判斷是否為中文標點符號，給予不同延遲
-      const isPunctuation = PUNCTUATION_REGEXP.test(char);
-      const delay = isPunctuation ? 500 : 50;
-
-      timer = setTimeout(type, delay);
-    }
-    else {
-      isFinishedTyping.value = true;
-      emit('finish');
-    }
-  }
+        const isPunctuation = PUNCTUATION_REGEXP.test(char);
+        const delay = isPunctuation ? 500 : 50;
+        timer = setTimeout(internalStep, delay);
+      }
+      else {
+        isFinishedTyping.value = true;
+        emit('finish');
+      }
+    };
+    internalStep();
+  };
 
   if (props.wait && props.wait > 0) {
     startWaiting(props.wait, type);
@@ -118,10 +116,11 @@ function completeTyping() {
   audioStore.playClick();
 
   if (isWaiting.value) {
-    // 如果正在等待，點擊可以直接跳過等待，開始打字
+    // 如果正在等待，點擊可以直接跳過等待，立即開始打字
     isWaiting.value = false;
     stopAllTimers();
-    startTypingWithNoWait(props.text);
+    // 直接進到內容
+    startTypingContent(props.text);
     return;
   }
 
@@ -136,7 +135,7 @@ function completeTyping() {
   }
 }
 
-function startTypingWithNoWait(fullText: string) {
+function startTypingContent(fullText: string) {
   displayedText.value = '';
   isFinishedTyping.value = false;
 

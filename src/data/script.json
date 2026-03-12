@@ -7,13 +7,13 @@
   },
   {
     "type": "dialogue",
-    "text": "我會透過簡單的問題引導你，重新觀察近期的身心節奏。",
+    "text": "我會透過 10 個小問題引導你，重新觀察近期的身心節奏。",
     "bg": "scene_1.png",
     "character": "avatar_cheer.png"
   },
   {
     "type": "dialogue",
-    "text": "這是一份生活壓力感受評測，並非醫療診斷，請放鬆心情參與。",
+    "text": "這是一份生活壓力自我評估，並非醫療診斷，請放鬆心情參與。",
     "bg": "scene_1.png",
     "character": "avatar_smile.png"
   },
@@ -36,6 +36,7 @@
     "text": "清晨醒來，陽光灑進房間，但你感覺心跳似乎比平常快了一點…",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
+    "wait": 3000,
     "options": [
       { "label": "A", "text": "我感到平靜且準備好開始新的一天。", "score": 0 },
       { "label": "B", "text": "偶爾有一點點莫名的緊繃感，但很快就消失了。", "score": 1 },
@@ -193,5 +194,6 @@
     "bg": "scene_1.png",
     "character": "avatar_celebrating.png",
     "wait": 3000
+
   }
 ]
