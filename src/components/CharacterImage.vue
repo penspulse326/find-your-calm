@@ -28,13 +28,6 @@ const bgColor = computed(() => {
   ];
   return colors[index] || colors[0];
 });
-
-const characterUrl = computed(() => {
-  if (!currentStep.value?.character) {
-    return '';
-  }
-  return `/images/${currentStep.value.character}`;
-});
 </script>
 
 <template>
@@ -46,15 +39,14 @@ const characterUrl = computed(() => {
 
     <!-- 角色立繪容器 -->
     <div class="z-10 h-full w-full relative">
-      <Transition name="character-fade">
+      <template v-for="avatar in ['avatar_smile.png', 'avatar_cheer.png', 'avatar_celebrating.png', 'avatar_thinking.png']" :key="avatar">
         <img
-          v-if="characterUrl"
-          :key="characterUrl"
-          :src="characterUrl"
+          v-show="currentStep?.character === avatar"
+          :src="`/images/${avatar}`"
           alt="Character Avatar"
-          class="absolute inset-x-0 -bottom-8 mx-auto h-[80vh] md:h-[85vh] object-contain object-bottom drop-shadow-2xl translate-y-4"
+          class="absolute inset-x-0 -bottom-8 mx-auto h-[80vh] md:h-[85vh] object-contain object-bottom drop-shadow-2xl translate-y-4 transition-opacity duration-500"
         >
-      </Transition>
+      </template>
     </div>
   </div>
 </template>

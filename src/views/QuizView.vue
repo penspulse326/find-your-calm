@@ -163,15 +163,12 @@ function handleGlobalClick() {
         <div class="w-10" />
       </div>
       <!-- 角色與背景區域 -->
-      <Transition name="bg-fade">
-        <img
-          v-if="bgUrl"
-          :key="bgUrl"
-          :src="bgUrl"
-          alt=""
-          class="absolute z-10 h-full w-full object-cover blur-[2px] opacity-50"
-        >
-      </Transition>
+      <img
+        v-show="bgUrl"
+        :src="bgUrl"
+        alt=""
+        class="absolute z-10 h-full w-full object-cover blur-[2px] opacity-50 transition-opacity duration-1000 ease-in-out"
+      >
       <CharacterImage />
 
       <!-- 浮動選項層（傳統視覺小說風格） -->
