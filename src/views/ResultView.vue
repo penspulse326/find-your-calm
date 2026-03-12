@@ -113,16 +113,53 @@ onMounted(async () => {
             class="max-h-96 object-contain rounded-xl drop-shadow-[0_10px_15px_rgba(255,255,255,0.05)]"
           >
         </div>
+
+        <p class="mt-8 text-sm">
+          ⚠️ 評測結果僅供自我評估與參考<br>
+          如有任何症狀或需求，請務必尋求專業機構協助
+        </p>
       </div>
 
-      <div class="pt-6 pb-10">
-        <button
-          class="px-8 py-3 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full transition-all duration-300 tracking-widest text-sm transform hover:scale-105"
-          @click="restart"
-        >
-          重新測驗
-        </button>
+      <button
+        class="mt-8 px-8 py-3 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full transition-all duration-300 tracking-widest text-sm transform hover:scale-105"
+        @click="restart"
+      >
+        重新測驗
+      </button>
+
+      <div class="w-80 h-px bg-white/20 mx-auto my-6" />
+
+      <!-- 感謝說明 -->
+
+      <div
+        class="text-white/90 mx-4 leading-relaxed text-sm text-left bg-white/5 p-6 rounded-xl border border-white/10 shadow-lg"
+      >
+        <p>
+          ❤️
+          感謝您進行這個測驗。您可以透過簡單的呼吸練習，幫緊繃的自己按下暫停鍵！
+          <br>
+          <br>
+          ⚠️
+          再次提醒，這是一個小遊戲，如您有任何生活困擾、身心健康等問題，請尋求專業機構之協助，詳情參考
+          <a
+            href="https://dep.mohw.gov.tw/DOMHAOH/mp-107.html"
+            target="_blank"
+            class="text-white/50 underline"
+          >衛生福利部心理健康司</a>。
+
+          <br>
+          <br>
+
+          🎮 如遇到 bug 或是遊戲內容之建議，也歡迎
+          <a
+            href="mailto:penspulse@gmail.com"
+            target="_blank"
+            class="text-white/50 underline"
+          >來信聯絡</a>。
+        </p>
       </div>
+
+      <img src="/src/assets/images/avatar_heart.png" alt="">
     </div>
   </div>
 </template>

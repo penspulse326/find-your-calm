@@ -9,19 +9,22 @@ export interface ResultInfo {
   message: string;
   breathingName: string;
   breathingDesc: string;
+  supportLink?: string; // 加入外部求助建議
+  disclaimer: string; // 確保圖片內含免責聲明
   image: string;
-  bgColor: string; // For html-to-image background
-  gradientClass: string; // For Tailwind UI
+  bgColor: string;
+  gradientClass: string;
 }
 
 export const results: ResultInfo[] = [
   {
     scoreRange: [0, 4],
     title: '靜謐之森',
-    message: '你的內心是一片平靜的湖泊。繼續保持目前的步調，每天 5 分鐘正念。',
-    breathingName: '💡 建議練習：腹式呼吸',
+    message:
+      '目前的心理負荷較輕，內心如平靜湖泊。建議維持規律步調，透過短時間練習保持覺知。',
+    breathingName: '💡 建議放鬆：腹式呼吸',
     breathingDesc:
-      '將手輕放在腹部，用鼻子深吸氣，感受肚子像氣球般隆起；接著用嘴巴緩慢吐氣，讓腹部自然凹陷。重複數次，能有效放鬆身心。',
+      '將手輕放腹部，感受吸氣時的隆起與吐氣時的自然凹陷。此練習有助於維持穩定的副交感神經節奏。',
     image: end1,
     bgColor: '#0d1a0d',
     gradientClass: 'from-[#0d1a0d] to-zinc-900',
@@ -29,10 +32,12 @@ export const results: ResultInfo[] = [
   {
     scoreRange: [5, 9],
     title: '起風的海面',
-    message: '有些波浪，但你還能掌舵。建議減少咖啡因，並嘗試 4-7-8 呼吸法。',
-    breathingName: '💡 建議練習：4-7-8 呼吸法',
+    message:
+      '當前感受到些微壓力起伏，這屬於正常的心理反應。建議適度減少咖啡因，並嘗試調節呼吸節奏。',
+    breathingName: '💡 建議放鬆：4-7-8 規律呼吸',
     breathingDesc:
-      '用鼻子吸氣 4 秒，憋氣 7 秒，最後用嘴巴緩慢且微噘嘴唇地吐氣 8 秒。這個循環能幫助啟動副交感神經，快速找回平靜。',
+      '透過吸氣 4 秒、憋氣 7 秒、吐氣 8 秒的循環，引導身體進入休息模式，適合在睡前或感到匆忙時練習。',
+
     image: end2,
     bgColor: '#0d141f',
     gradientClass: 'from-[#0d141f] to-zinc-900',
@@ -40,22 +45,25 @@ export const results: ResultInfo[] = [
   {
     scoreRange: [10, 14],
     title: '迷霧荒原',
-    message: '你似乎迷失了方向。請實行數位排毒，嘗試箱式呼吸來找回主控權。',
-    breathingName: '💡 建議練習：箱式呼吸',
+    message:
+      '心理負荷較明顯，可能感到注意力較難集中。建議減少電子產品使用，並透過結構化練習找回主控權。',
+    breathingName: '💡 建議放鬆：箱式呼吸',
     breathingDesc:
-      '吸氣 4 秒，憋氣停頓 4 秒，吐氣 4 秒，再憋氣停頓 4 秒。想像氣流在畫一個正方形，能幫助穩定心跳，找回專注力。',
+      '吸氣、憋氣、吐氣、憋氣各維持 4 秒。想像氣流在畫一個正方形，有助於平穩心跳並轉移過度運轉的思緒。',
+
     image: end3,
     bgColor: '#1a1a2e',
     gradientClass: 'from-[#1a1a2e] to-zinc-900',
   },
   {
-    scoreRange: [15, 100], // 100 as a safe upper bound
+    scoreRange: [15, 100],
     title: '雷鳴深淵',
     message:
-      '風暴已經來臨。請優先處理生理需求，並尋求專業諮詢，適時按下暫停鍵。',
-    breathingName: '💡 應急練習：清涼呼吸法',
+      '您正處於高度壓力狀態。建議暫停手邊繁重任務，優先處理生理需求，並尋求專業諮詢資源的支持。',
+    breathingName: '💡 應急放鬆：清涼呼吸練習',
     breathingDesc:
-      '將舌頭捲成 U 型（若無法捲舌可微微張開嘴唇），從嘴巴深吸氣，感受涼爽空氣進入。接著閉上嘴巴由鼻子緩慢吐氣。有助於平復極度焦躁的情緒。',
+      '從嘴巴深吸氣感受涼意，再由鼻子緩慢吐氣。若情緒波動劇烈，建議透過衛福部安心專線 1925 取得專業的即時心理支持。',
+    supportLink: '衛福部安心專線：1925',
     image: end4,
     bgColor: '#1f0d0d',
     gradientClass: 'from-[#1f0d0d] to-zinc-900',
@@ -63,8 +71,8 @@ export const results: ResultInfo[] = [
 ];
 
 export function getResultByScore(score: number): ResultInfo {
-  return (
-    results.find(r => score >= r.scoreRange[0] && score <= r.scoreRange[1])
-    || results.at(-1)
+  const result = results.find(
+    r => score >= r.scoreRange[0] && score <= r.scoreRange[1],
   );
+  return result || results.at(-1);
 }

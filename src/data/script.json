@@ -1,25 +1,25 @@
 [
   {
     "type": "dialogue",
-    "text": "歡迎來到這裡，我是阿靜。",
+    "text": "嗨嗨，我是阿靜。",
     "bg": "scene_1.png",
     "character": "avatar_smile.png"
   },
   {
     "type": "dialogue",
-    "text": "我會引導你，重新找回内心的平靜。",
+    "text": "我會透過簡單的問題引導你，重新觀察近期的身心節奏。",
     "bg": "scene_1.png",
     "character": "avatar_cheer.png"
   },
   {
     "type": "dialogue",
-    "text": "這不是一個考試，沒有標準答案，也不需要有任何壓力。",
+    "text": "這是一份生活壓力感受評測，並非醫療診斷，請放鬆心情參與。",
     "bg": "scene_1.png",
     "character": "avatar_smile.png"
   },
   {
     "type": "dialogue",
-    "text": "接下來的幾個問題，依照你當下最真實的感受來回答就可以了。",
+    "text": "接下來的幾個問題，依照你「過去兩週內」最真實的感受來回答就可以了。",
     "bg": "scene_1.png",
     "character": "avatar_celebrating.png"
   },
@@ -32,324 +32,164 @@
   {
     "type": "quiz",
     "id": 1,
-    "indicator": "GAD-1",
+    "indicator": "Inner_Restlessness",
     "text": "清晨醒來，陽光灑進房間，但你感覺心跳似乎比平常快了一點…",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
-      {
-        "label": "A",
-        "text": "我感到平靜且準備好開始新的一天。",
-        "score": 0
-      },
-      {
-        "label": "B",
-        "text": "偶爾有一點點莫名的緊張感，但很快就消失了。",
-        "score": 1
-      },
-      {
-        "label": "C",
-        "text": "感覺胸口悶悶的，好像有什麼事在催促我。",
-        "score": 2
-      },
-      {
-        "label": "D",
-        "text": "全身神經緊繃，甚至有點手抖，無法安下心來。",
-        "score": 3
-      }
+      { "label": "A", "text": "我感到平靜且準備好開始新的一天。", "score": 0 },
+      { "label": "B", "text": "偶爾有一點點莫名的緊繃感，但很快就消失了。", "score": 1 },
+      { "label": "C", "text": "感覺胸口悶悶的，好像有什麼事在催促我。", "score": 2 },
+      { "label": "D", "text": "全身神經非常敏銳，難以安下心來。", "score": 3 }
     ]
   },
   {
     "type": "quiz",
     "id": 2,
-    "indicator": "GAD-2",
+    "indicator": "Uncontrollable_Thoughts",
     "text": "大腦裡突然蹦出一個擔憂的念頭，你會如何應對？",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
-      {
-        "label": "A",
-        "text": "沒關係，這只是個想法，我能輕易放下它。",
-        "score": 0
-      },
-      {
-        "label": "B",
-        "text": "會想一下，但還能切換注意力去處理工作。",
-        "score": 1
-      },
-      {
-        "label": "C",
-        "text": "我試著停止去想，但它總是像背景音樂一樣揮之不去。",
-        "score": 2
-      },
-      {
-        "label": "D",
-        "text": "它是個無底洞，我完全無法停止自己去想像最壞的結果。",
-        "score": 3
-      }
+      { "label": "A", "text": "沒關係，這只是個想法，我能輕易放下它。", "score": 0 },
+      { "label": "B", "text": "會想一下，但還能切換注意力去處理工作。", "score": 1 },
+      { "label": "C", "text": "我試著停止去想，但它總是像背景音樂一樣揮之不去。", "score": 2 },
+      { "label": "D", "text": "思緒停不下來，我完全無法停止自己想像各種阻礙。", "score": 3 }
     ]
   },
   {
     "type": "quiz",
     "id": 3,
-    "indicator": "GAD-3",
+    "indicator": "Anticipatory_Stress",
     "text": "面對未來一週的行程，你的腦袋裡目前的進度是？",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
-      {
-        "label": "A",
-        "text": "船到橋頭自然直，沒什麼好擔心的。",
-        "score": 0
-      },
-      {
-        "label": "B",
-        "text": "只對幾件重要的大事感到一點壓力。",
-        "score": 1
-      },
-      {
-        "label": "C",
-        "text": "每一件小事似乎都讓我感到潛在的威脅。",
-        "score": 2
-      },
-      {
-        "label": "D",
-        "text": "我被無數個『萬一』淹沒了，生活中的每件事都讓我焦慮。",
-        "score": 3
-      }
+      { "label": "A", "text": "順其自然，相信自己能處理好。", "score": 0 },
+      { "label": "B", "text": "只對幾件重要的大事感到一點點壓力。", "score": 1 },
+      { "label": "C", "text": "許多生活細節似乎都讓我感到潛在的威脅。", "score": 2 },
+      { "label": "D", "text": "被無數個『萬一』淹沒，感覺每件事都充滿變數。", "score": 3 }
     ]
   },
   {
     "type": "quiz",
     "id": 4,
-    "indicator": "GAD-4",
+    "indicator": "Relaxation_Difficulty",
     "text": "好不容易坐到了沙發上，這本該是你的休息時間…",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
-      {
-        "label": "A",
-        "text": "我能立刻放鬆，享受這段安靜時光。",
-        "score": 0
-      },
-      {
-        "label": "B",
-        "text": "需要一點時間沉澱，但最終能靜下心來。",
-        "score": 1
-      },
-      {
-        "label": "C",
-        "text": "身體雖然坐著，但腦袋還在運轉，肩膀僵硬。",
-        "score": 2
-      },
-      {
-        "label": "D",
-        "text": "我完全坐不住，感覺靈魂正焦躁地走來走去。",
-        "score": 3
-      }
+      { "label": "A", "text": "我能立刻放鬆，享受這段安靜時光。", "score": 0 },
+      { "label": "B", "text": "需要一點時間沉澱，但最終能靜下心來。", "score": 1 },
+      { "label": "C", "text": "身體雖然坐著，但腦袋還在運轉，肩膀僵硬。", "score": 2 },
+      { "label": "D", "text": "我完全坐不住，感覺有一股焦躁在體內流動。", "score": 3 }
     ]
   },
   {
     "type": "quiz",
     "id": 5,
-    "indicator": "GAD-5",
+    "indicator": "Physical_Agitation",
     "text": "在等待排隊或會議開始時，你的身體反應是？",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
-      {
-        "label": "A",
-        "text": "平穩呼吸，耐心等待。",
-        "score": 0
-      },
-      {
-        "label": "B",
-        "text": "偶爾換個姿勢或看個手機消磨時間。",
-        "score": 1
-      },
-      {
-        "label": "C",
-        "text": "雙腿不自覺地抖動，或者一直調整坐姿。",
-        "score": 2
-      },
-      {
-        "label": "D",
-        "text": "焦躁到了極點，恨不得立刻起身離開現場。",
-        "score": 3
-      }
+      { "label": "A", "text": "平穩呼吸，耐心等待。", "score": 0 },
+      { "label": "B", "text": "偶爾換個姿勢或看個手機消磨時間。", "score": 1 },
+      { "label": "C", "text": "雙腿不自覺地抖動，或者反覆調整坐姿。", "score": 2 },
+      { "label": "D", "text": "感覺非常不耐煩，甚至想立刻起身離開現場。", "score": 3 }
     ]
   },
   {
     "type": "quiz",
     "id": 6,
-    "indicator": "GAD-6",
+    "indicator": "Irritability",
     "text": "身旁的人不小心弄出了刺耳的聲響，你當下的第一反應？",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
-      {
-        "label": "A",
-        "text": "沒什麼大不了的，不影響我。",
-        "score": 0
-      },
-      {
-        "label": "B",
-        "text": "稍微皺個眉，但心情很快恢復。",
-        "score": 1
-      },
-      {
-        "label": "C",
-        "text": "覺得非常刺耳，內心湧上一股莫名的怒氣。",
-        "score": 2
-      },
-      {
-        "label": "D",
-        "text": "極度憤怒且難以忍受，甚至想當場發火。",
-        "score": 3
-      }
+      { "label": "A", "text": "沒什麼大不了的，不影響我。", "score": 0 },
+      { "label": "B", "text": "稍微皺個眉，但心情很快恢復。", "score": 1 },
+      { "label": "C", "text": "覺得非常刺耳，內心湧上一股莫名的怒氣。", "score": 2 },
+      { "label": "D", "text": "極度難以忍受，情緒波動非常劇烈。", "score": 3 }
     ]
   },
   {
     "type": "quiz",
     "id": 7,
-    "indicator": "GAD-7",
+    "indicator": "Negative_Foreboding",
     "text": "空氣突然安靜下來時，心底深處是否有個聲音？",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
-      {
-        "label": "A",
-        "text": "我覺得環境很安全，內心很踏實。",
-        "score": 0
-      },
-      {
-        "label": "B",
-        "text": "有時候會突然閃過一絲不安，但機率不高。",
-        "score": 1
-      },
-      {
-        "label": "C",
-        "text": "常覺得會有倒霉的事情發生，雖然不知道是什麼。",
-        "score": 2
-      },
-      {
-        "label": "D",
-        "text": "一種強烈的、即將發生災難的恐懼感緊緊鎖住我。",
-        "score": 3
-      }
+      { "label": "A", "text": "我覺得當下很安全，內心很踏實。", "score": 0 },
+      { "label": "B", "text": "有時候會突然閃過一絲不安，但很快就消失。", "score": 1 },
+      { "label": "C", "text": "常覺得可能會有不順心的事發生，儘管還未發生。", "score": 2 },
+      { "label": "D", "text": "一種強烈的不安感緊緊鎖住我，彷彿有陰影壟罩。", "score": 3 }
     ]
   },
   {
     "type": "quiz",
     "id": 8,
-    "indicator": "Sleep",
+    "indicator": "Sleep_Quality",
     "text": "深夜三點，你與天花板的對話已經持續了多久？",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
-      {
-        "label": "A",
-        "text": "我睡得很沉，甚至不記得做了什麼夢。",
-        "score": 0
-      },
-      {
-        "label": "B",
-        "text": "偶爾會翻來覆去，但大多數時候能睡著。",
-        "score": 1
-      },
-      {
-        "label": "C",
-        "text": "睡睡醒醒，腦袋始終處於半夢半醒的警戒狀態。",
-        "score": 2
-      },
-      {
-        "label": "D",
-        "text": "瞪著眼睛到天亮，疲憊卻無法真正進入夢鄉。",
-        "score": 3
-      }
+      { "label": "A", "text": "我睡得很沉，甚至不記得做了什麼夢。", "score": 0 },
+      { "label": "B", "text": "偶爾會翻來覆去，但大多數時候能睡著。", "score": 1 },
+      { "label": "C", "text": "睡睡醒醒，腦袋始終處於半夢半醒的警戒狀態。", "score": 2 },
+      { "label": "D", "text": "瞪著眼睛到天亮，身體疲憊但大腦無法關機。", "score": 3 }
     ]
   },
   {
     "type": "quiz",
     "id": 9,
-    "indicator": "Physiological",
+    "indicator": "Somatic_Symptoms",
     "text": "這兩週，你的身體似乎在對你發出訊號…",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
-      {
-        "label": "A",
-        "text": "身體輕盈，沒有任何不適感。",
-        "score": 0
-      },
-      {
-        "label": "B",
-        "text": "肩頸偶爾會緊繃，休息後會好轉。",
-        "score": 1
-      },
-      {
-        "label": "C",
-        "text": "經常性偏頭痛或胃部隱隱作痛，肌肉僵硬。",
-        "score": 2
-      },
-      {
-        "label": "D",
-        "text": "各種疼痛反覆出現，感覺身體快要超負荷了。",
-        "score": 3
-      }
+      { "label": "A", "text": "身體輕盈，沒有明顯的不適感。", "score": 0 },
+      { "label": "B", "text": "肩頸偶爾會緊繃，休息後會好轉。", "score": 1 },
+      { "label": "C", "text": "經常性感到局部僵硬或腸胃不適。", "score": 2 },
+      { "label": "D", "text": "各種疲累感反覆出現，感覺身體處於超負荷狀態。", "score": 3 }
     ]
   },
   {
     "type": "quiz",
     "id": 10,
-    "indicator": "Focus",
+    "indicator": "Cognitive_Focus",
     "text": "看著眼前的這本書或螢幕上的文字……",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
-      {
-        "label": "A",
-        "text": "我能清晰地理解並專注於內容。",
-        "score": 0
-      },
-      {
-        "label": "B",
-        "text": "需要多讀幾遍才能進入狀況。",
-        "score": 1
-      },
-      {
-        "label": "C",
-        "text": "注意力斷斷續續，思緒經常飄到別處。",
-        "score": 2
-      },
-      {
-        "label": "D",
-        "text": "文字就在眼前，但我一個字也讀不進去，腦袋一片混亂。",
-        "score": 3
-      }
+      { "label": "A", "text": "我能清晰地理解並專注於內容。", "score": 0 },
+      { "label": "B", "text": "需要多讀幾遍才能進入狀況。", "score": 1 },
+      { "label": "C", "text": "注意力斷斷續續，思緒經常飄到別處。", "score": 2 },
+      { "label": "D", "text": "文字就在眼前，但我的思緒非常混亂，讀不進去。", "score": 3 }
     ]
   },
   {
     "type": "dialogue",
-    "text": "辛苦了，謝謝你願意誠實地面對自己。",
+    "text": "辛苦了，謝謝你願意誠實地面對這段時間的自己。",
     "bg": "scene_1.png",
     "character": "avatar_smile.png"
   },
   {
     "type": "dialogue",
-    "text": "每一個感受，都是你真實的一部分，都值得被看見與接納。",
+    "text": "請記住，無論結果如何，這都只是當下壓力狀態的反映，不代表全部的你。",
     "bg": "scene_1.png",
     "character": "avatar_cheer.png"
   },
   {
     "type": "dialogue",
-    "text": "讓我來整理一下你目前的心境…",
+    "text": "讓我們一起來整理一下你目前的心境…",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png"
   },
   {
     "type": "dialogue",
-    "text": "我們一起來看看結果吧。",
+    "text": "我們一起來看看結果與放鬆建議吧。",
     "bg": "scene_1.png",
     "character": "avatar_celebrating.png",
     "wait": 3000
