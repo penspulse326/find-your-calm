@@ -4,7 +4,6 @@
 -->
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import avatarHeart from '../assets/images/avatar_heart.png';
 import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
 
@@ -33,7 +32,7 @@ function startQuiz() {
       class="absolute inset-x-0 bottom-20 z-0 flex justify-center items-end h-[85%] transform translate-y-8"
     >
       <img
-        :src="avatarHeart"
+        src="/images/avatar_heart.png"
         alt="Character"
         class="h-full object-contain object-bottom drop-shadow-2xl opacity-30 scale-220"
       >

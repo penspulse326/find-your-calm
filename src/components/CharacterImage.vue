@@ -33,10 +33,7 @@ const characterUrl = computed(() => {
   if (!currentStep.value?.character) {
     return '';
   }
-  return new URL(
-    `../assets/images/${currentStep.value.character}`,
-    import.meta.url,
-  ).href;
+  return `/images/${currentStep.value.character}`;
 });
 </script>
 

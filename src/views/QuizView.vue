@@ -95,8 +95,7 @@ const bgUrl = computed(() => {
   if (!currentStep.value?.bg) {
     return '';
   }
-  return new URL(`../assets/images/${currentStep.value.bg}`, import.meta.url)
-    .href;
+  return `/images/${currentStep.value.bg}`;
 });
 
 function handleGlobalClick() {

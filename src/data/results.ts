@@ -1,8 +1,3 @@
-import end1 from '../assets/images/end_1.png';
-import end2 from '../assets/images/end_2.png';
-import end3 from '../assets/images/end_3.png';
-import end4 from '../assets/images/end_4.png';
-
 export interface ResultInfo {
   scoreRange: [number, number];
   title: string;
@@ -25,7 +20,7 @@ export const results: ResultInfo[] = [
     breathingName: '💡 建議放鬆：腹式呼吸',
     breathingDesc:
       '將手輕放腹部，感受吸氣時的隆起與吐氣時的自然凹陷。此練習有助於維持穩定的副交感神經節奏。',
-    image: end1,
+    image: '/images/end_1.png',
     bgColor: '#0d1a0d',
     gradientClass: 'from-[#0d1a0d] to-zinc-900',
     disclaimer: '本測驗僅供自我觀察參考，非專業診斷依據',
@@ -39,7 +34,7 @@ export const results: ResultInfo[] = [
     breathingDesc:
       '透過吸氣 4 秒、憋氣 7 秒、吐氣 8 秒的循環，引導身體進入休息模式，適合在睡前或感到匆忙時練習。',
 
-    image: end2,
+    image: '/images/end_2.png',
     bgColor: '#0d141f',
     gradientClass: 'from-[#0d141f] to-zinc-900',
     disclaimer: '本測驗僅供自我觀察參考，非專業診斷依據',
@@ -53,7 +48,7 @@ export const results: ResultInfo[] = [
     breathingDesc:
       '吸氣、憋氣、吐氣、憋氣各維持 4 秒。想像氣流在畫一個正方形，有助於平穩心跳並轉移過度運轉的思緒。',
 
-    image: end3,
+    image: '/images/end_3.png',
     bgColor: '#1a1a2e',
     gradientClass: 'from-[#1a1a2e] to-zinc-900',
     disclaimer: '本測驗僅供自我觀察參考，非專業診斷依據',
@@ -67,7 +62,7 @@ export const results: ResultInfo[] = [
     breathingDesc:
       '從嘴巴深吸氣感受涼意，再由鼻子緩慢吐氣。若情緒波動劇烈，建議透過衛福部安心專線 1925 取得專業的即時心理支持。',
     supportLink: '衛福部安心專線：1925',
-    image: end4,
+    image: '/images/end_4.png',
     bgColor: '#1f0d0d',
     gradientClass: 'from-[#1f0d0d] to-zinc-900',
     disclaimer: '本測驗僅供自我觀察參考，非專業診斷依據',

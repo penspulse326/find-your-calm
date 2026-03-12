@@ -29,7 +29,7 @@ onMounted(async () => {
   // 轉換為完整的 URL 並開始預載
   const imageUrls = Array.from(
     images,
-    img => new URL(`./assets/images/${img}`, import.meta.url).href,
+    img => `/images/${img}`,
   );
 
   // 同時預載測驗結果頁的圖片

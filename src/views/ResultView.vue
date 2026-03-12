@@ -7,7 +7,6 @@ import { toPng } from 'html-to-image';
 import { storeToRefs } from 'pinia';
 import { computed, nextTick, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import avatarHeart from '../assets/images/avatar_heart.png';
 import { getResultByScore } from '../data/results';
 import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
@@ -172,7 +171,7 @@ onMounted(async () => {
         </p>
       </div>
 
-      <img :src="avatarHeart" alt="">
+      <img src="/images/avatar_heart.png" alt="">
     </div>
   </div>
 </template>
