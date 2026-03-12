@@ -176,12 +176,11 @@ onMounted(async () => {
       >
         <p>
           ❤️
-          感謝您進行這個測驗。您可以透過簡單的呼吸練習，幫緊繃的自己按下暫停鍵！
+          感謝您完成這個測驗。您可以透過簡單的呼吸練習，讓緊繃的自己暫時放鬆！
           <br>
           <br>
           ⚠️
-          再次提醒，這是一個小遊戲，如您有任何生活困擾、身心健康等問題，請尋求專業機構之協助，詳情參考
-          <a
+          再次提醒，這是一個小遊戲，如您有任何生活困擾、身心健康等問題，請尋求專業機構之協助，詳情參考<a
             href="https://dep.mohw.gov.tw/DOMHAOH/mp-107.html"
             target="_blank"
             class="text-white/50 underline"
@@ -190,8 +189,7 @@ onMounted(async () => {
           <br>
           <br>
 
-          🎮 如遇到 bug 或是遊戲內容之建議，也歡迎
-          <a
+          🎮 如發現遊戲程序的 bug 或是建議，也歡迎<a
             href="mailto:penspulse@gmail.com"
             target="_blank"
             class="text-white/50 underline"

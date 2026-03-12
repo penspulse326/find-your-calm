@@ -19,7 +19,7 @@
   },
   {
     "type": "dialogue",
-    "text": "這是提供你快速自我評估的小測驗，並非醫療診斷，請放鬆心情參與。",
+    "text": "這是提供你快速自我評估的小遊戲，並非專業醫療診斷，請放鬆心情參與。",
     "bg": "scene_1.png",
     "character": "avatar_smile.png"
   },
