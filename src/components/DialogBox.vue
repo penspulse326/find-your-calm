@@ -8,6 +8,7 @@ import { useAudioStore } from '../stores/audio';
 
 const props = defineProps<{
   text: string;
+  wait?: number;
 }>();
 
 const emit = defineEmits<{
@@ -21,13 +22,49 @@ const PUNCTUATION_REGEXP = /[，。！？；：、…—]/;
 
 const displayedText = ref('');
 const isFinishedTyping = ref(false);
+const isWaiting = ref(false);
 let timer: ReturnType<typeof setTimeout> | null = null;
+let waitTimer: ReturnType<typeof setTimeout> | null = null;
+
+function stopAllTimers() {
+  if (timer)
+    clearTimeout(timer);
+  if (waitTimer)
+    clearTimeout(waitTimer);
+}
+
+function startWaiting(duration: number, callback: () => void) {
+  isWaiting.value = true;
+  displayedText.value = '';
+
+  let dotCount = 0;
+  const maxDots = 6;
+
+  function updateDots() {
+    if (!isWaiting.value)
+      return;
+
+    dotCount = (dotCount % maxDots) + 1;
+    displayedText.value = '.'.repeat(dotCount);
+
+    timer = setTimeout(updateDots, 300);
+  }
+
+  updateDots();
+
+  waitTimer = setTimeout(() => {
+    isWaiting.value = false;
+    if (timer)
+      clearTimeout(timer);
+    displayedText.value = '';
+    callback();
+  }, duration);
+}
 
 function startTyping(fullText: string) {
   displayedText.value = '';
   isFinishedTyping.value = false;
-  if (timer)
-    clearTimeout(timer);
+  stopAllTimers();
 
   let currentIndex = 0;
 
@@ -49,7 +86,12 @@ function startTyping(fullText: string) {
     }
   }
 
-  type();
+  if (props.wait && props.wait > 0) {
+    startWaiting(props.wait, type);
+  }
+  else {
+    type();
+  }
 }
 
 // 監聽文字變化
@@ -67,9 +109,17 @@ onMounted(() => {
 // 允許使用者點擊以跳過打字效果，或在完成後前往下一句
 function completeTyping() {
   audioStore.playClick();
+
+  if (isWaiting.value) {
+    // 如果正在等待，點擊可以直接跳過等待，開始打字
+    isWaiting.value = false;
+    stopAllTimers();
+    startTypingWithNoWait(props.text);
+    return;
+  }
+
   if (!isFinishedTyping.value) {
-    if (timer)
-      clearTimeout(timer);
+    stopAllTimers();
     displayedText.value = props.text;
     isFinishedTyping.value = true;
     emit('finish');
@@ -77,6 +127,28 @@ function completeTyping() {
   else {
     emit('next');
   }
+}
+
+function startTypingWithNoWait(fullText: string) {
+  displayedText.value = '';
+  isFinishedTyping.value = false;
+
+  let currentIndex = 0;
+  function type() {
+    if (currentIndex < fullText.length) {
+      const char = fullText.charAt(currentIndex);
+      displayedText.value += char;
+      currentIndex++;
+      const isPunctuation = PUNCTUATION_REGEXP.test(char);
+      const delay = isPunctuation ? 500 : 50;
+      timer = setTimeout(type, delay);
+    }
+    else {
+      isFinishedTyping.value = true;
+      emit('finish');
+    }
+  }
+  type();
 }
 </script>
 

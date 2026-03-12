@@ -150,6 +150,7 @@ const bgUrl = computed(() => {
         <DialogBox
           :key="currentStep.text"
           :text="currentStep.text"
+          :wait="currentStep.wait"
           @next="gameStore.nextStep()"
           @finish="handleDialogFinish"
         />

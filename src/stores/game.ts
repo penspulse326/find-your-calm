@@ -13,6 +13,7 @@ export interface GameStep {
   text: string;
   bg: string;
   character: string;
+  wait?: number;
   id?: number;
   indicator?: string;
   options?: Option[];

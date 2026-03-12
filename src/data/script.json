@@ -33,7 +33,7 @@
     "type": "quiz",
     "id": 1,
     "indicator": "GAD-1",
-    "text": "清晨醒來，陽光灑進房間，但你感覺心跳似乎比平常快了一點...",
+    "text": "清晨醒來，陽光灑進房間，但你感覺心跳似乎比平常快了一點…",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
@@ -123,7 +123,7 @@
     "type": "quiz",
     "id": 4,
     "indicator": "GAD-4",
-    "text": "好不容易坐到了沙發上，這本該是你的休息時間...",
+    "text": "好不容易坐到了沙發上，這本該是你的休息時間…",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
@@ -273,7 +273,7 @@
     "type": "quiz",
     "id": 9,
     "indicator": "Physiological",
-    "text": "這兩週，你的身體似乎在對你發出訊號...",
+    "text": "這兩週，你的身體似乎在對你發出訊號…",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
@@ -303,7 +303,7 @@
     "type": "quiz",
     "id": 10,
     "indicator": "Focus",
-    "text": "看著眼前的這本書或螢幕上的文字...",
+    "text": "看著眼前的這本書或螢幕上的文字……",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png",
     "options": [
@@ -343,15 +343,15 @@
   },
   {
     "type": "dialogue",
-    "text": "讓我來整理一下你目前的心境...",
+    "text": "讓我來整理一下你目前的心境…",
     "bg": "scene_1.png",
-    "character": "avatar_thinking.png",
-    "wait": 3000
+    "character": "avatar_thinking.png"
   },
   {
     "type": "dialogue",
     "text": "我們一起來看看結果吧。",
     "bg": "scene_1.png",
-    "character": "avatar_celebrating.png"
+    "character": "avatar_celebrating.png",
+    "wait": 3000
   }
 ]
