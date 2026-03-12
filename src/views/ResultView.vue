@@ -41,7 +41,7 @@ onMounted(async () => {
       const dataUrl = await toPng(resultCardRef.value, {
         quality: 1,
         backgroundColor: resultData.value.bgColor, // 防止透明背景，使用對應背景色
-        pixelRatio: 2, // 提高解析度
+        pixelRatio: 3, // 提高解析度
       });
       resultImageUrl.value = dataUrl;
     }
