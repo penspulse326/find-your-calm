@@ -26,7 +26,10 @@ onMounted(async () => {
   });
 
   // 轉換為完整的 URL 並開始預載
-  const imageUrls = Array.from(images, img => new URL(`./assets/images/${img}`, import.meta.url).href);
+  const imageUrls = Array.from(
+    images,
+    img => new URL(`./assets/images/${img}`, import.meta.url).href,
+  );
 
   try {
     await preloadImages(imageUrls);
@@ -39,7 +42,9 @@ onMounted(async () => {
 
 <template>
   <div class="h-dvh bg-neutral-900 flex justify-center w-full overflow-hidden">
-    <div class="w-full max-w-md bg-black relative shadow-2xl overflow-hidden flex flex-col h-full items-stretch">
+    <div
+      class="w-full max-w-md bg-black relative shadow-2xl overflow-hidden flex flex-col h-full items-stretch"
+    >
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
           <component :is="Component" />

@@ -51,7 +51,7 @@ function startQuiz() {
         </h1>
         <div class="w-16 h-[2px] bg-white/40 mx-auto" />
         <p
-          class="text-white/90 font-medium leading-relaxed text-base max-w-sm mx-auto drop-shadow-md text-shadow-[1px_1px_4px_rgb(0_50_50_/_1.0)]"
+          class="text-white/90 font-medium leading-relaxed text-base max-w-sm mx-auto drop-shadow-md text-shadow-custom"
         >
           你有多久沒有好好放鬆了呢？<br>
           來找回心中的平靜吧！
