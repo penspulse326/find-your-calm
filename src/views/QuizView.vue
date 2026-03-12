@@ -105,7 +105,7 @@ function handleGlobalClick() {
 
 <template>
   <div
-    class="flex-1 flex flex-col bg-black relative h-full overflow-hidden"
+    class="flex-1 flex flex-col bg-black relative min-h-screen overflow-hidden"
     :class="
       (currentStep?.type === 'quiz' && showOptions) || showConfirm
         ? 'cursor-default'

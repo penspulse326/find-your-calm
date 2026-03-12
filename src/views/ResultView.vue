@@ -67,7 +67,7 @@ const resultData = computed(() => {
 
 <template>
   <div
-    class="flex-1 flex flex-col items-center p-8 text-center bg-linear-to-b from-gray-900 to-black text-white min-h-full overflow-y-auto relative"
+    class="flex-1 flex flex-col items-center p-8 text-center bg-linear-to-b from-gray-900 to-black text-white min-h-screen relative"
   >
     <div class="z-10 w-full relative max-w-md mx-auto py-8">
       <h2 class="text-sm tracking-[0.2em] text-white/50 mb-2">

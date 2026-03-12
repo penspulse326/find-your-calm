@@ -48,12 +48,10 @@ body {
   animation: shimmer 1.5s ease-in-out infinite;
 }
 
-/* Ensure no bounce on mobile */
+/* Ensure a good base for the app */
 html, body {
-  overflow: hidden;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
-  position: fixed;
 }
 
 #app {

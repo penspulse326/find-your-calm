@@ -21,7 +21,7 @@ function startQuiz() {
 
 <template>
   <div
-    class="flex-1 flex flex-col items-center justify-center bg-sky-300 relative h-full overflow-hidden"
+    class="flex-1 flex flex-col items-center justify-center bg-sky-300 relative min-h-screen overflow-hidden"
   >
     <!-- 背景裝飾：光暈或漸層 -->
     <div
