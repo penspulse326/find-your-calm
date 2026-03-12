@@ -33,16 +33,44 @@ const isGenerating = ref(true);
 onMounted(async () => {
   try {
     await nextTick();
+
+    // 確保所有圖片都已載入
+    const images = resultCardRef.value?.querySelectorAll('img');
+    if (images) {
+      await Promise.all(
+        Array.from(images, (img) => {
+          if (img.complete) {
+            return Promise.resolve();
+          }
+          return new Promise((resolve) => {
+            img.onload = resolve;
+            img.onerror = resolve;
+          });
+        }),
+      );
+    }
+
     // 稍微延遲以確保所有圖片、CSS、字體等渲染完成
     await new Promise(resolve => setTimeout(resolve, 800));
 
     if (resultCardRef.value) {
-      // 轉換成 PNG
-      const dataUrl = await toPng(resultCardRef.value, {
+      // 取得精準的寬高，確保圖片不會形變或文字跳動
+      const width = resultCardRef.value.offsetWidth;
+      const height = resultCardRef.value.offsetHeight;
+
+      const options = {
+        width,
+        height,
         quality: 1,
-        backgroundColor: resultData.value.bgColor, // 防止透明背景，使用對應背景色
-        pixelRatio: 3, // 提高解析度
-      });
+        backgroundColor: resultData.value.bgColor,
+        pixelRatio: 2,
+        cacheBust: true,
+      };
+
+      // Safari 修正：有時需要呼叫兩次才能正確渲染圖片
+      await toPng(resultCardRef.value, options);
+      const dataUrl = await toPng(resultCardRef.value, options);
+
       resultImageUrl.value = dataUrl;
     }
   }
@@ -71,7 +99,7 @@ onMounted(async () => {
           <img
             :src="resultImageUrl"
             alt="測驗結果圖片"
-            class="w-full h-auto rounded-xl"
+            class="w-full h-auto block rounded-xl shadow-2xl"
           >
           <p
             class="text-white/50 text-xs mt-6 tracking-widest flex items-center justify-center gap-2"
