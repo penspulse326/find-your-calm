@@ -45,7 +45,7 @@ export const BACKGROUND_THEMES = [
  */
 export const UI_STRINGS = {
   HOME_TITLE: '平靜小棧',
-  HOME_SUBTITLE: '你有多久沒有好好放鬆了呢？\n來做個深呼吸，讓世界慢下來！',
+  HOME_SUBTITLE: '你有多久沒有好好休息了呢？\n來點小測驗，讓世界暫停下來！',
   RESTART_CONFIRM_TITLE: '確認重開？',
   RESTART_CONFIRM_DESC: '返回首頁將不會保留當前的測驗進度，需要重新進行。',
   GEN_IMAGE_TIP: '長按或右鍵以另存圖片',
