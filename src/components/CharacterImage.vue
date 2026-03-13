@@ -32,19 +32,27 @@ const bgColor = computed(() => {
 
 <template>
   <div
-    class="w-full flex-1 min-h-[40vh] transition-colors duration-1000 ease-in-out relative flex items-end justify-center overflow-hidden shadow-inner"
+    class="
+      relative flex min-h-[40vh] w-full flex-1 items-end justify-center
+      overflow-hidden shadow-inner transition-colors duration-1000 ease-in-out
+    "
     :class="bgColor"
   >
     <div class="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
 
     <!-- 角色立繪容器 -->
-    <div class="z-10 h-full w-full relative">
+    <div class="relative z-10 size-full">
       <template v-for="avatar in ['avatar_smile.png', 'avatar_cheer.png', 'avatar_celebrating.png', 'avatar_thinking.png']" :key="avatar">
         <img
           v-show="currentStep?.character === avatar"
           :src="`/images/${avatar}`"
           alt="Character Avatar"
-          class="absolute inset-x-0 -bottom-8 mx-auto h-[80vh] md:h-[85vh] object-contain object-bottom drop-shadow-2xl translate-y-4 transition-opacity duration-500"
+          class="
+            absolute inset-x-0 -bottom-8 mx-auto h-[80vh] translate-y-4
+            object-contain object-bottom drop-shadow-2xl transition-opacity
+            duration-500
+            md:h-[85vh]
+          "
         >
       </template>
     </div>

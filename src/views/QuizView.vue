@@ -113,7 +113,7 @@ function handleGlobalClick() {
 
 <template>
   <div
-    class="flex-1 flex flex-col bg-black relative min-h-dvh overflow-hidden"
+    class="relative flex min-h-dvh flex-1 flex-col overflow-hidden bg-black"
     :class="
       (currentStep?.type === 'quiz' && showOptions) || showConfirm
         ? 'cursor-default'
@@ -121,20 +121,28 @@ function handleGlobalClick() {
     "
     @click="handleGlobalClick"
   >
-    <div class="flex-1 flex flex-col relative overflow-hidden">
+    <div class="relative flex flex-1 flex-col overflow-hidden">
       <!-- 頂部標頭區域 -->
       <div
-        class="absolute top-4 inset-x-4 z-50 flex items-center justify-between pointer-events-none"
+        class="
+          pointer-events-none absolute inset-x-4 top-4 z-50 flex items-center
+          justify-between
+        "
       >
         <!-- 重新開始按鈕 -->
         <button
-          class="p-2 rounded-full bg-white/20 backdrop-blur border border-white/30 text-white hover:bg-white/30 transition-colors pointer-events-auto isolate will-change-[backdrop-filter,opacity]"
+          class="
+            pointer-events-auto isolate rounded-full border border-white/30
+            bg-white/20 p-2 text-white backdrop-blur-sm transition-colors
+            will-change-[backdrop-filter,opacity]
+            hover:bg-white/30
+          "
           aria-label="Restart Quiz"
           @click.stop="handleRestart"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
+            class="size-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -151,11 +159,11 @@ function handleGlobalClick() {
         <!-- 題目進度 -->
         <div
           v-if="currentStep.type === 'quiz'"
-          class="text-white/80 font-medium tracking-widest text-shadow-custom"
+          class="text-shadow-custom font-medium tracking-widest text-white/80"
         >
           第 {{ currentQuestionNumber }} 題
         </div>
-        <div v-else class="text-white/80 font-medium tracking-widest opacity-0">
+        <div v-else class="font-medium tracking-widest text-white/80 opacity-0">
           佔位
         </div>
 
@@ -167,13 +175,19 @@ function handleGlobalClick() {
         v-show="bgUrl"
         :src="bgUrl"
         alt=""
-        class="absolute z-10 h-full w-full object-cover blur-[2px] opacity-50 transition-opacity duration-1000 ease-in-out"
+        class="
+          absolute z-10 size-full object-cover opacity-50 blur-[2px]
+          transition-opacity duration-1000 ease-in-out
+        "
       >
       <CharacterImage />
 
       <!-- 浮動選項層（傳統視覺小說風格） -->
       <div
-        class="absolute inset-x-0 bottom-[140px] z-50 flex flex-col justify-center translate-y-0"
+        class="
+          absolute inset-x-0 bottom-[140px] z-50 flex translate-y-0 flex-col
+          justify-center
+        "
       >
         <div class="px-4 pb-4">
           <transition name="options-fade">
@@ -192,7 +206,7 @@ function handleGlobalClick() {
       </div>
 
       <!-- 對話框區域 -->
-      <div v-if="currentStep" class="mt-auto z-40">
+      <div v-if="currentStep" class="z-40 mt-auto">
         <DialogBox
           ref="dialogBoxRef"
           :text="currentStep.text"
@@ -214,23 +228,35 @@ function handleGlobalClick() {
             @click="cancelRestart"
           />
           <div
-            class="relative bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl w-full max-w-sm text-center shadow-2xl isolate will-change-[backdrop-filter,transform,opacity]"
+            class="
+              relative isolate w-full max-w-sm rounded-2xl border
+              border-white/20 bg-white/10 p-8 text-center shadow-2xl
+              backdrop-blur-sm will-change-[backdrop-filter,transform,opacity]
+            "
           >
-            <h3 class="text-xl font-medium text-white/90 mb-4 tracking-wider">
+            <h3 class="mb-4 text-xl font-medium tracking-wider text-white/90">
               確認重開？
             </h3>
-            <p class="text-white/60 text-sm leading-relaxed mb-8">
+            <p class="mb-8 text-sm/relaxed text-white/60">
               返回首頁將不會保留當前的測驗進度，需要重新進行。
             </p>
             <div class="flex gap-4">
               <button
-                class="flex-1 py-3 rounded-full border border-white/20 text-white/60 hover:bg-white/5 transition-colors text-sm"
+                class="
+                  flex-1 rounded-full border border-white/20 py-3 text-sm
+                  text-white/60 transition-colors
+                  hover:bg-white/5
+                "
                 @click="cancelRestart"
               >
                 取消
               </button>
               <button
-                class="flex-1 py-3 rounded-full bg-white/10 hover:bg-white/20 border border-white/30 text-white transition-colors text-sm"
+                class="
+                  flex-1 rounded-full border border-white/30 bg-white/10 py-3
+                  text-sm text-white transition-colors
+                  hover:bg-white/20
+                "
                 @click="confirmRestart"
               >
                 確認返回

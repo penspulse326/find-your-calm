@@ -49,9 +49,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-dvh bg-neutral-900 flex justify-center w-full">
+  <div class="flex min-h-dvh w-full justify-center bg-neutral-900">
     <div
-      class="w-full max-w-md bg-black relative shadow-2xl flex flex-col min-h-dvh items-stretch"
+      class="
+        relative flex min-h-dvh w-full max-w-md flex-col items-stretch bg-black
+        shadow-2xl
+      "
     >
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">

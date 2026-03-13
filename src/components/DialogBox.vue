@@ -164,26 +164,32 @@ defineExpose({
 
 <template>
   <div
-    class="w-full bg-black/80 border-t-2 border-white/10 p-6 shadow-2xl relative min-h-[140px]"
+    class="
+      relative min-h-[140px] w-full border-t-2 border-white/10 bg-black/80 p-6
+      shadow-2xl
+    "
   >
     <p
-      class="text-white text-lg md:text-xl leading-relaxed font-serif tracking-wide select-none"
+      class="
+        font-serif text-lg/relaxed tracking-wide text-white select-none
+        md:text-xl
+      "
     >
       {{ displayedText }}
       <span
         v-if="!isFinishedTyping"
-        class="inline-block w-2 bg-white/70 h-5 animate-pulse ml-1 align-middle"
+        class="ml-1 inline-block h-5 w-2 animate-pulse bg-white/70 align-middle"
       />
     </p>
 
     <!-- 提示打字完成 / 準備進入下一步的三角形圖示 -->
     <div
       v-if="isFinishedTyping && canNext"
-      class="absolute bottom-4 right-4 animate-bounce"
+      class="absolute right-4 bottom-4 animate-bounce"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6 text-white/50"
+        class="size-6 text-white/50"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

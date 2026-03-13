@@ -20,37 +20,59 @@ function startQuiz() {
 
 <template>
   <div
-    class="flex-1 flex flex-col items-center justify-center bg-sky-300 relative min-h-dvh overflow-hidden"
+    class="
+      relative flex min-h-dvh flex-1 flex-col items-center justify-center
+      overflow-hidden bg-sky-300
+    "
   >
     <!-- 背景裝飾：光暈或漸層 -->
     <div
-      class="absolute inset-0 bg-linear-to-b from-white/20 via-transparent to-black/60"
+      class="
+        absolute inset-0 bg-linear-to-b from-white/20 via-transparent
+        to-black/60
+      "
     />
 
     <!-- 角色立繪 -->
     <div
-      class="absolute inset-x-0 bottom-20 z-0 flex justify-center items-end h-[85%] transform translate-y-8"
+      class="
+        absolute inset-x-0 bottom-20 z-0 flex h-[85%] translate-y-8 transform
+        items-end justify-center
+      "
     >
       <img
         src="/images/avatar_heart.png"
         alt="Character"
-        class="h-full object-contain object-bottom drop-shadow-2xl opacity-30 scale-220"
+        class="
+          h-full scale-220 object-contain object-bottom opacity-30
+          drop-shadow-2xl
+        "
       >
     </div>
 
     <!-- 內容區域 -->
     <div
-      class="relative z-10 w-full flex flex-col items-center justify-center px-8 text-center space-y-8"
+      class="
+        relative z-10 flex w-full flex-col items-center justify-center space-y-8
+        px-8 text-center
+      "
     >
       <div class="space-y-4">
         <h1
-          class="text-4xl md:text-5xl font-serif font-bold tracking-[0.2em] text-white drop-shadow-lg text-shadow-lg"
+          class="
+            font-serif text-4xl font-bold tracking-[0.2em] text-white
+            drop-shadow-lg text-shadow-lg
+            md:text-5xl
+          "
         >
           平靜小棧
         </h1>
-        <div class="w-16 h-[2px] bg-white/40 mx-auto" />
+        <div class="mx-auto h-[2px] w-16 bg-white/40" />
         <p
-          class="text-white/90 font-medium leading-relaxed text-base max-w-sm mx-auto drop-shadow-md text-shadow-custom"
+          class="
+            text-shadow-custom mx-auto max-w-sm text-base/relaxed font-medium
+            text-white/90 drop-shadow-md
+          "
         >
           你有多久沒有好好放鬆了呢？<br>
           來做個深呼吸，讓世界慢下來！
@@ -59,16 +81,28 @@ function startQuiz() {
 
       <div class="pt-12">
         <button
-          class="group relative px-12 py-4 bg-white/10 hover:bg-white/20 border border-white/40 rounded-full transition-all duration-500 overflow-hidden"
+          class="
+            group relative overflow-hidden rounded-full border border-white/40
+            bg-white/10 px-12 py-4 transition-all duration-500
+            hover:bg-white/20
+          "
           @click="startQuiz"
         >
           <span
-            class="relative z-10 text-white tracking-[0.3em] text-sm font-bold group-hover:scale-110 block transition-transform"
+            class="
+              relative z-10 block text-sm font-bold tracking-[0.3em] text-white
+              transition-transform
+              group-hover:scale-110
+            "
           >
             開始測驗
           </span>
           <div
-            class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            class="
+              absolute inset-0 bg-white/10 opacity-0 transition-opacity
+              duration-500
+              group-hover:opacity-100
+            "
           />
         </button>
       </div>
@@ -76,7 +110,9 @@ function startQuiz() {
 
     <!-- 底部版權或裝飾文字 -->
     <div
-      class="absolute bottom-4 text-white/30 text-[10px] tracking-[0.5em] font-light"
+      class="
+        absolute bottom-4 text-[10px] font-light tracking-[0.5em] text-white/30
+      "
     >
       PEN'S PULSE © 2026
     </div>

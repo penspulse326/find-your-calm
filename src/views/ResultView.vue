@@ -85,24 +85,30 @@ onMounted(async () => {
 
 <template>
   <div
-    class="flex-1 flex flex-col items-center text-center text-white min-h-dvh relative transition-colors duration-1000 bg-black"
+    class="
+      relative flex min-h-dvh flex-1 flex-col items-center bg-black text-center
+      text-white transition-colors duration-1000
+    "
     :class="resultData.gradientClass"
   >
-    <div class="z-10 w-full relative max-w-md mx-auto">
+    <div class="relative z-10 mx-auto w-full max-w-md">
       <!-- 使用 Grid 堆疊佈局，防止切換時發生抖動 -->
       <div class="grid grid-cols-1 grid-rows-1">
         <!-- 渲染後的圖片，允許用戶長按儲存 -->
         <div
           v-if="resultImageUrl"
-          class="col-start-1 row-start-1 z-20 animate-fade-in"
+          class="animate-fade-in z-20 col-start-1 row-start-1"
         >
           <img
             :src="resultImageUrl"
             alt="測驗結果圖片"
-            class="w-full h-auto block rounded-xl shadow-2xl"
+            class="block h-auto w-full rounded-xl shadow-2xl"
           >
           <p
-            class="text-white/50 text-xs mt-6 tracking-widest flex items-center justify-center gap-2"
+            class="
+              mt-6 flex items-center justify-center gap-2 text-xs
+              tracking-widest text-white/50
+            "
           >
             <span>📸</span> 長按或右鍵以另存圖片
           </p>
@@ -111,31 +117,37 @@ onMounted(async () => {
         <!-- 原始 DOM，用來提供給 html-to-image 擷取 -->
         <div
           ref="resultCardRef"
-          class="col-start-1 row-start-1 z-10 p-8 relative bg-linear-to-b transition-opacity duration-300"
+          class="
+            relative z-10 col-start-1 row-start-1 bg-linear-to-b p-8
+            transition-opacity duration-300
+          "
           :class="[
             resultData.gradientClass,
-            { 'opacity-0 pointer-events-none': resultImageUrl },
+            { 'pointer-events-none opacity-0': resultImageUrl },
           ]"
         >
-          <h2 class="text-sm tracking-[0.2em] text-white/50 mb-2">
+          <h2 class="mb-2 text-sm tracking-[0.2em] text-white/50">
             你的心境
           </h2>
           <h1
-            class="text-4xl font-serif font-bold tracking-widest text-[#D3C7C7]"
+            class="font-serif text-4xl font-bold tracking-widest text-[#D3C7C7]"
           >
             {{ resultStatus }}
           </h1>
 
-          <div class="w-12 h-px bg-white/20 mx-auto my-6" />
+          <div class="mx-auto my-6 h-px w-12 bg-white/20" />
 
           <!-- 主訊息與呼吸法區塊 -->
           <div
-            class="text-white/90 leading-relaxed text-sm text-left bg-white/5 p-6 rounded-xl border border-white/10 shadow-lg"
+            class="
+              rounded-xl border border-white/10 bg-white/5 p-6 text-left
+              text-sm/relaxed text-white/90 shadow-lg
+            "
           >
             <p>{{ resultData.message }}</p>
 
-            <div class="mt-4 pt-4 border-t border-white/10">
-              <h3 class="font-bold text-white mb-2">
+            <div class="mt-4 border-t border-white/10 pt-4">
+              <h3 class="mb-2 font-bold text-white">
                 {{ resultData.breathingName }}
               </h3>
               <p class="text-white/70">
@@ -145,11 +157,14 @@ onMounted(async () => {
           </div>
 
           <!-- 人物圖片 -->
-          <div class="flex justify-center mt-6">
+          <div class="mt-6 flex justify-center">
             <img
               :src="resultData.image"
               alt="Character Result"
-              class="max-h-96 object-contain rounded-xl drop-shadow-[0_10px_15px_rgba(255,255,255,0.05)]"
+              class="
+                max-h-96 rounded-xl object-contain
+                drop-shadow-[0_10px_15px_rgba(255,255,255,0.05)]
+              "
             >
           </div>
 
@@ -161,18 +176,25 @@ onMounted(async () => {
       </div>
 
       <button
-        class="mt-8 px-8 py-3 bg-white/10 hover:bg-white/20 border border-white/30 rounded-full transition-all duration-300 tracking-widest text-sm transform hover:scale-105"
+        class="
+          mt-8 transform rounded-full border border-white/30 bg-white/10 px-8
+          py-3 text-sm tracking-widest transition-all duration-300
+          hover:scale-105 hover:bg-white/20
+        "
         @click="restart"
       >
         重新測驗
       </button>
 
-      <div class="w-80 h-px bg-white/20 mx-auto my-6" />
+      <div class="mx-auto my-6 h-px w-80 bg-white/20" />
 
       <!-- 感謝說明 -->
 
       <div
-        class="text-white/90 mx-4 leading-relaxed text-sm text-left bg-white/5 p-6 rounded-xl border border-white/10 shadow-lg"
+        class="
+          mx-4 rounded-xl border border-white/10 bg-white/5 p-6 text-left
+          text-sm/relaxed text-white/90 shadow-lg
+        "
       >
         <p>
           ❤️
