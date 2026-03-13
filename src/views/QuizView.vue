@@ -4,9 +4,8 @@
 -->
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { computed, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import CharacterImage from '../components/CharacterImage.vue';
 import DialogBox from '../components/DialogBox.vue';
 import OptionList from '../components/OptionList.vue';
 import { TRANSITION_CONFIG, UI_STRINGS } from '../constants';
@@ -83,10 +82,6 @@ function handleNext() {
   }
 }
 
-const bgUrl = computed(() =>
-  !currentStep.value?.bg ? '' : `/images/${currentStep.value.bg}`,
-);
-
 function handleGlobalClick() {
   if (showConfirm.value) {
     return;
@@ -102,7 +97,7 @@ function handleGlobalClick() {
 
 <template>
   <div
-    class="relative flex min-h-dvh flex-1 flex-col overflow-hidden bg-black"
+    class="relative flex min-h-dvh flex-1 flex-col overflow-hidden"
     :class="
       (currentStep?.type === 'quiz' && showOptions) || showConfirm
         ? 'cursor-default'
@@ -174,17 +169,7 @@ function handleGlobalClick() {
         <!-- 用於平衡排版的佔位空間（對應右側絕對定位的音效按鈕） -->
         <div class="w-10" />
       </div>
-      <!-- 角色與背景區域 -->
-      <img
-        v-show="bgUrl"
-        :src="bgUrl"
-        alt=""
-        class="
-          absolute z-10 size-full object-cover opacity-50 blur-[2px]
-          transition-opacity duration-1000 ease-in-out
-        "
-      >
-      <CharacterImage />
+      <!-- 角色與背景由 App.vue 的 GameScene 持久化層提供 -->
 
       <!-- 浮動選項層（傳統視覺小說風格） -->
       <div

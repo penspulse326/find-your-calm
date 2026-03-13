@@ -6,6 +6,7 @@
 import type { GameStep } from './types/game';
 import { onMounted } from 'vue';
 import AudioToggle from './components/AudioToggle.vue';
+import GameScene from './components/GameScene.vue';
 import { results } from './data/results';
 import scriptData from './data/script.json';
 import { useAudioStore } from './stores/audio';
@@ -63,6 +64,7 @@ onMounted(async () => {
         shadow-2xl
       "
     >
+      <GameScene />
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
           <component :is="Component" />
