@@ -73,15 +73,6 @@ function handleDialogFinish() {
     activeOptions.value = currentStep.value.options || [];
     showOptions.value = true;
   }
-  else if (currentStep.value.type === 'dialogue' && currentStep.value.wait) {
-    // 如果對話有標註 wait，在結束後自動進入下一步
-    setTimeout(() => {
-      // 確保還在同一題，避免使用者已經手動點擊
-      if (currentStep.value.wait) {
-        handleNext();
-      }
-    }, TRANSITION_CONFIG.AUTO_NEXT_DELAY);
-  }
 }
 
 function handleNext() {

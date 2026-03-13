@@ -30,19 +30,29 @@ const bgColor = computed(() => {
 
     <!-- 角色立繪容器 -->
     <div class="relative z-10 size-full">
-      <transition name="character-fade" mode="out-in">
-        <img
-          v-if="currentStep?.character"
-          :key="currentStep.character"
-          :src="`/images/${currentStep.character}`"
-          alt="Character Avatar"
-          class="
-            absolute inset-x-0 -bottom-8 mx-auto h-[80vh] translate-y-4
-            object-contain object-bottom drop-shadow-2xl
-            md:h-[85vh]
-          "
-        >
-      </transition>
+      <template
+        v-for="avatar in [
+          'avatar_smile.png',
+          'avatar_cheer.png',
+          'avatar_celebrating.png',
+          'avatar_thinking.png',
+          'avatar_heart.png',
+        ]"
+        :key="avatar"
+      >
+        <transition name="character-fade">
+          <img
+            v-show="currentStep?.character === avatar"
+            :src="`/images/${avatar}`"
+            alt="Character Avatar"
+            class="
+              absolute inset-x-0 -bottom-8 mx-auto h-[80vh] translate-y-4
+              object-contain object-bottom drop-shadow-2xl
+              md:h-[85vh]
+            "
+          >
+        </transition>
+      </template>
     </div>
   </div>
 </template>
