@@ -1,15 +1,4 @@
-export interface ResultInfo {
-  scoreRange: [number, number];
-  title: string;
-  message: string;
-  breathingName: string;
-  breathingDesc: string;
-  supportLink?: string; // 加入外部求助建議
-  disclaimer: string; // 確保圖片內含免責聲明
-  image: string;
-  bgColor: string;
-  gradientClass: string;
-}
+import type { ResultInfo } from '../types/result';
 
 export const results: ResultInfo[] = [
   {

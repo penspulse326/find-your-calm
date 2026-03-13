@@ -15,21 +15,21 @@ export const useAudioStore = defineStore('audio', () => {
 
   // 初始化音效
   function initSounds() {
-    if (clickSound.value && bgmSound.value) {
-      return;
+    if (!clickSound.value) {
+      clickSound.value = new Howl({
+        src: [clickUrl],
+        volume: 0.5,
+      });
     }
 
-    clickSound.value = new Howl({
-      src: [clickUrl],
-      volume: 0.5,
-    });
-
-    bgmSound.value = new Howl({
-      src: [bgmUrl],
-      loop: true,
-      volume: 0.4,
-      autoplay: true,
-    });
+    if (!bgmSound.value) {
+      bgmSound.value = new Howl({
+        src: [bgmUrl],
+        loop: true,
+        volume: 0.4,
+        autoplay: true,
+      });
+    }
   }
 
   function playClick() {

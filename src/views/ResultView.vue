@@ -3,13 +3,13 @@
  * 根據最終獲得的分數，計算並顯示對應的內心狀態以及改善建議
 -->
 <script setup lang="ts">
-import { toPng } from 'html-to-image';
 import { storeToRefs } from 'pinia';
 import { computed, nextTick, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { getResultByScore } from '../data/results';
 import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
+import { generateResultImage, waitForImages } from '../utils/image';
 
 const router = useRouter();
 const gameStore = useGameStore();
@@ -34,48 +34,25 @@ onMounted(async () => {
   try {
     await nextTick();
 
-    // 確保所有圖片都已載入
-    const images = resultCardRef.value?.querySelectorAll('img');
-    if (images) {
-      await Promise.all(
-        Array.from(images, (img) => {
-          if (img.complete) {
-            return Promise.resolve();
-          }
-          return new Promise((resolve) => {
-            img.onload = resolve;
-            img.onerror = resolve;
-          });
-        }),
-      );
-    }
-
-    // 稍微延遲以確保所有圖片、CSS、字體等渲染完成
-    await new Promise(resolve => setTimeout(resolve, 800));
-
     if (resultCardRef.value) {
-      // 取得精準的寬高，確保圖片不會形變或文字跳動
-      const width = resultCardRef.value.offsetWidth;
-      const height = resultCardRef.value.offsetHeight;
+      // 確保所有圖片都已載入
+      await waitForImages(resultCardRef.value);
 
-      const options = {
-        width,
-        height,
-        quality: 1,
+      // 稍微延遲以確保所有圖片、CSS、字體等渲染完成
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      // 產生圖片
+      const dataUrl = await generateResultImage(resultCardRef.value, {
         backgroundColor: resultData.value.bgColor,
         pixelRatio: 2,
-        cacheBust: true,
-      };
-
-      // Safari 修正：有時需要呼叫兩次才能正確渲染圖片
-      await toPng(resultCardRef.value, options);
-      const dataUrl = await toPng(resultCardRef.value, options);
+      });
 
       resultImageUrl.value = dataUrl;
     }
   }
   catch (err) {
-    console.error('generate image error', err);
+    // 雖然不建議 console.log，但保留關鍵錯誤紀錄於開發模式
+    console.error('[ResultView] generate image error', err);
   }
   finally {
     isGenerating.value = false;

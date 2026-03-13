@@ -1,24 +1,8 @@
+import type { GameStep } from '../types/game';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import { getResultByScore } from '../data/results';
 import scriptData from '../data/script.json';
-
-export interface Option {
-  label: string;
-  text: string;
-  score: number;
-}
-
-export interface GameStep {
-  type: 'dialogue' | 'quiz';
-  text: string;
-  bg: string;
-  character: string;
-  wait?: number;
-  id?: number;
-  indicator?: string;
-  options?: Option[];
-}
 
 export const useGameStore = defineStore('game', () => {
   const script = ref<GameStep[]>(scriptData as GameStep[]);

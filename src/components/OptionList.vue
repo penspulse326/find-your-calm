@@ -3,7 +3,7 @@
  * 負責渲染測驗選項，處理點擊事件與對應的分數，並帶有懸浮與點擊動畫效果
 -->
 <script setup lang="ts">
-import type { Option } from '../stores/game';
+import type { Option } from '../types/game';
 import { useAudioStore } from '../stores/audio';
 
 const props = defineProps<{

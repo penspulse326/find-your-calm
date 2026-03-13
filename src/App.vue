@@ -3,6 +3,7 @@
  * 提供全局佈局設定與頁面路由切換的過渡動畫，並包含全域音效控制按鈕
 -->
 <script setup lang="ts">
+import type { GameStep } from './types/game';
 import { onMounted } from 'vue';
 import AudioToggle from './components/AudioToggle.vue';
 import { results } from './data/results';
@@ -17,7 +18,7 @@ onMounted(async () => {
 
   // 提取劇本中所有需要使用的圖片
   const images = new Set<string>();
-  scriptData.forEach((step: any) => {
+  (scriptData as GameStep[]).forEach((step) => {
     if (step.bg) {
       images.add(step.bg);
     }
