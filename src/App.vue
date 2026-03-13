@@ -8,7 +8,7 @@ import { onMounted } from 'vue';
 import AudioToggle from './components/AudioToggle.vue';
 import GameScene from './components/GameScene.vue';
 import HomeScene from './components/HomeScene.vue';
-import { results } from './data/results';
+import LoadingOverlay from './components/LoadingOverlay.vue';
 import scriptData from './data/script.json';
 import { useAudioStore } from './stores/audio';
 import { useLoadingStore } from './stores/loading';
@@ -30,13 +30,6 @@ onMounted(async () => {
     }
     if (step.character) {
       images.add(`/images/${step.character}`);
-    }
-  });
-
-  // 測驗結果頁圖片
-  results.forEach((res) => {
-    if (res.image) {
-      images.add(res.image);
     }
   });
 
@@ -76,6 +69,7 @@ onMounted(async () => {
         </router-view>
       </div>
       <AudioToggle />
+      <LoadingOverlay />
     </div>
   </div>
 </template>

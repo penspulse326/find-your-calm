@@ -38,7 +38,13 @@ export default antfu(
         'error',
         {
           detectComponentClasses: true,
-          ignore: ['text-shadow-custom', 'animate-shimmer', 'animate-fade-in'],
+          ignore: [
+            'text-shadow-custom',
+            'animate-shimmer',
+            'animate-fade-in',
+            'pulse-circle',
+            'delay-1',
+          ],
         },
       ],
     },
