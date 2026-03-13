@@ -9,6 +9,7 @@ import { useRouter } from 'vue-router';
 import CharacterImage from '../components/CharacterImage.vue';
 import DialogBox from '../components/DialogBox.vue';
 import OptionList from '../components/OptionList.vue';
+import { TRANSITION_CONFIG } from '../constants';
 import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
 
@@ -62,7 +63,7 @@ function handleSelect(score: number) {
     gameStore.answerQuestion(score);
     // 重設轉場狀態，準備下一題或進入結尾對話
     isTransitioning.value = false;
-  }, 400);
+  }, TRANSITION_CONFIG.QUIZ_TRANSITION_DELAY);
 }
 
 function handleDialogFinish() {
@@ -79,7 +80,7 @@ function handleDialogFinish() {
       if (currentStep.value.wait) {
         handleNext();
       }
-    }, 1500);
+    }, TRANSITION_CONFIG.AUTO_NEXT_DELAY);
   }
 }
 

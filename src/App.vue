@@ -9,7 +9,7 @@ import AudioToggle from './components/AudioToggle.vue';
 import { results } from './data/results';
 import scriptData from './data/script.json';
 import { useAudioStore } from './stores/audio';
-import { preloadImages } from './utils/preload';
+import { preloadImages } from './utils/image';
 
 const audioStore = useAudioStore();
 

@@ -6,6 +6,7 @@
 import { storeToRefs } from 'pinia';
 import { computed, nextTick, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { TRANSITION_CONFIG } from '../constants';
 import { getResultByScore } from '../data/results';
 import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
@@ -39,7 +40,7 @@ onMounted(async () => {
       await waitForImages(resultCardRef.value);
 
       // 稍微延遲以確保所有圖片、CSS、字體等渲染完成
-      await new Promise(resolve => setTimeout(resolve, 800));
+      await new Promise(resolve => setTimeout(resolve, TRANSITION_CONFIG.RESULT_GEN_PREPARE_DELAY));
 
       // 產生圖片
       const dataUrl = await generateResultImage(resultCardRef.value, {
