@@ -22,6 +22,11 @@ export const useGameStore = defineStore('game', () => {
         .length,
   );
 
+  /** 總題數 */
+  const totalQuestions = computed(
+    () => script.value.filter(step => step.type === 'quiz').length,
+  );
+
   function nextStep() {
     if (currentStepIndex.value < script.value.length - 1) {
       currentStepIndex.value++;
@@ -52,6 +57,7 @@ export const useGameStore = defineStore('game', () => {
     currentStepIndex,
     currentStep,
     currentQuestionNumber,
+    totalQuestions,
     score,
     isFinished,
     isGameStarted,

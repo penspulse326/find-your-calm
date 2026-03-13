@@ -46,11 +46,10 @@ export const results: ResultInfo[] = [
     scoreRange: [15, 100],
     title: '雷鳴深淵',
     message:
-      '您正處於高度壓力狀態。建議暫停手邊繁重任務，優先處理生理需求，並尋求專業諮詢資源的支持。',
+      '您正處於高度壓力狀態。建議暫停手邊繁重任務，優先處理生理需求，暫時休息。',
     breathingName: '💡 應急放鬆：清涼呼吸練習',
     breathingDesc:
-      '從嘴巴深吸氣感受涼意，再由鼻子緩慢吐氣。若情緒波動劇烈，建議透過衛福部安心專線 1925 取得專業的即時心理支持。',
-    supportLink: '衛福部安心專線：1925',
+      '從嘴巴深吸氣感受涼意，再由鼻子緩慢吐氣。若情緒波動劇烈，建議尋求專業機構協助，或撥打衛福部安心專線 1925 取得即刻幫助。',
     image: '/images/end_4.png',
     bgColor: '#1f0d0d',
     gradientClass: 'from-[#1f0d0d] to-black',

@@ -16,7 +16,7 @@ import { useGameStore } from '../stores/game';
 const router = useRouter();
 const gameStore = useGameStore();
 const audioStore = useAudioStore();
-const { currentStep, currentQuestionNumber, isFinished }
+const { currentStep, currentQuestionNumber, totalQuestions, isFinished }
   = storeToRefs(gameStore);
 
 const isTransitioning = ref(false);
@@ -102,7 +102,7 @@ function handleGlobalClick() {
 
 <template>
   <div
-    class="relative flex min-h-dvh flex-1 flex-col overflow-hidden bg-black"
+    class="relative flex min-h-lvh flex-1 flex-col overflow-hidden bg-black"
     :class="
       (currentStep?.type === 'quiz' && showOptions) || showConfirm
         ? 'cursor-default'
@@ -148,12 +148,27 @@ function handleGlobalClick() {
         <!-- 題目進度 -->
         <div
           v-if="currentStep.type === 'quiz'"
-          class="text-shadow-custom font-medium tracking-widest text-white/80"
+          class="flex flex-col items-center gap-2"
         >
-          第 {{ currentQuestionNumber }} 題
+          <div class="text-shadow-custom text-xs font-medium text-white/70">
+            {{ `第 ${currentQuestionNumber} 題` }}
+          </div>
+          <div
+            class="h-1 w-24 overflow-hidden rounded-full bg-white/10 shadow-sm"
+          >
+            <div
+              class="h-full bg-white/60 transition-all duration-700 ease-out"
+              :style="{
+                width: `${(currentQuestionNumber / totalQuestions) * 100}%`,
+              }"
+            />
+          </div>
         </div>
-        <div v-else class="font-medium tracking-widest text-white/80 opacity-0">
-          佔位
+        <div v-else class="flex flex-col items-end gap-2 opacity-0">
+          <div class="text-xs">
+            PLACEHOLDER
+          </div>
+          <div class="h-1 w-24 rounded-full bg-white/10" />
         </div>
 
         <!-- 用於平衡排版的佔位空間（對應右側絕對定位的音效按鈕） -->
