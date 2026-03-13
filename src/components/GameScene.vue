@@ -46,58 +46,72 @@ const ALL_AVATARS = [
 </script>
 
 <template>
-  <div
-    v-show="isVisible"
-    class="pointer-events-none absolute inset-0 z-0 overflow-hidden"
-  >
-    <!-- 1. 最底層：背景色調 (隨題號變化) -->
+  <transition name="scene-fade">
     <div
-      class="
-        absolute inset-0 size-full transition-colors duration-1000 ease-in-out
-      "
-      :class="bgColor"
-    />
-
-    <!-- 2. 中層：角色立繪 -->
-    <div
-      class="absolute inset-x-0 bottom-47 flex h-full items-end justify-center"
+      v-show="isVisible"
+      class="pointer-events-none absolute inset-0 z-0 overflow-hidden"
     >
-      <div class="relative z-20 size-full">
+      <!-- 1. 最底層：背景色調 (隨題號變化) -->
+      <div
+        class="
+          absolute inset-0 size-full transition-colors duration-1000 ease-in-out
+        "
+        :class="bgColor"
+      />
+
+      <!-- 2. 中層：角色立繪 -->
+      <div
+        class="
+          absolute inset-x-0 bottom-47 flex h-full items-end justify-center
+        "
+      >
+        <div class="relative z-20 size-full">
+          <img
+            v-for="avatar in ALL_AVATARS"
+            v-show="currentStep?.character === avatar"
+            :key="avatar"
+            :src="`/images/${avatar}`"
+            alt="Character Avatar"
+            class="
+              absolute inset-x-0 -bottom-8 mx-auto h-[80vh] translate-y-4
+              object-contain object-bottom drop-shadow-2xl
+              md:h-[85vh]
+            "
+          >
+        </div>
+      </div>
+
+      <!-- 3. 最上層：場景背景圖 (帶有 50% 透明度與模糊) -->
+      <div class="absolute inset-0 z-10">
         <img
-          v-for="avatar in ALL_AVATARS"
-          v-show="currentStep?.character === avatar"
-          :key="avatar"
-          :src="`/images/${avatar}`"
-          alt="Character Avatar"
+          v-for="bg in allBackgrounds"
+          v-show="currentStep?.bg === bg"
+          :key="bg"
+          :src="`/images/${bg}`"
+          alt=""
           class="
-            absolute inset-x-0 -bottom-8 mx-auto h-[80vh] translate-y-4
-            object-contain object-bottom drop-shadow-2xl
-            md:h-[85vh]
+            absolute inset-0 size-full object-cover opacity-50 blur-[1px]
+            transition-opacity duration-1000 ease-in-out
           "
         >
       </div>
     </div>
-
-    <!-- 3. 最上層：場景背景圖 (帶有 50% 透明度與模糊) -->
-    <div class="absolute inset-0 z-10">
-      <img
-        v-for="bg in allBackgrounds"
-        v-show="currentStep?.bg === bg"
-        :key="bg"
-        :src="`/images/${bg}`"
-        alt=""
-        class="
-          absolute inset-0 size-full object-cover opacity-50 blur-[1px]
-          transition-opacity duration-1000 ease-in-out
-        "
-      >
-    </div>
-  </div>
+  </transition>
 </template>
 
 <style scoped>
 /* 確保場景層不影響路由組件的點擊事件 */
 .pointer-events-none {
   pointer-events: none;
+}
+
+.scene-fade-enter-active,
+.scene-fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.scene-fade-enter-from,
+.scene-fade-leave-to {
+  opacity: 0;
 }
 </style>
