@@ -54,7 +54,8 @@ const ALL_AVATARS = [
       <!-- 1. 最底層：背景色調 (隨題號變化) -->
       <div
         class="
-          absolute inset-0 size-full transition-colors duration-1000 ease-in-out
+          absolute inset-0 size-full opacity-30 transition-colors duration-1000
+          ease-in-out
         "
         :class="bgColor"
       />
@@ -62,7 +63,7 @@ const ALL_AVATARS = [
       <!-- 2. 中層：角色立繪 -->
       <div
         class="
-          absolute inset-x-0 bottom-47 flex h-full items-end justify-center
+          absolute inset-x-0 bottom-34 flex h-full items-end justify-center
         "
       >
         <div class="relative z-20 size-full">

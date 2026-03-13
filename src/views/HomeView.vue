@@ -81,11 +81,7 @@ function startQuiz() {
 
       <div class="pt-12">
         <button
-          class="
-            group relative overflow-hidden rounded-full border border-white/40
-            bg-white/10 px-12 py-4 transition-all duration-500
-            hover:bg-white/20
-          "
+          class="glass-button px-12 py-4"
           @click="startQuiz"
         >
           <span
@@ -97,13 +93,6 @@ function startQuiz() {
           >
             開始測驗
           </span>
-          <div
-            class="
-              absolute inset-0 bg-white/10 opacity-0 transition-opacity
-              duration-500
-              group-hover:opacity-100
-            "
-          />
         </button>
       </div>
     </div>

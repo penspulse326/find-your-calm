@@ -17,7 +17,7 @@ function toggle() {
 
 <template>
   <button
-    class="absolute top-4 right-4 isolate z-50 glass-button p-2!"
+    class="absolute top-4 right-4 isolate z-50 glass-icon-button"
     aria-label="Toggle Audio"
     @click="toggle"
   >

@@ -151,11 +151,7 @@ onMounted(async () => {
       </div>
 
       <button
-        class="
-          mt-8 transform rounded-full border border-white/30 bg-white/10 px-8
-          py-3 text-sm tracking-widest transition-all duration-300
-          hover:scale-105 hover:bg-white/20
-        "
+        class="mt-8 glass-button px-8 py-3 text-sm tracking-widest"
         @click="restart"
       >
         {{ UI_STRINGS.RESTART_BTN }}

@@ -146,7 +146,7 @@ defineExpose({
 <template>
   <div
     class="
-      relative min-h-[140px] w-full border-t-2 border-white/10 bg-black/80 p-6
+      relative min-h-[140px] w-full border-t-2 border-white/10 bg-slate-900 p-6
       shadow-2xl
     "
   >

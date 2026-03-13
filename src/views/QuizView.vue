@@ -115,12 +115,7 @@ function handleGlobalClick() {
       >
         <!-- 重新開始按鈕 -->
         <button
-          class="
-            pointer-events-auto isolate rounded-full border border-white/30
-            bg-white/20 p-2 text-white backdrop-blur-sm transition-colors
-            will-change-[backdrop-filter,opacity]
-            hover:bg-white/30
-          "
+          class="pointer-events-auto isolate glass-icon-button"
           aria-label="Restart Quiz"
           @click.stop="handleRestart"
         >
@@ -232,20 +227,15 @@ function handleGlobalClick() {
             <div class="flex gap-4">
               <button
                 class="
-                  flex-1 rounded-full border border-white/20 py-3 text-sm
-                  text-white/60 transition-colors
-                  hover:bg-white/5
+                  flex-1 glass-button py-3 text-sm opacity-60
+                  hover:opacity-100
                 "
                 @click="cancelRestart"
               >
                 取消
               </button>
               <button
-                class="
-                  flex-1 rounded-full border border-white/30 bg-white/10 py-3
-                  text-sm text-white transition-colors
-                  hover:bg-white/20
-                "
+                class="flex-1 glass-button py-3 text-sm"
                 @click="confirmRestart"
               >
                 確認返回
