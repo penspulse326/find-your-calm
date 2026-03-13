@@ -3,25 +3,25 @@
     "type": "dialogue",
     "text": "嗨嗨，我是阿靜。這裡是平靜小棧。",
     "bg": "scene_1.png",
-    "character": "avatar_smile.png"
+    "character": "avatar_default.png"
   },
   {
     "type": "dialogue",
     "text": "我會引導你回想最近的生活狀況。",
     "bg": "scene_1.png",
-    "character": "avatar_cheer.png"
+    "character": "avatar_smile.png"
   },
   {
     "type": "dialogue",
     "text": "接下來的 10 個問題，依照你「過去兩週內」的真實感受來回答就可以了。",
     "bg": "scene_1.png",
-    "character": "avatar_cheer.png"
+    "character": "avatar_smile.png"
   },
   {
     "type": "dialogue",
     "text": "這是提供你快速自我評估的小遊戲，並非專業醫療診斷，請放鬆心情參與。",
     "bg": "scene_1.png",
-    "character": "avatar_smile.png"
+    "character": "avatar_cheer.png"
   },
   {
     "type": "dialogue",
@@ -174,7 +174,7 @@
     "type": "dialogue",
     "text": "辛苦了，謝謝你願意誠實地面對這段時間的自己。",
     "bg": "scene_1.png",
-    "character": "avatar_smile.png"
+    "character": "avatar_cheer.png"
   },
   {
     "type": "dialogue",
