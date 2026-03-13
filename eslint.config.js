@@ -45,7 +45,7 @@ export default antfu(
 
     settings: {
       'better-tailwindcss': {
-        entryPoint: 'src/global.css',
+        entryPoint: 'src/style.css',
         tailwindConfig: 'tailwind.config.js',
       },
     },
