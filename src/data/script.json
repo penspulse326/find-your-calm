@@ -15,7 +15,7 @@
     "type": "dialogue",
     "text": "接下來的 10 個問題，依照你「過去兩週內」的真實感受來回答就可以了。",
     "bg": "scene_1.png",
-    "character": "avatar_celebrating.png"
+    "character": "avatar_cheer.png"
   },
   {
     "type": "dialogue",
@@ -184,13 +184,13 @@
   },
   {
     "type": "dialogue",
-    "text": "讓我整理一下作答結果。",
+    "text": "讓我整理一下作答結果…",
     "bg": "scene_1.png",
     "character": "avatar_thinking.png"
   },
   {
     "type": "dialogue",
-    "text": "來看看你目前的心境吧。",
+    "text": "來看看你目前的心境吧！",
     "bg": "scene_1.png",
     "character": "avatar_celebrating.png",
     "wait": 3000
