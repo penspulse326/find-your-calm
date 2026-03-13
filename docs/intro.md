@@ -26,18 +26,21 @@
 
 ### 四、 技術規範 (Technical Stack)
 
-- **框架選擇：** Vue 3 (Vite + TypeScript)。
-- **佈局設計：** DOM + Tailwind CSS（優於 Canvas，便於處理文字排版與 RWD）。
-- **動畫處理：** @vueuse/motion (基於 Motion One) + 原生 CSS Animation，用於立繪平滑過渡與介面動態效果。
-- **狀態管理：** Pinia (或原生 `reactive/ref`)；使用 `localStorage` 儲存進度。
-- **視覺元素：**
-- **人物立繪 (Sprite)：** 根據分數區間切換情緒表情。
-- **對話框 (Dialog Box)：** 具備打字機效果 (Typewriter Effect)。
+- **框架選擇：** Vue 3 (Vite + TypeScript + Vue Router)。
+- **佈局設計：** DOM + Tailwind CSS v4（提供視覺層與 RWD 支援）。
+- **動畫與過場：** 豐富的原生 CSS 動畫設計，提供打字機效果、等待動畫（...）與元素的平滑過渡。
+- **狀態與資料管理：** Pinia、`script.json`，自訂化的腳本引擎可擴展處理對白動態表現。
+- **核心功能：**
+- **動態場景與立繪：** 依照文本指令或測驗進度切換角色表情，並具備背景顏色的平滑漸層變換。
+- **對話系統：** 支援打字機延遲與情境化控制等待功能，產生更真實的陪伴體驗。
+- **結果分享圖輸出：** 利用 `html-to-image` 將結果判定頁轉為可長按儲存與分享的 2x 解析度圖片。
+- **音頻回饋：** 整合 `howler` 提供全域背景音樂無縫循環與點擊音效，強化互動回饋與氛圍。
+- **持續部署：** 運用 `GitHub Actions` 及 hash-based 路由發布至 `GitHub Pages`。
 
 ### 五、 實作路徑 (Roadmap)
 
-1. **Step 1 - 資料結構化：** 將 10 題文本轉化為 `questions.json`，並設計 `useGameStore` (Pinia) 來驅動狀態。
-2. **Step 2 - 基礎組件開發：** 建立 `CharacterImage.vue`、`DialogBox.vue`、`ProgressBar.vue` 等核心 SFC。
-3. **Step 3 - 邏輯開發：** 實作 `useTypewriter` composable 與分數累合計分邏輯。
-4. **Step 4 - 結局生成：** 根據總分映射至 `ResultView.vue`，並整合分享功能。
-5. **Step 5 - 體驗優化：** 整合 `@vueuse/motion` 處理組件進入動畫，並利用 CSS Keyframes 實作場景震動或特殊特效。
+1. **Step 1 - 資料結構化與腳本系統：** 實作 `script.json` 腳本，透過驅動元件來繪製問候對白、測驗文本及過場畫面。
+2. **Step 2 - 基礎組件與狀態管理：** 開發 `CharacterImage.vue`、`DialogBox.vue`、`ProgressBar.vue` 等組件，搭配 `useGameStore` 累積計分邏輯。
+3. **Step 3 - 核心引擎：** 實作 `useTypewriter` composable 處理文字顯示、標點符號的等待停頓機制與過場。
+4. **Step 4 - 結局生成與輸出：** 依分數區段判斷不同結局結果標籤，運用 `html-to-image` 生成可下載的結果圖片（考量移動端的像素比例問題）。
+5. **Step 5 - 部署與體驗優化：** 將路由設為 Hash 模式、加上 GitHub Pages Actions CI/CD 配置，並設計漸層背景變色與音效加強沉浸感。
