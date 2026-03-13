@@ -22,7 +22,7 @@ function startQuiz() {
 <template>
   <div
     class="
-      relative flex min-h-lvh flex-1 flex-col items-center justify-center
+      relative flex min-h-dvh flex-1 flex-col items-center justify-center
       overflow-hidden bg-sky-300
     "
   >

@@ -56,10 +56,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex min-h-lvh w-full justify-center bg-neutral-900">
+  <div class="flex min-h-dvh w-full justify-center bg-neutral-900">
     <div
       class="
-        relative flex min-h-lvh w-full max-w-md flex-col items-stretch bg-black
+        relative flex min-h-dvh w-full max-w-md flex-col items-stretch bg-black
         shadow-2xl
       "
     >
