@@ -28,16 +28,16 @@ export const TRANSITION_CONFIG = {
  * 測驗進度背景色調 (從 Q1 到 Q10)
  */
 export const BACKGROUND_THEMES = [
-  'bg-[#A7C7E7]', // Q1
-  'bg-[#B0C4DE]', // Q2
-  'bg-[#D3C7C7]', // Q3
-  'bg-[#CFC0B7]', // Q4
-  'bg-[#CBB0A1]', // Q5
-  'bg-[#C8A08B]', // Q6
-  'bg-[#C59075]', // Q7
-  'bg-[#BA7D63]', // Q8
-  'bg-[#AF6A51]', // Q9
-  'bg-[#A44A3F]', // Q10
+  'bg-[#A7C7E7]', // Q1 (淺藍)
+  'bg-[#A5D2D8]', // Q2
+  'bg-[#A3DDC9]', // Q3
+  'bg-[#A1E8BA]', // Q4
+  'bg-[#9FF3AB]', // Q5
+  'bg-[#9DFE9C]', // Q6
+  'bg-[#A6F794]', // Q7
+  'bg-[#B0EF8C]', // Q8
+  'bg-[#BAE784]', // Q9
+  'bg-[#C4DF7C]', // Q10 (清新綠)
 ] as const;
 
 /**

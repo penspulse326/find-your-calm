@@ -40,18 +40,16 @@ const bgColor = computed(() => {
         ]"
         :key="avatar"
       >
-        <transition name="character-fade">
-          <img
-            v-show="currentStep?.character === avatar"
-            :src="`/images/${avatar}`"
-            alt="Character Avatar"
-            class="
-              absolute inset-x-0 -bottom-8 mx-auto h-[80vh] translate-y-4
-              object-contain object-bottom drop-shadow-2xl
-              md:h-[85vh]
-            "
-          >
-        </transition>
+        <img
+          v-show="currentStep?.character === avatar"
+          :src="`/images/${avatar}`"
+          alt="Character Avatar"
+          class="
+            absolute inset-x-0 -bottom-8 mx-auto h-[80vh] translate-y-4
+            object-contain object-bottom drop-shadow-2xl
+            md:h-[85vh]
+          "
+        >
       </template>
     </div>
   </div>
