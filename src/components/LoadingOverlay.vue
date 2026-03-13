@@ -64,7 +64,7 @@ watch(() => loadingStore.isLoaded, (newValue) => {
           opacity-50
         "
       >
-        {{ loadingStore.progress }}%
+        載入進度 {{ loadingStore.progress }}%
       </p>
     </div>
   </div>

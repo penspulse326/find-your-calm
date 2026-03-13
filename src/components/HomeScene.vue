@@ -32,14 +32,17 @@ const isVisible = computed(() => route.name === 'home');
         items-end justify-center
       "
     >
-      <img
-        src="/images/avatar_heart.png"
-        alt="Home Character"
-        class="
-          h-full scale-220 object-contain object-bottom opacity-30
-          drop-shadow-2xl
-        "
-      >
+      <Transition name="character-fade">
+        <img
+          v-show="isVisible"
+          src="/images/avatar_heart.png"
+          alt="Home Character"
+          class="
+            h-full scale-220 object-contain object-bottom opacity-30
+            drop-shadow-2xl
+          "
+        >
+      </Transition>
     </div>
   </div>
 </template>
@@ -65,5 +68,17 @@ const isVisible = computed(() => route.name === 'home');
 
 img {
   animation: float 6s ease-in-out infinite;
+}
+
+/* 角色立繪淡入與位移進場 */
+.character-fade-enter-active {
+  transition:
+    opacity 1s ease-in-out,
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.character-fade-enter-from {
+  opacity: 0;
+  transform: translateY(60px) !important;
 }
 </style>
