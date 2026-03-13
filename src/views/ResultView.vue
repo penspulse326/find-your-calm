@@ -6,7 +6,7 @@
 import { storeToRefs } from 'pinia';
 import { computed, nextTick, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { TRANSITION_CONFIG } from '../constants';
+import { TRANSITION_CONFIG, UI_STRINGS } from '../constants';
 import { getResultByScore } from '../data/results';
 import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
@@ -23,9 +23,7 @@ function restart() {
   router.replace('/');
 }
 
-const resultData = computed(() => {
-  return getResultByScore(score.value);
-});
+const resultData = computed(() => getResultByScore(score.value));
 
 const resultCardRef = ref<HTMLElement | null>(null);
 const resultImageUrl = ref<string>('');
@@ -40,7 +38,9 @@ onMounted(async () => {
       await waitForImages(resultCardRef.value);
 
       // 稍微延遲以確保所有圖片、CSS、字體等渲染完成
-      await new Promise(resolve => setTimeout(resolve, TRANSITION_CONFIG.RESULT_GEN_PREPARE_DELAY));
+      await new Promise(resolve =>
+        setTimeout(resolve, TRANSITION_CONFIG.RESULT_GEN_PREPARE_DELAY),
+      );
 
       // 產生圖片
       const dataUrl = await generateResultImage(resultCardRef.value, {
@@ -88,7 +88,7 @@ onMounted(async () => {
               tracking-widest text-white/50
             "
           >
-            <span>📸</span> 長按或右鍵以另存圖片
+            <span>📸</span> {{ UI_STRINGS.GEN_IMAGE_TIP }}
           </p>
         </div>
 
@@ -161,7 +161,7 @@ onMounted(async () => {
         "
         @click="restart"
       >
-        重新測驗
+        {{ UI_STRINGS.RESTART_BTN }}
       </button>
 
       <div class="mx-auto my-6 h-px w-80 bg-white/20" />

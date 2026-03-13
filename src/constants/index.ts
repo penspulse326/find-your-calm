@@ -23,3 +23,31 @@ export const TRANSITION_CONFIG = {
   /** 結果頁圖片生成前的準備延遲 (ms) */
   RESULT_GEN_PREPARE_DELAY: 800,
 } as const;
+
+/**
+ * 測驗進度背景色調 (從 Q1 到 Q10)
+ */
+export const BACKGROUND_THEMES = [
+  'bg-[#A7C7E7]', // Q1
+  'bg-[#B0C4DE]', // Q2
+  'bg-[#D3C7C7]', // Q3
+  'bg-[#CFC0B7]', // Q4
+  'bg-[#CBB0A1]', // Q5
+  'bg-[#C8A08B]', // Q6
+  'bg-[#C59075]', // Q7
+  'bg-[#BA7D63]', // Q8
+  'bg-[#AF6A51]', // Q9
+  'bg-[#A44A3F]', // Q10
+] as const;
+
+/**
+ * 介面文字常量
+ */
+export const UI_STRINGS = {
+  HOME_TITLE: '平靜小棧',
+  HOME_SUBTITLE: '你有多久沒有好好放鬆了呢？\n來做個深呼吸，讓世界慢下來！',
+  RESTART_CONFIRM_TITLE: '確認重開？',
+  RESTART_CONFIRM_DESC: '返回首頁將不會保留當前的測驗進度，需要重新進行。',
+  GEN_IMAGE_TIP: '長按或右鍵以另存圖片',
+  RESTART_BTN: '重新測驗',
+} as const;

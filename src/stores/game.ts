@@ -13,16 +13,14 @@ export const useGameStore = defineStore('game', () => {
 
   const currentStep = computed(() => script.value[currentStepIndex.value]);
 
-  // 計算目前的題號 (只算 quiz 的類型)
-  const currentQuestionNumber = computed(() => {
-    let count = 0;
-    for (let i = 0; i <= currentStepIndex.value; i++) {
-      if (script.value[i].type === 'quiz') {
-        count++;
-      }
-    }
-    return count;
-  });
+  /** 計算目前的題號 (只計入 quiz 類型) */
+  const currentQuestionNumber = computed(
+    () =>
+      script.value
+        .slice(0, currentStepIndex.value + 1)
+        .filter(step => step.type === 'quiz')
+        .length,
+  );
 
   function nextStep() {
     if (currentStepIndex.value < script.value.length - 1) {
@@ -45,9 +43,7 @@ export const useGameStore = defineStore('game', () => {
     isGameStarted.value = true; // 當呼叫 resetGame 開始遊戲時設為 true
   }
 
-  const resultStatus = computed(() => {
-    return getResultByScore(score.value).title;
-  });
+  const resultStatus = computed(() => getResultByScore(score.value).title);
 
   return {
     script,

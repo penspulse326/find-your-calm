@@ -9,7 +9,7 @@ import { useRouter } from 'vue-router';
 import CharacterImage from '../components/CharacterImage.vue';
 import DialogBox from '../components/DialogBox.vue';
 import OptionList from '../components/OptionList.vue';
-import { TRANSITION_CONFIG } from '../constants';
+import { TRANSITION_CONFIG, UI_STRINGS } from '../constants';
 import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
 
@@ -92,12 +92,9 @@ function handleNext() {
   }
 }
 
-const bgUrl = computed(() => {
-  if (!currentStep.value?.bg) {
-    return '';
-  }
-  return `/images/${currentStep.value.bg}`;
-});
+const bgUrl = computed(() =>
+  !currentStep.value?.bg ? '' : `/images/${currentStep.value.bg}`,
+);
 
 function handleGlobalClick() {
   if (showConfirm.value) {
@@ -236,10 +233,10 @@ function handleGlobalClick() {
             "
           >
             <h3 class="mb-4 text-xl font-medium tracking-wider text-white/90">
-              確認重開？
+              {{ UI_STRINGS.RESTART_CONFIRM_TITLE }}
             </h3>
             <p class="mb-8 text-sm/relaxed text-white/60">
-              返回首頁將不會保留當前的測驗進度，需要重新進行。
+              {{ UI_STRINGS.RESTART_CONFIRM_DESC }}
             </p>
             <div class="flex gap-4">
               <button

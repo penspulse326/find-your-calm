@@ -4,6 +4,7 @@
 -->
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import { UI_STRINGS } from '../constants';
 import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
 
@@ -65,17 +66,16 @@ function startQuiz() {
             md:text-5xl
           "
         >
-          平靜小棧
+          {{ UI_STRINGS.HOME_TITLE }}
         </h1>
         <div class="mx-auto h-[2px] w-16 bg-white/40" />
         <p
           class="
             text-shadow-custom mx-auto max-w-sm text-base/relaxed font-medium
-            text-white/90 drop-shadow-md
+            whitespace-pre-line text-white/90 drop-shadow-md
           "
         >
-          你有多久沒有好好放鬆了呢？<br>
-          來做個深呼吸，讓世界慢下來！
+          {{ UI_STRINGS.HOME_SUBTITLE }}
         </p>
       </div>
 
