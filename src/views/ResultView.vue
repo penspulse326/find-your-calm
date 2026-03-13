@@ -190,7 +190,7 @@ onMounted(async () => {
         </p>
       </div>
 
-      <img src="/images/avatar_heart.png" alt="">
+      <img src="/images/avatar_heart.webp" alt="">
     </div>
   </div>
 </template>

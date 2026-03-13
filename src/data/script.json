@@ -2,40 +2,40 @@
   {
     "type": "dialogue",
     "text": "嗨嗨，我是阿靜。這裡是平靜小棧。",
-    "bg": "scene_1.png",
-    "character": "avatar_default.png"
+    "bg": "scene_1.webp",
+    "character": "avatar_default.webp"
   },
   {
     "type": "dialogue",
     "text": "我會引導你回想最近的生活狀況。",
-    "bg": "scene_1.png",
-    "character": "avatar_smile.png"
+    "bg": "scene_1.webp",
+    "character": "avatar_smile.webp"
   },
   {
     "type": "dialogue",
     "text": "接下來的 10 個問題，依照你「過去兩週內」的真實感受來回答就可以了。",
-    "bg": "scene_1.png",
-    "character": "avatar_smile.png"
+    "bg": "scene_1.webp",
+    "character": "avatar_smile.webp"
   },
   {
     "type": "dialogue",
     "text": "這是提供你快速自我評估的小遊戲，並非專業醫療診斷，請放鬆心情參與。",
-    "bg": "scene_1.png",
-    "character": "avatar_cheer.png"
+    "bg": "scene_1.webp",
+    "character": "avatar_cheer.webp"
   },
   {
     "type": "dialogue",
     "text": "準備好的話，先深呼吸一下。我們準備開始囉～",
-    "bg": "scene_1.png",
-    "character": "avatar_celebrating.png"
+    "bg": "scene_1.webp",
+    "character": "avatar_celebrating.webp"
   },
   {
     "type": "quiz",
     "id": 1,
     "indicator": "Inner_Restlessness",
     "text": "清晨醒來，陽光灑進房間，但你感覺心跳似乎比平常快了一點…",
-    "bg": "scene_1.png",
-    "character": "avatar_thinking.png",
+    "bg": "scene_1.webp",
+    "character": "avatar_thinking.webp",
     "wait": 3000,
     "options": [
       { "label": "A", "text": "我感到平靜且準備好開始新的一天。", "score": 0 },
@@ -49,8 +49,8 @@
     "id": 2,
     "indicator": "Uncontrollable_Thoughts",
     "text": "大腦裡突然蹦出一個擔憂的念頭，你會如何應對？",
-    "bg": "scene_1.png",
-    "character": "avatar_thinking.png",
+    "bg": "scene_1.webp",
+    "character": "avatar_thinking.webp",
     "options": [
       { "label": "A", "text": "沒關係，這只是個想法，我能輕易放下它。", "score": 0 },
       { "label": "B", "text": "會想一下，但還能切換注意力去處理工作。", "score": 1 },
@@ -63,8 +63,8 @@
     "id": 3,
     "indicator": "Anticipatory_Stress",
     "text": "面對未來一週的行程，你的腦袋裡目前的進度是？",
-    "bg": "scene_1.png",
-    "character": "avatar_thinking.png",
+    "bg": "scene_1.webp",
+    "character": "avatar_thinking.webp",
     "options": [
       { "label": "A", "text": "順其自然，相信自己能處理好。", "score": 0 },
       { "label": "B", "text": "只對幾件重要的大事感到一點點壓力。", "score": 1 },
@@ -77,8 +77,8 @@
     "id": 4,
     "indicator": "Relaxation_Difficulty",
     "text": "好不容易坐到了沙發上，這本該是你的休息時間…",
-    "bg": "scene_1.png",
-    "character": "avatar_thinking.png",
+    "bg": "scene_1.webp",
+    "character": "avatar_thinking.webp",
     "options": [
       { "label": "A", "text": "我能立刻放鬆，享受這段安靜時光。", "score": 0 },
       { "label": "B", "text": "需要一點時間沉澱，但最終能靜下心來。", "score": 1 },
@@ -91,8 +91,8 @@
     "id": 5,
     "indicator": "Physical_Agitation",
     "text": "在等待排隊或會議開始時，你的身體反應是？",
-    "bg": "scene_1.png",
-    "character": "avatar_thinking.png",
+    "bg": "scene_1.webp",
+    "character": "avatar_thinking.webp",
     "options": [
       { "label": "A", "text": "平穩呼吸，耐心等待。", "score": 0 },
       { "label": "B", "text": "偶爾換個姿勢或看個手機消磨時間。", "score": 1 },
@@ -105,8 +105,8 @@
     "id": 6,
     "indicator": "Irritability",
     "text": "身旁的人不小心弄出了刺耳的聲響，你當下的第一反應？",
-    "bg": "scene_1.png",
-    "character": "avatar_thinking.png",
+    "bg": "scene_1.webp",
+    "character": "avatar_thinking.webp",
     "options": [
       { "label": "A", "text": "沒什麼大不了的，不影響我。", "score": 0 },
       { "label": "B", "text": "稍微皺個眉，但心情很快恢復。", "score": 1 },
@@ -119,8 +119,8 @@
     "id": 7,
     "indicator": "Negative_Foreboding",
     "text": "空氣突然安靜下來時，心底深處是否有個聲音？",
-    "bg": "scene_1.png",
-    "character": "avatar_thinking.png",
+    "bg": "scene_1.webp",
+    "character": "avatar_thinking.webp",
     "options": [
       { "label": "A", "text": "我覺得當下很安全，內心很踏實。", "score": 0 },
       { "label": "B", "text": "有時候會突然閃過一絲不安，但很快就消失。", "score": 1 },
@@ -133,8 +133,8 @@
     "id": 8,
     "indicator": "Sleep_Quality",
     "text": "深夜三點，你與天花板的對話已經持續了多久？",
-    "bg": "scene_1.png",
-    "character": "avatar_thinking.png",
+    "bg": "scene_1.webp",
+    "character": "avatar_thinking.webp",
     "options": [
       { "label": "A", "text": "我睡得很沉，甚至不記得做了什麼夢。", "score": 0 },
       { "label": "B", "text": "偶爾會翻來覆去，但大多數時候能睡著。", "score": 1 },
@@ -147,8 +147,8 @@
     "id": 9,
     "indicator": "Somatic_Symptoms",
     "text": "這兩週，你的身體似乎在對你發出訊號…",
-    "bg": "scene_1.png",
-    "character": "avatar_thinking.png",
+    "bg": "scene_1.webp",
+    "character": "avatar_thinking.webp",
     "options": [
       { "label": "A", "text": "身體輕盈，沒有明顯的不適感。", "score": 0 },
       { "label": "B", "text": "肩頸偶爾會緊繃，休息後會好轉。", "score": 1 },
@@ -161,8 +161,8 @@
     "id": 10,
     "indicator": "Cognitive_Focus",
     "text": "看著眼前的這本書或螢幕上的文字…",
-    "bg": "scene_1.png",
-    "character": "avatar_thinking.png",
+    "bg": "scene_1.webp",
+    "character": "avatar_thinking.webp",
     "options": [
       { "label": "A", "text": "我能清晰地理解並專注於內容。", "score": 0 },
       { "label": "B", "text": "需要多讀幾遍才能進入狀況。", "score": 1 },
@@ -173,26 +173,26 @@
   {
     "type": "dialogue",
     "text": "辛苦了，謝謝你願意誠實地面對這段時間的自己。",
-    "bg": "scene_1.png",
-    "character": "avatar_cheer.png"
+    "bg": "scene_1.webp",
+    "character": "avatar_cheer.webp"
   },
   {
     "type": "dialogue",
     "text": "請記住，無論結果如何，這都只是當下壓力狀態的反映，不代表全部的你。",
-    "bg": "scene_1.png",
-    "character": "avatar_cheer.png"
+    "bg": "scene_1.webp",
+    "character": "avatar_cheer.webp"
   },
   {
     "type": "dialogue",
     "text": "讓我整理一下作答結果…",
-    "bg": "scene_1.png",
-    "character": "avatar_thinking.png"
+    "bg": "scene_1.webp",
+    "character": "avatar_thinking.webp"
   },
   {
     "type": "dialogue",
     "text": "來看看你目前的心境吧！",
-    "bg": "scene_1.png",
-    "character": "avatar_celebrating.png",
+    "bg": "scene_1.webp",
+    "character": "avatar_celebrating.webp",
     "wait": 3000
   }
 ]

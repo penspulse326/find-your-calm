@@ -35,7 +35,7 @@ const isVisible = computed(() => route.name === 'home');
       <Transition name="character-fade">
         <img
           v-show="isVisible"
-          src="/images/avatar_heart.png"
+          src="/images/avatar_heart.webp"
           alt="Home Character"
           class="
             h-full scale-220 object-contain object-bottom opacity-30

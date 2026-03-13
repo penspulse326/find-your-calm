@@ -37,12 +37,12 @@ const allBackgrounds = computed(() => {
 
 /** 固定所有的角色表情清單 */
 const ALL_AVATARS = [
-  'avatar_smile.png',
-  'avatar_cheer.png',
-  'avatar_celebrating.png',
-  'avatar_thinking.png',
-  'avatar_heart.png',
-  'avatar_default.png',
+  'avatar_smile.webp',
+  'avatar_cheer.webp',
+  'avatar_celebrating.webp',
+  'avatar_thinking.webp',
+  'avatar_heart.webp',
+  'avatar_default.webp',
 ];
 </script>
 
