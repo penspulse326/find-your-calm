@@ -7,6 +7,7 @@ import type { GameStep } from './types/game';
 import { onMounted } from 'vue';
 import AudioToggle from './components/AudioToggle.vue';
 import GameScene from './components/GameScene.vue';
+import HomeScene from './components/HomeScene.vue';
 import { results } from './data/results';
 import scriptData from './data/script.json';
 import { useAudioStore } from './stores/audio';
@@ -65,6 +66,7 @@ onMounted(async () => {
       "
     >
       <GameScene />
+      <HomeScene />
       <!-- 使用 Grid 堆疊以支援進入與離開動畫同時進行，避免因 mode="out-in" 造成的延遲 -->
       <div class="relative grid flex-1 overflow-hidden">
         <router-view v-slot="{ Component }">

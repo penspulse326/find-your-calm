@@ -23,34 +23,9 @@ function startQuiz() {
   <div
     class="
       relative flex min-h-dvh flex-1 flex-col items-center justify-center
-      overflow-hidden bg-sky-300
+      overflow-hidden bg-transparent
     "
   >
-    <!-- 背景裝飾：光暈或漸層 -->
-    <div
-      class="
-        absolute inset-0 bg-linear-to-b from-white/20 via-transparent
-        to-black/60
-      "
-    />
-
-    <!-- 角色立繪 -->
-    <div
-      class="
-        absolute inset-x-0 bottom-20 z-0 flex h-[85%] translate-y-8 transform
-        items-end justify-center
-      "
-    >
-      <img
-        src="/images/avatar_heart.png"
-        alt="Character"
-        class="
-          h-full scale-220 object-contain object-bottom opacity-30
-          drop-shadow-2xl
-        "
-      >
-    </div>
-
     <!-- 內容區域 -->
     <div
       class="
@@ -109,20 +84,5 @@ function startQuiz() {
 </template>
 
 <style scoped>
-/* 可以在這裡加入細微的浮動動畫 */
-@keyframes float {
-  0% {
-    transform: translateY(32px);
-  }
-  50% {
-    transform: translateY(24px);
-  }
-  100% {
-    transform: translateY(32px);
-  }
-}
-
-img {
-  animation: float 6s ease-in-out infinite;
-}
+/* 頁面特定樣式 (視覺由 HomeScene 持久層處理) */
 </style>
