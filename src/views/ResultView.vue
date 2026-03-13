@@ -4,10 +4,9 @@
 -->
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { computed, nextTick, onMounted, ref } from 'vue';
+import { nextTick, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { TRANSITION_CONFIG, UI_STRINGS } from '../constants';
-import { getResultByScore } from '../data/results';
 import { useAudioStore } from '../stores/audio';
 import { useGameStore } from '../stores/game';
 import { generateResultImage, waitForImages } from '../utils/image';
@@ -15,15 +14,13 @@ import { generateResultImage, waitForImages } from '../utils/image';
 const router = useRouter();
 const gameStore = useGameStore();
 const audioStore = useAudioStore();
-const { score, resultStatus } = storeToRefs(gameStore);
+const { resultStatus, currentResult: resultData } = storeToRefs(gameStore);
 
 function restart() {
   audioStore.playClick();
   gameStore.resetGame();
   router.replace('/');
 }
-
-const resultData = computed(() => getResultByScore(score.value));
 
 const resultCardRef = ref<HTMLElement | null>(null);
 const resultImageUrl = ref<string>('');

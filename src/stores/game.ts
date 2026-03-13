@@ -43,7 +43,9 @@ export const useGameStore = defineStore('game', () => {
     isGameStarted.value = true; // 當呼叫 resetGame 開始遊戲時設為 true
   }
 
-  const resultStatus = computed(() => getResultByScore(score.value).title);
+  /** 根據分數計算目前的結果數據 */
+  const currentResult = computed(() => getResultByScore(score.value));
+  const resultStatus = computed(() => currentResult.value.title);
 
   return {
     script,
@@ -54,6 +56,7 @@ export const useGameStore = defineStore('game', () => {
     isFinished,
     isGameStarted,
     resultStatus,
+    currentResult,
     nextStep,
     answerQuestion,
     resetGame,

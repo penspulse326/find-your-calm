@@ -9,42 +9,48 @@ import AudioToggle from './components/AudioToggle.vue';
 import { results } from './data/results';
 import scriptData from './data/script.json';
 import { useAudioStore } from './stores/audio';
+import { useLoadingStore } from './stores/loading';
 import { preloadImages } from './utils/image';
 
 const audioStore = useAudioStore();
+const loadingStore = useLoadingStore();
 
 onMounted(async () => {
   audioStore.initSounds();
 
-  // 提取劇本中所有需要使用的圖片
+  // 1. 蒐集所有需要預載的圖片 URL
   const images = new Set<string>();
+
+  // 劇本背景與角色
   (scriptData as GameStep[]).forEach((step) => {
     if (step.bg) {
-      images.add(step.bg);
+      images.add(`/images/${step.bg}`);
     }
     if (step.character) {
-      images.add(step.character);
+      images.add(`/images/${step.character}`);
     }
   });
 
-  // 轉換為完整的 URL 並開始預載
-  const imageUrls = Array.from(
-    images,
-    img => `/images/${img}`,
-  );
-
-  // 同時預載測驗結果頁的圖片
-  results.forEach((r) => {
-    if (r.image) {
-      imageUrls.push(r.image);
+  // 測驗結果頁圖片
+  results.forEach((res) => {
+    if (res.image) {
+      images.add(res.image);
     }
   });
+
+  const imageUrls = [...images];
+
+  // 2. 開始執行預載並追蹤進度
+  loadingStore.setTotal(imageUrls.length);
 
   try {
-    await preloadImages(imageUrls);
+    await preloadImages(imageUrls, () => {
+      loadingStore.incrementLoaded();
+    });
   }
   catch (err) {
-    console.error('Failed to preload images:', err);
+    // 關鍵資源載入失敗時的紀錄
+    console.error('[App] Failed to preload some images:', err);
   }
 });
 </script>

@@ -13,10 +13,18 @@ export function preloadImage(url: string): Promise<void> {
 }
 
 /**
- * 批次預載圖片
+ * 批次預載圖片，支援進度回調
  */
-export async function preloadImages(urls: string[]): Promise<void[]> {
-  const promises = urls.map(url => preloadImage(url));
+export async function preloadImages(
+  urls: string[],
+  onProgress?: () => void,
+): Promise<void[]> {
+  const promises = urls.map(async (url) => {
+    await preloadImage(url);
+    if (onProgress) {
+      onProgress();
+    }
+  });
   return Promise.all(promises);
 }
 

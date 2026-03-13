@@ -33,10 +33,7 @@ function handleSelect(score: number) {
       :key="option.text"
       :disabled="disabled"
       class="
-        group relative isolate w-full transform overflow-hidden rounded-2xl
-        border border-white/10 bg-white/5 p-3 text-left shadow-lg
-        backdrop-blur-sm transition-all duration-500
-        will-change-[backdrop-filter,transform,opacity]
+        group glass-card w-full p-3 text-left transition-all duration-500
         hover:-translate-y-1 hover:border-white/40 hover:bg-white/15
         hover:shadow-white/10
         active:bg-white/25
